@@ -56,16 +56,16 @@ export default function PersonHeight() {
         // onChange={() => onHeightChange(1)}
       >
         {state.sexValue === 28
-          ? `Tall > 185 centimeters (6 feet, 1 inch)`
-          : `Tall > 170 centimeters (5 feet, 7 inches)`}
+          ? `Tall > 1.85 m (6 feet, 1 inch)`
+          : `Tall > 1.70 m (5 feet, 7 inches)`}
       </FormCheckbox>
       <FormCheckbox
         checked={state.heightValue === -1}
         // onChange={() => onHeightChange(-1)}
       >
         {state.sexValue === 28
-          ? `Short < 167 centimeters (5 feet, 5 inches)`
-          : `Short < 153 centimeters (5 feet)`}
+          ? `Short < 1.67 m (5 feet, 5 inches)`
+          : `Short < 1.53 m (5 feet)`}
       </FormCheckbox>
     </>
   )

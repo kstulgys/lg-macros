@@ -7,7 +7,7 @@ export default function PersonMuscular() {
 
   const getBodyFat = () => {
     if (state.bodyFatValue === 0) {
-      return 15
+      return state.sexValue === 28 ? 15 : 23
     }
     if (state.bodyFatValue === 0.5) {
       return 9

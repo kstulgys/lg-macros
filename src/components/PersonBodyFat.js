@@ -26,7 +26,7 @@ export default function PersonSex() {
       <FormCheckbox
         checked={state.bodyFatValue === 0}
         onChange={() => onBodyFatChange(0)}>
-        {`BF ~ 15 %`}
+        {state.sexValue === 28 ? `BF ~ 15 %` : `BF ~ 23 %`}
       </FormCheckbox>
       <FormCheckbox
         checked={state.bodyFatValue === -0.5}
