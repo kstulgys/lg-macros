@@ -46,7 +46,7 @@ function App() {
               theme="dark"
               onClick={() => {
                 localStorage.clear()
-                location.reload()
+                window.location.reload()
               }}>
               Reset To Defaults
             </Button>
