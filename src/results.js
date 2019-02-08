@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { FormCheckbox, FormInput } from "shards-react"
+import { FormCheckbox, Button } from "shards-react"
 import Store from "./store"
 
 function Results() {
@@ -45,29 +45,32 @@ function Results() {
   const proteinGrams = cals => Math.round((cals * 0.55) / 4)
 
   return (
-    <div>
-      <h3>Base Cal: {getBaseCalories()} Cal</h3>
-      <br />
-      <h3>Training Day Macros</h3>
-      <h4>{getTrainingCalories()} Cal</h4>
-      <h4>C: {carbsGrams(getTrainingCalories())} g (22.5 %)</h4>
-      <h4>F: {fatsGrams(getTrainingCalories())} g (22.5 %)</h4>
-      <h4>P: {proteinGrams(getTrainingCalories())} g (55 %)</h4>
-      <br />
-      <h3>Rest Day Macros</h3>
-      <h4>{getRestCalories()} Cal</h4>
-      <h4>C: {carbsGrams(getRestCalories())} g (22.5 %)</h4>
-      <h4>F: {fatsGrams(getRestCalories())} g (22.5 %)</h4>
-      <h4>P: {proteinGrams(getRestCalories())} g (55 %)</h4>
-      <br />
-      <h3>
-        MyfitnessPal counts total carbs and not the Net Carbs for the calories.
-      </h3>
-      <h4>I.e fiber intake/day ~35g => +140 Cal</h4>
-      <h4>It's OK to have these numbers in MFP:</h4>
-      <h4>Training Cal: {getTrainingCaloriesWithFiber()} Cal</h4>
-      <h4>Rest Cal: {getRestCaloriesWithFiber()} Cal</h4>
-    </div>
+    <>
+      <div>
+        <h3>Base Cal: {getBaseCalories()} Cal</h3>
+        <br />
+        <h3>Training Day Macros</h3>
+        <h4>{getTrainingCalories()} Cal</h4>
+        <h4>C: {carbsGrams(getTrainingCalories())} g (22.5 %)</h4>
+        <h4>F: {fatsGrams(getTrainingCalories())} g (22.5 %)</h4>
+        <h4>P: {proteinGrams(getTrainingCalories())} g (55 %)</h4>
+        <br />
+        <h3>Rest Day Macros</h3>
+        <h4>{getRestCalories()} Cal</h4>
+        <h4>C: {carbsGrams(getRestCalories())} g (22.5 %)</h4>
+        <h4>F: {fatsGrams(getRestCalories())} g (22.5 %)</h4>
+        <h4>P: {proteinGrams(getRestCalories())} g (55 %)</h4>
+        <br />
+        <h3>
+          MyfitnessPal counts total carbs and not the Net Carbs for the
+          calories.
+        </h3>
+        <h4>I.e fiber intake/day ~35g => +140 Cal</h4>
+        <h4>It's OK to have these numbers in MFP:</h4>
+        <h4>Training Cal: {getTrainingCaloriesWithFiber()} Cal</h4>
+        <h4>Rest Cal: {getRestCaloriesWithFiber()} Cal</h4>
+      </div>
+    </>
   )
 }
 

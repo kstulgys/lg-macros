@@ -7,7 +7,7 @@ import Store from "./store"
 import ToggleButton from "./app"
 import Results from "./results"
 // import Footer from "./components/Footer"
-import { Card, CardBody } from "shards-react"
+import { Card, CardBody, Button } from "shards-react"
 // import "./styles.css"
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
         }}>
         <div className="row">
           <div className="col-12 col-sm-6">
+            <br />
             <Card>
               <CardBody>
                 <ToggleButton />
@@ -32,11 +33,24 @@ function App() {
             </Card>
           </div>
           <div className="col-12 col-sm-6">
+            <br />
             <Card>
               <CardBody>
                 <Results />
               </CardBody>
             </Card>
+            <br />
+            <Button
+              size="lg"
+              block
+              theme="dark"
+              onClick={() => {
+                localStorage.clear()
+                location.reload()
+              }}>
+              Reset To Defaults
+            </Button>
+            <br />
           </div>
         </div>
       </div>
