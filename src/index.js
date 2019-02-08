@@ -6,7 +6,7 @@ import ReactDOM from "react-dom"
 import Store from "./store"
 import ToggleButton from "./app"
 import Results from "./results"
-import Footer from "./components/Footer"
+// import Footer from "./components/Footer"
 import { Card, CardBody } from "shards-react"
 // import "./styles.css"
 
@@ -40,9 +40,6 @@ function App() {
           </div>
         </div>
       </div>
-      {
-        // <Footer />
-      }
     </>
   )
 }
