@@ -1,54 +1,60 @@
-import React, { useState, useEffect } from "react"
-import { FormCheckbox, FormInput } from "shards-react"
-import Store from "../store"
+import React, { useState, useEffect } from "react";
+import { FormCheckbox, FormInput } from "shards-react";
+import Store from "../store";
 
 export default function PersonWeight() {
-  const { state, setState } = Store.useStore()
+  const { state, setState } = Store.useStore();
 
   const onWeightChange = e => {
-    const { value } = e.target
+    const { value } = e.target;
     setState(state => {
-      state.weight = Number(value)
-    })
-  }
+      state.weight = Number(value);
+    });
+  };
 
   const onUnitChange = () =>
     state.unit === "kg"
       ? setState(state => {
-          state.unit = "lbs"
+          state.unit = "lbs";
         })
       : setState(state => {
-          state.unit = "kg"
-        })
+          state.unit = "kg";
+        });
 
   const onHeightChange = e => {
-    const { value } = e.target
+    const { value } = e.target;
     setState(state => {
-      state.height = Number(value)
-    })
-  }
+      state.height = Number(value);
+    });
+  };
 
   return (
     <>
-      <h3>Weight & Height</h3>
+      <h5 className="font-weight-bold">Weight & Height</h5>
+
       <div style={{ display: "flex", alignItems: "center" }}>
         <FormInput
           type="number"
           style={{ maxWidth: 90 }}
           value={state.weight || ""}
           onChange={onWeightChange}
-        />{" "}
-        <FormCheckbox checked={state.weightUnit === "kg"}>kg</FormCheckbox>
+        />
+        <span className="pl-2">
+          <FormCheckbox checked={state.weightUnit === "kg"}>kg</FormCheckbox>
+        </span>
       </div>
 
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div className="mt-2" style={{ display: "flex", alignItems: "center" }}>
         <FormInput
           type="number"
           style={{ maxWidth: 90 }}
           value={state.height || ""}
           onChange={onHeightChange}
-        />{" "}
-        <FormCheckbox checked={state.heightUnit === "m"}>m</FormCheckbox>
+        />
+        <span className="pl-2">
+          <FormCheckbox checked={state.heightUnit === "m"}>m</FormCheckbox>
+        </span>
+
         {
           // <FormCheckbox checked={state.unit === "lbs"} onChange={onUnitChange}>
           //   lbs
@@ -56,5 +62,5 @@ export default function PersonWeight() {
         }
       </div>
     </>
-  )
+  );
 }

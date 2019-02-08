@@ -1,70 +1,65 @@
-import "normalize.css"
-import "bootstrap/dist/css/bootstrap.min.css"
-import "shards-ui/dist/css/shards.min.css"
-import React from "react"
-import ReactDOM from "react-dom"
-import Store from "./store"
-import ToggleButton from "./app"
-import Results from "./results"
+import "normalize.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "shards-ui/dist/css/shards.min.css";
+import React from "react";
+import ReactDOM from "react-dom";
+import Store from "./store";
+import CalculationsSide from "./CalculationsSide";
+import ResultsSide from "./ResultsSide";
 // import Footer from "./components/Footer"
-import { Card, CardBody, Button } from "shards-react"
+import { Card, CardBody, Button } from "shards-react";
 // import "./styles.css"
 
 function App() {
-  const { state } = Store.useStore()
+  const { state } = Store.useStore();
   // console.log(state)
   return (
-    <>
+    <div className="bg-light" style={{ height: "100%" }}>
       <div
-        className="container-fluid bg-light"
+        className="container"
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center"
+          justifyContent: "center",
+          height: "100%"
           // height: "100vh"
-        }}>
+        }}
+      >
         <div className="row">
-          <div className="col-12 col-sm-6">
+          <div className="col-12 col-md-8 ">
             <br />
-            <Card>
-              <CardBody>
-                <ToggleButton />
-              </CardBody>
-            </Card>
+            <CalculationsSide />
           </div>
-          <div className="col-12 col-sm-6">
+          <div className="col-12 col-md-4 ">
             <br />
-            <Card>
-              <CardBody>
-                <Results />
-              </CardBody>
-            </Card>
+            <ResultsSide />
             <br />
             <Button
               size="lg"
               block
               theme="dark"
               onClick={() => {
-                localStorage.clear()
-                window.location.reload()
-              }}>
+                localStorage.clear();
+                window.location.reload();
+              }}
+            >
               Reset To Defaults
             </Button>
             <br />
           </div>
         </div>
       </div>
-    </>
-  )
+    </div>
+  );
 }
 
-const rootElement = document.getElementById("root")
+const rootElement = document.getElementById("root");
 ReactDOM.render(
   <Store.Provider>
     <App />
   </Store.Provider>,
   rootElement
-)
+);
 
 //     <h1>Multiplyier</h1>
 //   <h2>Steps > 6000/day => +0.5</h2>

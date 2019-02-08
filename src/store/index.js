@@ -22,15 +22,12 @@ function makeStore() {
   const Provider = ({ children }) => {
     const [state, setState] = useImmer(stateFromStorage)
 
-    let contextValue = useMemo(
-      () => localStorage.setItem("state", JSON.stringify(state)),
-      [state]
-    )
-    contextValue = {
+    useMemo(() => localStorage.setItem("state", JSON.stringify(state)), [state])
+    const contextValue = {
       state,
       setState
     }
-    // console.log(contextValue);
+
     return <Context.Provider value={contextValue}>{children}</Context.Provider>
   }
 

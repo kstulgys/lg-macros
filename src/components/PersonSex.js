@@ -16,7 +16,7 @@ export default function PersonSex() {
 
   return (
     <>
-      <h3>Sex</h3>
+      <h5 className="font-weight-bold">Sex</h5>
       <FormCheckbox checked={state.sexValue === 28} onChange={onSexChange}>
         Male
       </FormCheckbox>
