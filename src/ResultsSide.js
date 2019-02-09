@@ -67,8 +67,8 @@ export default function ResultsSide() {
         <br />
 
         <h5>
-          MyfitnessPal counts calories for total carbs. Fiber is not
-          substracted. Therefore it's ok to have these numbers in MFP:
+          MyfitnessPal counts calories for total carbs. Fiber is not subtracted.
+          Therefore it's ok to have these numbers in MFP:
         </h5>
         <h5>I.e fiber intake/day ~35g *4 => +140 Cal</h5>
         <h5 className="font-weight-bold">
