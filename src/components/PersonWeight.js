@@ -12,14 +12,14 @@ export default function PersonWeight() {
     });
   };
 
-  const onUnitChange = () =>
-    state.unit === "kg"
-      ? setState(state => {
-          state.unit = "lbs";
-        })
-      : setState(state => {
-          state.unit = "kg";
-        });
+  // const onUnitChange = () =>
+  //   state.unit === "kg"
+  //     ? setState(state => {
+  //         state.unit = "lbs";
+  //       })
+  //     : setState(state => {
+  //         state.unit = "kg";
+  //       });
 
   const onHeightChange = e => {
     const { value } = e.target;
@@ -31,7 +31,6 @@ export default function PersonWeight() {
   return (
     <>
       <h5 className="font-weight-bold">Weight & Height</h5>
-
       <div style={{ display: "flex", alignItems: "center" }}>
         <FormInput
           type="number"
@@ -44,7 +43,10 @@ export default function PersonWeight() {
         </span>
       </div>
 
-      <div className="mt-2" style={{ display: "flex", alignItems: "center" }}>
+      <div
+        className="mt-2 mb-2"
+        style={{ display: "flex", alignItems: "center" }}
+      >
         <FormInput
           type="number"
           style={{ maxWidth: 90 }}
