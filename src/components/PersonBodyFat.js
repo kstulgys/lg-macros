@@ -28,15 +28,15 @@ function BfDropdown() {
       open={isOpen}
       toggle={() => setOpen(!isOpen)}
       size="sm"
-      className="mr-2 d-table"
+      className="mr-2"
     >
       <DropdownToggle
         outline
         theme="dark"
         disabled={state.bodyFatValue !== 0.5}
         caret
-        style={{ fontSize: "1rem", width: 70 }}
-        className="p-0"
+        style={{ fontSize: "1rem", width: 50 }}
+        className="px-0 py-1"
       >
         {bfSelected}
       </DropdownToggle>
