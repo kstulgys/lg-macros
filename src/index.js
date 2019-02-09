@@ -1,17 +1,17 @@
-import "normalize.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "shards-ui/dist/css/shards.min.css";
-import React from "react";
-import ReactDOM from "react-dom";
-import Store from "./store";
-import CalculationsSide from "./CalculationsSide";
-import ResultsSide from "./ResultsSide";
+import "normalize.css"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "shards-ui/dist/css/shards.min.css"
+import React from "react"
+import ReactDOM from "react-dom"
+import Store from "./store"
+import CalculationsSide from "./components/CalculationSide"
+import ResultsSide from "./components/ResultsSide"
 // import Footer from "./components/Footer"
-import { Card, CardBody, Button } from "shards-react";
+import { Card, CardBody, Button } from "shards-react"
 // import "./styles.css"
 
 function App() {
-  const { state } = Store.useStore();
+  const { state } = Store.useStore()
   // console.log(state)
   return (
     <div className="bg-light">
@@ -39,8 +39,13 @@ function App() {
               block
               theme="dark"
               onClick={() => {
-                localStorage.clear();
-                window.location.reload();
+                localStorage.clear()
+                window.location.reload()
+                setTimeout(() => {
+                  window.scroll({
+                    top: 0
+                  })
+                }, 1000)
               }}
             >
               Reset To Defaults
@@ -50,16 +55,16 @@ function App() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById("root")
 ReactDOM.render(
   <Store.Provider>
     <App />
   </Store.Provider>,
   rootElement
-);
+)
 
 //     <h1>Multiplyier</h1>
 //   <h2>Steps > 6000/day => +0.5</h2>

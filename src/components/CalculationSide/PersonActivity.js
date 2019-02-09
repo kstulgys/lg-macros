@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { FormCheckbox, FormInput } from "shards-react";
-import Store from "../store";
+import React, { useState, useEffect } from "react"
+import { FormCheckbox, FormInput } from "shards-react"
+import Store from "../../store"
 
 export default function PersonActivity() {
-  const { state, setState } = Store.useStore();
+  const { state, setState } = Store.useStore()
 
   const onStepsChange = val =>
     state.stepsValue === val
       ? setState(state => {
-          state.stepsValue = 0;
+          state.stepsValue = 0
         })
       : setState(state => {
-          state.stepsValue = val;
-        });
+          state.stepsValue = val
+        })
 
   return (
     <>
@@ -46,5 +46,5 @@ export default function PersonActivity() {
         onChange={() => onStepsChange(3)}
       >{`Steps > 12, 500`}</FormCheckbox>
     </>
-  );
+  )
 }

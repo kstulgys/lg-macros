@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { FormCheckbox, FormInput } from "shards-react";
-import Store from "../store";
+import React, { useState, useEffect } from "react"
+import { FormCheckbox, FormInput } from "shards-react"
+import Store from "../../store"
 
 export default function PersonWeight() {
-  const { state, setState } = Store.useStore();
+  const { state, setState } = Store.useStore()
 
   const onWeightChange = e => {
-    const { value } = e.target;
+    const { value } = e.target
     setState(state => {
-      state.weight = Number(value);
-    });
-  };
+      state.weight = Number(value)
+    })
+  }
 
   // const onUnitChange = () =>
   //   state.unit === "kg"
@@ -22,11 +22,11 @@ export default function PersonWeight() {
   //       });
 
   const onHeightChange = e => {
-    const { value } = e.target;
+    const { value } = e.target
     setState(state => {
-      state.height = Number(value);
-    });
-  };
+      state.height = Number(value)
+    })
+  }
 
   return (
     <>
@@ -64,5 +64,5 @@ export default function PersonWeight() {
         }
       </div>
     </>
-  );
+  )
 }

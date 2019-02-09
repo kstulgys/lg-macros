@@ -1,5 +1,5 @@
-import React, { useMemo, useContext, createContext, useState } from "react";
-import { useImmer } from "use-immer";
+import React, { useMemo, useContext, createContext, useState } from "react"
+import { useImmer } from "use-immer"
 // import { withRouter, BrowserRouter } from 'react-router-dom';
 const initialState = {
   weight: 80.5,
@@ -11,34 +11,33 @@ const initialState = {
   bodyFatValue: 0,
   ageValue: 0,
   muscularValue: 0,
-  stepsValue: 0
-};
+  stepsValue: 0,
+  fiberIntake: 40
+}
 
 function makeStore() {
-  const Context = createContext();
+  const Context = createContext()
   const stateFromStorage = () =>
-    JSON.parse(localStorage.getItem("state")) || initialState;
+    JSON.parse(localStorage.getItem("state")) || initialState
 
   const Provider = ({ children }) => {
-    const [state, setState] = useImmer(stateFromStorage);
+    const [state, setState] = useImmer(stateFromStorage)
 
-    useMemo(() => localStorage.setItem("state", JSON.stringify(state)), [
-      state
-    ]);
+    useMemo(() => localStorage.setItem("state", JSON.stringify(state)), [state])
     const contextValue = {
       state,
       setState
-    };
+    }
 
-    return <Context.Provider value={contextValue}>{children}</Context.Provider>;
-  };
+    return <Context.Provider value={contextValue}>{children}</Context.Provider>
+  }
 
-  const useStore = () => useContext(Context);
+  const useStore = () => useContext(Context)
 
   return {
     Provider,
     useStore
-  };
+  }
 }
 
-export default makeStore();
+export default makeStore()

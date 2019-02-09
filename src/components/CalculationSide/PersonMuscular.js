@@ -1,62 +1,62 @@
-import React, { useState, useEffect } from "react";
-import { FormCheckbox, FormInput } from "shards-react";
-import Store from "../store";
+import React, { useState, useEffect } from "react"
+import { FormCheckbox, FormInput } from "shards-react"
+import Store from "../../store"
 
 export default function PersonMuscular() {
-  const { state, setState } = Store.useStore();
+  const { state, setState } = Store.useStore()
 
   const getBodyFat = () => {
     if (state.bodyFatValue === 0) {
-      return state.sexValue === 28 ? 15 : 23;
+      return state.sexValue === 28 ? 15 : 23
     }
     if (state.bodyFatValue === 0.5) {
-      return state.bodyFat || 10;
+      return state.bodyFat || 10
     }
     if (state.bodyFatValue === -0.5) {
-      return 22.5;
+      return 22.5
     }
     if (state.bodyFatValue === -1) {
-      return 27.5;
+      return 27.5
     }
     if (state.bodyFatValue === -1.5) {
-      return 35;
+      return 35
     }
 
-    return;
-  };
+    return
+  }
 
-  const getFfm = () => state.weight * (1 - getBodyFat() / 100);
+  const getFfm = () => state.weight * (1 - getBodyFat() / 100)
   const getFfmi = () =>
-    getFfm() / Math.pow(state.height, 2) + 6.1 * (1.8 - state.height);
+    getFfm() / Math.pow(state.height, 2) + 6.1 * (1.8 - state.height)
 
   useEffect(
     () => {
-      const ffmi = getFfmi().toFixed(1);
+      const ffmi = getFfmi().toFixed(1)
       setState(state => {
-        state.ffmi = ffmi;
-      });
+        state.ffmi = ffmi
+      })
       if (ffmi < 22) {
         setState(state => {
-          state.muscularValue = 0;
-        });
-        return;
+          state.muscularValue = 0
+        })
+        return
       }
       if (ffmi > 24) {
         setState(state => {
-          state.muscularValue = 1;
-        });
-        return;
+          state.muscularValue = 1
+        })
+        return
       }
       if (ffmi > 22) {
         setState(state => {
-          state.muscularValue = 0.5;
-        });
-        return;
+          state.muscularValue = 0.5
+        })
+        return
       }
     },
-    [state.weight, state.bodyFatValue, state.height, state.bodyFat]
-  );
-
+    [state]
+  )
+  //state.height, state.weight, state.bodyFatValue, state.bodyFat
   return (
     <>
       <h5 className="font-weight-bold">
@@ -72,5 +72,5 @@ export default function PersonMuscular() {
         {`FFMI > 24`}
       </FormCheckbox>
     </>
-  );
+  )
 }

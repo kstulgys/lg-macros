@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { CardBody, Card } from "shards-react";
-import Store from "./store";
-import PersonSex from "./components/PersonSex";
-import PersonWeight from "./components/PersonWeight";
-import PersonBodyFat from "./components/PersonBodyFat";
-import PersonMuscular from "./components/PersonMuscular";
-import PersonHeight from "./components/PersonHeight";
-import PersonAge from "./components/PersonAge";
-import PersonActivity from "./components/PersonActivity";
+import React, { useState, useEffect } from "react"
+import { CardBody, Card } from "shards-react"
+import Store from "../../store"
+import PersonSex from "./PersonSex"
+import PersonWeight from "./PersonWeight"
+import PersonBodyFat from "./PersonBodyFat"
+import PersonMuscular from "./PersonMuscular"
+import PersonHeight from "./PersonHeight"
+import PersonAge from "./PersonAge"
+import PersonActivity from "./PersonActivity"
 
 export default function CalculationsSide() {
-  const { state, setState } = Store.useStore();
+  const { state, setState } = Store.useStore()
 
   return (
     <Card>
@@ -35,7 +35,7 @@ export default function CalculationsSide() {
         </div>
       </CardBody>
     </Card>
-  );
+  )
 }
 
 // function ToggleButton({ text, sex, onSexChange }) {

@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import {
   FormCheckbox,
   Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem
-} from "shards-react";
-import Store from "../store";
+} from "shards-react"
+import Store from "../../store"
 
 function BfDropdown() {
-  const { state, setState } = Store.useStore();
-  const [isOpen, setOpen] = useState(false);
-  const [bfSelected, setBf] = useState(10);
+  const { state, setState } = Store.useStore()
+  const [isOpen, setOpen] = useState(false)
+  const [bfSelected, setBf] = useState(10)
 
   // const onClick = num => {
   //   console.log(e);
   // };
   const onBodyFatPercentChange = val => {
-    setBf(val);
+    setBf(val)
     setState(state => {
-      state.bodyFat = val;
-    });
-  };
+      state.bodyFat = val
+    })
+  }
 
   return (
     <Dropdown
@@ -46,29 +46,30 @@ function BfDropdown() {
           .map((n, i) => {
             return (
               <DropdownItem
+                key={i}
                 className=" my-0"
                 onClick={() => onBodyFatPercentChange(i + 5)}
               >
                 {i + 5}
               </DropdownItem>
-            );
+            )
           })}
       </DropdownMenu>
     </Dropdown>
-  );
+  )
 }
 
 export default function PersonSex() {
-  const { state, setState } = Store.useStore();
+  const { state, setState } = Store.useStore()
 
   const onBodyFatChange = val =>
     state.bodyFatValue === val
       ? setState(state => {
-          state.bodyFatValue = 0;
+          state.bodyFatValue = 0
         })
       : setState(state => {
-          state.bodyFatValue = val;
-        });
+          state.bodyFatValue = val
+        })
 
   return (
     <>
@@ -113,5 +114,5 @@ export default function PersonSex() {
         {state.sexValue === 28 ? `BF > 29 %` : `BF > 37 %`}
       </FormCheckbox>
     </>
-  );
+  )
 }

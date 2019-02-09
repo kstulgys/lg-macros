@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { FormCheckbox, FormInput } from "shards-react";
-import Store from "../store";
+import React, { useState, useEffect } from "react"
+import { FormCheckbox, FormInput } from "shards-react"
+import Store from "../../store"
 
 export default function PersonAge() {
-  const { state, setState } = Store.useStore();
+  const { state, setState } = Store.useStore()
 
   const onAgeChange = val =>
     state.ageValue === val
       ? setState(state => {
-          state.ageValue = 0;
+          state.ageValue = 0
         })
       : setState(state => {
-          state.ageValue = val;
-        });
+          state.ageValue = val
+        })
 
   return (
     <>
@@ -34,5 +34,5 @@ export default function PersonAge() {
         {`Years < 25`}
       </FormCheckbox>
     </>
-  );
+  )
 }
