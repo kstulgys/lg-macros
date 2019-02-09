@@ -23,7 +23,7 @@ export default function CalculationsSide() {
             <br />
             <PersonBodyFat />
             <br />
-            <PersonMuscular />
+            {state.sexValue === 28 && <PersonMuscular />}
           </div>
           <div className="col">
             <PersonHeight />

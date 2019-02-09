@@ -1,6 +1,62 @@
 import React, { useState, useEffect } from "react";
-import { FormCheckbox, FormInput } from "shards-react";
+import {
+  FormCheckbox,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "shards-react";
 import Store from "../store";
+
+function BfDropdown() {
+  const { state, setState } = Store.useStore();
+  const [isOpen, setOpen] = useState(false);
+  const [bfSelected, setBf] = useState(10);
+
+  // const onClick = num => {
+  //   console.log(e);
+  // };
+  const onBodyFatPercentChange = val => {
+    setBf(val);
+    setState(state => {
+      state.bodyFat = val;
+    });
+  };
+
+  return (
+    <Dropdown
+      open={isOpen}
+      toggle={() => setOpen(!isOpen)}
+      size="sm"
+      className="mr-2 d-table"
+    >
+      <DropdownToggle
+        outline
+        theme="dark"
+        disabled={state.bodyFatValue !== 0.5}
+        caret
+        style={{ fontSize: "1rem", width: 70 }}
+        className="p-0"
+      >
+        {bfSelected}
+      </DropdownToggle>
+      <DropdownMenu>
+        {Array(6)
+          .fill(null)
+          .map((n, i) => {
+            return (
+              <DropdownItem
+                className=" my-0"
+                onClick={() => onBodyFatPercentChange(i + 5)}
+              >
+                {i + 5}
+              </DropdownItem>
+            );
+          })}
+      </DropdownMenu>
+    </Dropdown>
+  );
+}
 
 export default function PersonSex() {
   const { state, setState } = Store.useStore();
@@ -17,12 +73,21 @@ export default function PersonSex() {
   return (
     <>
       <h5 className="font-weight-bold">Body Fat</h5>
-      <FormCheckbox
-        checked={state.bodyFatValue === 0.5}
-        onChange={() => onBodyFatChange(0.5)}
-      >
-        {state.sexValue === 28 ? `BF < 10 %` : `BF < 18 %`}
-      </FormCheckbox>
+      <div className="d-flex align-items-center">
+        <FormCheckbox
+          checked={state.bodyFatValue === 0.5}
+          onChange={() => onBodyFatChange(0.5)}
+        />
+
+        {state.sexValue === 28 ? (
+          <>
+            <BfDropdown /> {` < 10%`}
+          </>
+        ) : (
+          `BF < 18%`
+        )}
+      </div>
+
       <FormCheckbox
         checked={state.bodyFatValue === 0}
         onChange={() => onBodyFatChange(0)}

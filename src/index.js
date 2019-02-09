@@ -14,9 +14,9 @@ function App() {
   const { state } = Store.useStore();
   // console.log(state)
   return (
-    <div className="bg-light" style={{ height: "100%" }}>
+    <div className="bg-light">
       <div
-        className="container"
+        className="container p-0"
         style={{
           display: "flex",
           alignItems: "center",

@@ -10,7 +10,7 @@ export default function PersonMuscular() {
       return state.sexValue === 28 ? 15 : 23;
     }
     if (state.bodyFatValue === 0.5) {
-      return 9;
+      return state.bodyFat || 10;
     }
     if (state.bodyFatValue === -0.5) {
       return 22.5;
@@ -28,9 +28,6 @@ export default function PersonMuscular() {
   const getFfm = () => state.weight * (1 - getBodyFat() / 100);
   const getFfmi = () =>
     getFfm() / Math.pow(state.height, 2) + 6.1 * (1.8 - state.height);
-  // console.log(ffmi)
-
-  //FFMI [kg/m2] = FFM [kg] / (height [m])2 + 6.1 × (1.8 − height [m])
 
   useEffect(
     () => {
@@ -57,7 +54,7 @@ export default function PersonMuscular() {
         return;
       }
     },
-    [state.weight, state.bodyFatValue, state.height]
+    [state.weight, state.bodyFatValue, state.height, state.bodyFat]
   );
 
   return (
@@ -69,10 +66,10 @@ export default function PersonMuscular() {
         {`Not muscular`}
       </FormCheckbox>
       <FormCheckbox checked={state.muscularValue === 0.5}>
-        {`Fat-Free Mass Index (FFMI) > 22`}
+        {`FFMI > 22`}
       </FormCheckbox>
       <FormCheckbox checked={state.muscularValue === 1}>
-        {`Fat-Free Mass Index (FFMI) > 24`}
+        {`FFMI > 24`}
       </FormCheckbox>
     </>
   );
