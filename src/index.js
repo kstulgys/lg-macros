@@ -39,8 +39,8 @@ function App() {
               block
               theme="dark"
               onClick={() => {
-                localStorage.clear()
                 window.scrollTop = 0
+                window.localStorage.clear()
                 window.location.reload()
               }}
             >
