@@ -1,7 +1,7 @@
 import "normalize.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "shards-ui/dist/css/shards.min.css"
-import React from "react"
+import React, { useRef } from "react"
 import ReactDOM from "react-dom"
 import Store from "./store"
 import CalculationsSide from "./components/CalculationSide"
@@ -12,41 +12,53 @@ import { Card, CardBody, Button } from "shards-react"
 
 function App() {
   const { state } = Store.useStore()
+  const scrollToTopRef = useRef(null)
+
+  const onScrollToTop = () => {
+    scrollToTopRef.current.scrollIntoView()
+  }
+  // useEffect(() => {
+  //   scrollToBottomRef.current.scrollIntoView();
+  // });
+
   // console.log(state)
   return (
-    <div className="bg-light" style={{ overflowX: "hidden" }}>
-      <div
-        className="container px-0"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100%"
-          // height: "100vh"
-        }}
-      >
-        <div className="row">
-          <div className="col-12 col-md-8 ">
-            <br />
-            <CalculationsSide />
-          </div>
-          <div className="col-12 col-md-4 ">
-            <br />
-            <ResultsSide />
-            <br />
-            <Button
-              size="lg"
-              block
-              theme="dark"
-              onClick={() => {
-                window.scrollTop = 0
-                window.localStorage.clear()
-                window.location.reload()
-              }}
-            >
-              Reset To Defaults
-            </Button>
-            <br />
+    <div>
+      <div className="bg-light" style={{ overflowX: "hidden" }}>
+        <div
+          ref={scrollToTopRef}
+          className="container px-0"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%"
+            // height: "100vh"
+          }}
+        >
+          <div className="row">
+            <div className="col-12 col-md-8 ">
+              <br />
+              <CalculationsSide />
+            </div>
+            <div className="col-12 col-md-4 ">
+              <br />
+              <ResultsSide />
+              <br />
+              <Button
+                size="lg"
+                block
+                theme="dark"
+                onClick={() => {
+                  window.localStorage.clear()
+                  onScrollToTop()
+                  window.location.reload()
+                }}
+              >
+                Reset To Defaults
+              </Button>
+              <br />
+            </div>
           </div>
         </div>
       </div>
