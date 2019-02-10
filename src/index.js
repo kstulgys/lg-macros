@@ -3,77 +3,38 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "shards-ui/dist/css/shards.min.css"
 import React, { useRef } from "react"
 import ReactDOM from "react-dom"
+import { BrowserRouter, Link, Switch, Route } from "react-router-dom"
 import Store from "./store"
 import CalculationsSide from "./components/CalculationSide"
 import ResultsSide from "./components/ResultsSide"
-// import Footer from "./components/Footer"
+import Navigation from "./components/Navigation"
+import Calories from "./components/Calories"
+import MealPlan from "./components/mealplan"
+import "./styles.css"
 import { Card, CardBody, Button } from "shards-react"
-// import "./styles.css"
 
 function App() {
   const { state } = Store.useStore()
-  const scrollToTopRef = useRef(null)
 
-  const onScrollToTop = () => {
-    scrollToTopRef.current.scrollIntoView()
-  }
-  // useEffect(() => {
-  //   scrollToBottomRef.current.scrollIntoView();
-  // });
-
-  // console.log(state)
   return (
-    <div>
-      <div className="bg-light" style={{ overflowX: "hidden" }}>
-        <div
-          ref={scrollToTopRef}
-          className="container px-0"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100%"
-            // height: "100vh"
-          }}
-        >
-          <div className="row">
-            <div className="col-12 col-md-8 ">
-              <br />
-              <CalculationsSide />
-            </div>
-            <div className="col-12 col-md-4 ">
-              <br />
-              <ResultsSide />
-              <br />
-              <div className="px-2 px-md-0">
-                <Button
-                  size="lg"
-                  block
-                  theme="dark"
-                  onClick={() => {
-                    window.localStorage.clear()
-                    onScrollToTop()
-                    window.location.reload()
-                  }}
-                >
-                  Reset To Defaults
-                </Button>
-              </div>
-
-              <br />
-            </div>
-          </div>
-        </div>
-      </div>
+    <div
+      className="bg-light container-fluid px-0 px-md-4"
+      style={{ overflowX: "hidden", height: "100vh" }}
+    >
+      <Navigation />
+      <Route exact path="/" component={Calories} />
+      <Route path="/meals" component={MealPlan} />
     </div>
   )
 }
 
 const rootElement = document.getElementById("root")
 ReactDOM.render(
-  <Store.Provider>
-    <App />
-  </Store.Provider>,
+  <BrowserRouter>
+    <Store.Provider>
+      <App />
+    </Store.Provider>
+  </BrowserRouter>,
   rootElement
 )
 

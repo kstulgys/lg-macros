@@ -36,7 +36,7 @@ function BfDropdown() {
         disabled={state.bodyFatValue !== 0.5}
         caret
         style={{ fontSize: "1rem", width: 50 }}
-        className="px-0 py-1"
+        className="px-0"
       >
         {bfSelected}
       </DropdownToggle>
@@ -74,14 +74,12 @@ export default function PersonSex() {
   return (
     <>
       <h5 className="font-weight-bold">Body Fat</h5>
-      <div className="d-flex align-items-center">
-        <div className="pt-2">
-          <FormRadio
-            // className="pt-4"
-            checked={state.bodyFatValue === 0.5}
-            onChange={() => onBodyFatChange(0.5)}
-          />
-        </div>
+      <div className="d-flex align-items-center mb-1">
+        <FormRadio
+          // className="pt-4"
+          checked={state.bodyFatValue === 0.5}
+          onChange={() => onBodyFatChange(0.5)}
+        />
 
         {state.sexValue === 28 ? (
           <>
