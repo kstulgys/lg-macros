@@ -45,18 +45,21 @@ function App() {
               <br />
               <ResultsSide />
               <br />
-              <Button
-                size="lg"
-                block
-                theme="dark"
-                onClick={() => {
-                  window.localStorage.clear()
-                  onScrollToTop()
-                  window.location.reload()
-                }}
-              >
-                Reset To Defaults
-              </Button>
+              <div className="px-2 px-md-0">
+                <Button
+                  size="lg"
+                  block
+                  theme="dark"
+                  onClick={() => {
+                    window.localStorage.clear()
+                    onScrollToTop()
+                    window.location.reload()
+                  }}
+                >
+                  Reset To Defaults
+                </Button>
+              </div>
+
               <br />
             </div>
           </div>

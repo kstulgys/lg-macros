@@ -49,7 +49,7 @@ export default function ResultsSide() {
   return (
     <Card>
       <CardHeader className="pb-1">
-        <h5 className="font-weight-bold">
+        <h5 className="font-weight-bold text-center">
           Base calories: {state.baseCalories} Cal
         </h5>
       </CardHeader>
