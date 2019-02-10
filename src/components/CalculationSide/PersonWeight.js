@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { FormCheckbox, FormInput } from "shards-react"
+import { FormRadio, FormInput } from "shards-react"
 import Store from "../../store"
 
 export default function PersonWeight() {
@@ -39,7 +39,7 @@ export default function PersonWeight() {
           onChange={onWeightChange}
         />
         <span className="pl-2">
-          <FormCheckbox checked={state.weightUnit === "kg"}>kg</FormCheckbox>
+          <FormRadio checked={state.weightUnit === "kg"}>kg</FormRadio>
         </span>
       </div>
 
@@ -54,7 +54,7 @@ export default function PersonWeight() {
           onChange={onHeightChange}
         />
         <span className="pl-2">
-          <FormCheckbox checked={state.heightUnit === "m"}>m</FormCheckbox>
+          <FormRadio checked={state.heightUnit === "m"}>m</FormRadio>
         </span>
 
         {

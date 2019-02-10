@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { FormCheckbox, FormInput } from "shards-react"
+import { FormCheckbox, FormInput, FormRadio } from "shards-react"
 import Store from "../../store"
 
 export default function PersonSex() {
@@ -21,12 +21,12 @@ export default function PersonSex() {
   return (
     <>
       <h5 className="font-weight-bold">Sex</h5>
-      <FormCheckbox checked={state.sexValue === 28} onChange={onSexChange}>
+      <FormRadio checked={state.sexValue === 28} onChange={onSexChange}>
         Male
-      </FormCheckbox>
-      <FormCheckbox checked={state.sexValue === 26} onChange={onSexChange}>
+      </FormRadio>
+      <FormRadio checked={state.sexValue === 26} onChange={onSexChange}>
         Female
-      </FormCheckbox>
+      </FormRadio>
     </>
   )
 }

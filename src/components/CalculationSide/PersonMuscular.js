@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { FormCheckbox, FormInput } from "shards-react"
+import { FormRadio, FormInput } from "shards-react"
 import Store from "../../store"
 
 export default function PersonMuscular() {
@@ -62,15 +62,11 @@ export default function PersonMuscular() {
       <h5 className="font-weight-bold">
         Muscular (auto calc) {state.ffmi && `FFMI: ~${state.ffmi}`}
       </h5>
-      <FormCheckbox checked={state.muscularValue === 0}>
+      <FormRadio checked={state.muscularValue === 0}>
         {`Not muscular`}
-      </FormCheckbox>
-      <FormCheckbox checked={state.muscularValue === 0.5}>
-        {`FFMI > 22`}
-      </FormCheckbox>
-      <FormCheckbox checked={state.muscularValue === 1}>
-        {`FFMI > 24`}
-      </FormCheckbox>
+      </FormRadio>
+      <FormRadio checked={state.muscularValue === 0.5}>{`FFMI > 22`}</FormRadio>
+      <FormRadio checked={state.muscularValue === 1}>{`FFMI > 24`}</FormRadio>
     </>
   )
 }

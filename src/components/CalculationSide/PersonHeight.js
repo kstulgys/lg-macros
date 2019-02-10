@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { FormCheckbox, FormInput } from "shards-react"
+import { FormRadio, FormInput } from "shards-react"
 import Store from "../../store"
 
 export default function PersonHeight() {
@@ -50,23 +50,23 @@ export default function PersonHeight() {
   return (
     <>
       <h5 className="font-weight-bold">Height (auto calc)</h5>
-      <FormCheckbox checked={state.heightValue === 0}>{`Normal`}</FormCheckbox>
-      <FormCheckbox
+      <FormRadio checked={state.heightValue === 0}>{`Normal`}</FormRadio>
+      <FormRadio
         checked={state.heightValue === 1}
         // onChange={() => onHeightChange(1)}
       >
         {state.sexValue === 28
           ? `Tall > 1.85 m (6 feet, 1 inch)`
           : `Tall > 1.70 m (5 feet, 7 inches)`}
-      </FormCheckbox>
-      <FormCheckbox
+      </FormRadio>
+      <FormRadio
         checked={state.heightValue === -1}
         // onChange={() => onHeightChange(-1)}
       >
         {state.sexValue === 28
           ? `Short < 1.67 m (5 feet, 5 inches)`
           : `Short < 1.53 m (5 feet)`}
-      </FormCheckbox>
+      </FormRadio>
     </>
   )
 }

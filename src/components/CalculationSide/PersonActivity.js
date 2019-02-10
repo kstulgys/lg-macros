@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { FormCheckbox, FormInput } from "shards-react"
+import { FormRadio } from "shards-react"
 import Store from "../../store"
 
 export default function PersonActivity() {
@@ -17,34 +17,34 @@ export default function PersonActivity() {
   return (
     <>
       <h5 className="font-weight-bold">Steps</h5>
-      <FormCheckbox
+      <FormRadio
         checked={state.stepsValue === 0}
         onChange={() => onStepsChange(0)}
-      >{`Steps < 6, 000`}</FormCheckbox>
-      <FormCheckbox
+      >{`Steps < 6, 000`}</FormRadio>
+      <FormRadio
         checked={state.stepsValue === 0.5}
         onChange={() => onStepsChange(0.5)}
-      >{`6, 000 < Steps < 7, 500`}</FormCheckbox>
-      <FormCheckbox
+      >{`6, 000 < Steps < 7, 500`}</FormRadio>
+      <FormRadio
         checked={state.stepsValue === 1}
         onChange={() => onStepsChange(1)}
-      >{`7, 500 < Steps < 8, 750`}</FormCheckbox>
-      <FormCheckbox
+      >{`7, 500 < Steps < 8, 750`}</FormRadio>
+      <FormRadio
         checked={state.stepsValue === 1.5}
         onChange={() => onStepsChange(1.5)}
-      >{`8, 750 < Steps < 10, 000`}</FormCheckbox>
-      <FormCheckbox
+      >{`8, 750 < Steps < 10, 000`}</FormRadio>
+      <FormRadio
         checked={state.stepsValue === 2}
         onChange={() => onStepsChange(2)}
-      >{`10, 000 < Steps < 11, 250`}</FormCheckbox>
-      <FormCheckbox
+      >{`10, 000 < Steps < 11, 250`}</FormRadio>
+      <FormRadio
         checked={state.stepsValue === 2.5}
         onChange={() => onStepsChange(2.5)}
-      >{`11, 250 < Steps < 12, 500`}</FormCheckbox>
-      <FormCheckbox
+      >{`11, 250 < Steps < 12, 500`}</FormRadio>
+      <FormRadio
         checked={state.stepsValue === 3}
         onChange={() => onStepsChange(3)}
-      >{`Steps > 12, 500`}</FormCheckbox>
+      >{`Steps > 12, 500`}</FormRadio>
     </>
   )
 }

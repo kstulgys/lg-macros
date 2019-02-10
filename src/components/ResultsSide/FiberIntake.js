@@ -95,7 +95,7 @@ function MFPinfo() {
         <PopoverBody>
           MyfitnessPal counts calories for total carbs. Fiber is not subtracted.
           Therefore it's ok to add calories from fiber to total day calories in
-          MyfitnessPal, otherwise you will be undereating ~160 cal/day.
+          MyfitnessPal. Otherwise you will be undereating ~160 cal/day.
         </PopoverBody>
       </Popover>
     </div>
