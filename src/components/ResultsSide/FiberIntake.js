@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react"
+import { FaInfoCircle } from "react-icons/fa"
 import {
-  FormCheckbox,
   Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Button,
+  Popover,
+  PopoverBody,
+  PopoverHeader
 } from "shards-react"
 import Store from "../../store"
 
@@ -26,10 +30,11 @@ export default function FiberIntake() {
 
   return (
     <div className="mb-4">
-      <h5>
-        MyfitnessPal counts calories for total carbs. Fiber is not subtracted.
-        Therefore it's ok to have these numbers in MFP:
-      </h5>
+      <div className="d-flex">
+        <h5 className="font-weight-bold">MyfitnessPal setup</h5>
+        <MFPinfo />
+      </div>
+
       <h5 className="mb-0">Fiber intake/day:</h5>
       <div className="d-flex align-items-center mb-2">
         <Dropdown
@@ -64,6 +69,35 @@ export default function FiberIntake() {
         </Dropdown>
         <h5 className="mb-0">* 4 = {getFiberIntakeCalories()} Cal</h5>
       </div>
+    </div>
+  )
+}
+
+function MFPinfo() {
+  const [isOpen, setOpen] = useState(false)
+  return (
+    <div className="ml-2">
+      <FaInfoCircle
+        size="1.5em"
+        color="#007BFF"
+        id="popover-1"
+        onClick={() => setOpen(!isOpen)}
+      />
+      <Popover
+        placement="bottom"
+        open={isOpen}
+        toggle={() => setOpen(!isOpen)}
+        target="#popover-1"
+      >
+        {
+          // <PopoverHeader>Title here</PopoverHeader>
+        }
+        <PopoverBody>
+          MyfitnessPal counts calories for total carbs. Fiber is not subtracted.
+          Therefore it's ok to add calories from fiber to total day calories in
+          MyfitnessPal, otherwise you will be undereating ~160 cal/day.
+        </PopoverBody>
+      </Popover>
     </div>
   )
 }
