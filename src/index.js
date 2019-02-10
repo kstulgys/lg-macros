@@ -14,9 +14,9 @@ function App() {
   const { state } = Store.useStore()
   // console.log(state)
   return (
-    <div className="bg-light">
+    <div className="bg-light" style={{ overflowX: "hidden" }}>
       <div
-        className="container p-0"
+        className="container px-0"
         style={{
           display: "flex",
           alignItems: "center",
@@ -40,12 +40,8 @@ function App() {
               theme="dark"
               onClick={() => {
                 localStorage.clear()
+                window.scrollTop = 0
                 window.location.reload()
-                setTimeout(() => {
-                  window.scroll({
-                    top: 0
-                  })
-                }, 1000)
               }}
             >
               Reset To Defaults

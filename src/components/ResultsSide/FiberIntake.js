@@ -11,7 +11,7 @@ import Store from "../../store"
 export default function FiberIntake() {
   const { state, setState } = Store.useStore()
   const [isOpen, setOpen] = useState(false)
-  const [fiberIntake, setFiberIntake] = useState(state.fiberIntake)
+  const [fiberIntake, setFiberIntake] = useState(state.fiberIntake || 40)
 
   const onFiberIntakeChange = val => {
     setFiberIntake(val)
