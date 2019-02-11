@@ -19,32 +19,27 @@ export default function PersonActivity() {
       <h5 className="font-weight-bold">Steps</h5>
       <FormRadio
         checked={state.stepsValue === 0}
-        onChange={() => onStepsChange(0)}
-      >{`Steps < 6, 000`}</FormRadio>
+        onChange={() => onStepsChange(0)}>{`Steps < 6k`}</FormRadio>
       <FormRadio
         checked={state.stepsValue === 0.5}
-        onChange={() => onStepsChange(0.5)}
-      >{`6, 000 < Steps < 7, 500`}</FormRadio>
+        onChange={() => onStepsChange(0.5)}>{`6k < Steps < 7.5k`}</FormRadio>
       <FormRadio
         checked={state.stepsValue === 1}
-        onChange={() => onStepsChange(1)}
-      >{`7, 500 < Steps < 8, 750`}</FormRadio>
+        onChange={() => onStepsChange(1)}>{`7.5k < Steps < 8.75k`}</FormRadio>
       <FormRadio
         checked={state.stepsValue === 1.5}
-        onChange={() => onStepsChange(1.5)}
-      >{`8, 750 < Steps < 10, 000`}</FormRadio>
+        onChange={() => onStepsChange(1.5)}>{`8.75k < Steps < 10k`}</FormRadio>
       <FormRadio
         checked={state.stepsValue === 2}
-        onChange={() => onStepsChange(2)}
-      >{`10, 000 < Steps < 11, 250`}</FormRadio>
+        onChange={() => onStepsChange(2)}>{`10k < Steps < 11.25k`}</FormRadio>
       <FormRadio
         checked={state.stepsValue === 2.5}
-        onChange={() => onStepsChange(2.5)}
-      >{`11, 250 < Steps < 12, 500`}</FormRadio>
+        onChange={() =>
+          onStepsChange(2.5)
+        }>{`11.25k < Steps < 12.5k`}</FormRadio>
       <FormRadio
         checked={state.stepsValue === 3}
-        onChange={() => onStepsChange(3)}
-      >{`Steps > 12, 500`}</FormRadio>
+        onChange={() => onStepsChange(3)}>{`Steps > 12.5`}</FormRadio>
     </>
   )
 }
