@@ -60,7 +60,7 @@ export default function PersonMuscular() {
   return (
     <>
       <h5 className="font-weight-bold">
-        Muscular (auto calc) {state.ffmi && `FFMI: ~${state.ffmi}`}
+        {state.ffmi && `FFMI: ~${state.ffmi}`}
       </h5>
       <FormRadio checked={state.muscularValue === 0}>
         {`Not muscular`}

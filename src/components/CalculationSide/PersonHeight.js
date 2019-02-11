@@ -49,7 +49,7 @@ export default function PersonHeight() {
 
   return (
     <>
-      <h5 className="font-weight-bold">Height (auto calc)</h5>
+      <h5 className="font-weight-bold">Height</h5>
       <FormRadio checked={state.heightValue === 0}>{`Normal`}</FormRadio>
       <FormRadio
         checked={state.heightValue === 1}

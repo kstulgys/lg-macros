@@ -13,8 +13,8 @@ export default function CalculationsSide() {
   const { state, setState } = Store.useStore()
 
   return (
-    <Card>
-      <CardBody>
+    <Card className="">
+      <CardBody className="px-3 mx-sm-3">
         <div className="row">
           <div className="col">
             <PersonSex />
