@@ -21,13 +21,12 @@ export default function Calories() {
   return (
     <div
       ref={scrollToTopRef}
-      className="d-flex align-items-center justify-content-center"
-    >
+      className="d-flex align-items-center justify-content-center">
       <div className="row">
-        <div className="col-12 col-md-8 ">
+        <div className="col-12 col-sm-7 col-md-7">
           <CalculationsSide />
         </div>
-        <div className="col-12 col-md-4 ">
+        <div className="col-12 col-sm-5 col-md-5">
           <ResultsSide />
           <br />
           <div className="px-2 px-md-0">
@@ -39,8 +38,7 @@ export default function Calories() {
                 window.localStorage.clear()
                 onScrollToTop()
                 window.location.reload()
-              }}
-            >
+              }}>
               Reset To Defaults
             </Button>
           </div>

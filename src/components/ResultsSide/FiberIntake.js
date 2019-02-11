@@ -25,7 +25,7 @@ export default function FiberIntake() {
   }
 
   const getFiberIntakeCalories = () => {
-    return state.fiberIntake * 4
+    return state.fiberIntake * 2
   }
 
   return (
@@ -41,16 +41,14 @@ export default function FiberIntake() {
           open={isOpen}
           toggle={() => setOpen(!isOpen)}
           size="sm"
-          className="mr-2"
-        >
+          className="mr-2">
           <DropdownToggle
             outline
             theme="dark"
             // disabled={state.bodyFatValue !== 0.5}
             caret
             style={{ fontSize: "1rem", width: 50 }}
-            className="px-0"
-          >
+            className="px-0">
             {fiberIntake}
           </DropdownToggle>
           <DropdownMenu>
@@ -59,15 +57,14 @@ export default function FiberIntake() {
                 <DropdownItem
                   key={n}
                   className=" my-0"
-                  onClick={() => onFiberIntakeChange(n)}
-                >
+                  onClick={() => onFiberIntakeChange(n)}>
                   {n}
                 </DropdownItem>
               )
             })}
           </DropdownMenu>
         </Dropdown>
-        <h5 className="mb-0">* 4 = {getFiberIntakeCalories()} Cal</h5>
+        <h5 className="mb-0"> x 2 = {getFiberIntakeCalories()} Cal</h5>
       </div>
     </div>
   )
@@ -87,8 +84,7 @@ function MFPinfo() {
         placement="bottom"
         open={isOpen}
         toggle={() => setOpen(!isOpen)}
-        target="#popover-1"
-      >
+        target="#popover-1">
         {
           // <PopoverHeader>Title here</PopoverHeader>
         }
