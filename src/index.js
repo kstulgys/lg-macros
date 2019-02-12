@@ -1,3 +1,4 @@
+// import "./styles.css"
 import "normalize.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "shards-ui/dist/css/shards.min.css"
@@ -10,7 +11,6 @@ import ResultsSide from "./components/ResultsSide"
 import Navigation from "./components/Navigation"
 import Calories from "./components/Calories"
 import MealPlan from "./components/mealplan"
-import "./styles.css"
 import { Card, CardBody, Button } from "shards-react"
 
 function App() {
