@@ -84,7 +84,7 @@ export default function SelectMacroSplit({ macroSplitArray, macro, day }) {
           outline
           theme="dark"
           disabled={macro === "f"}
-          caret
+          caret={macro !== "f"}
           style={{ width: 100 }}
           className="p-2">
           {getDropdownToggleText()}

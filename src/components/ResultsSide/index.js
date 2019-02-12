@@ -88,6 +88,7 @@ export default function ResultsSide() {
           Base: {state.baseCalories} Cal
         </h5>
       </CardHeader>
+
       <CardBody className="pt-5">
         <h5 className="font-weight-bold">
           Training: {getTrainingCalories()} Cal
@@ -116,7 +117,7 @@ export default function ResultsSide() {
 
         <h5 className="font-weight-bold mt-5">Rest: {getRestCalories()} Cal</h5>
         <h5 className="d-flex align-items-center ">
-          P: {getProteinGrams(getRestCalories(), state.trainingProteinSplit)} g
+          P: {getProteinGrams(getRestCalories(), state.restProteinSplit)} g
           <SelectMacroSplit
             macroSplitArray={proteinMacroSplit}
             macro="p"
