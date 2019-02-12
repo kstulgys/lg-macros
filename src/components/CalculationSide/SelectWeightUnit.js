@@ -37,33 +37,31 @@ export default function SelectWeightUnit() {
   }
 
   return (
-    <div>
-      <Dropdown
-        open={isOpen}
-        toggle={() => setOpen(!isOpen)}
-        size="sm"
-        className="mx-2">
-        <DropdownToggle
-          outline
-          theme="dark"
-          caret
-          style={{ fontSize: "1rem", width: 50 }}
-          className="px-0">
-          {state.weightUnit}
-        </DropdownToggle>
-        <DropdownMenu>
-          {["kg", "lbs"].map(n => {
-            return (
-              <DropdownItem
-                key={n}
-                className=" my-0"
-                onClick={() => onWeightUnitChange(n)}>
-                {n}
-              </DropdownItem>
-            )
-          })}
-        </DropdownMenu>
-      </Dropdown>
-    </div>
+    <Dropdown
+      open={isOpen}
+      toggle={() => setOpen(!isOpen)}
+      size=""
+      className="mx-2">
+      <DropdownToggle
+        outline
+        theme="dark"
+        caret
+        style={{ width: 50 }}
+        className="px-0">
+        {state.weightUnit}
+      </DropdownToggle>
+      <DropdownMenu>
+        {["kg", "lbs"].map(n => {
+          return (
+            <DropdownItem
+              key={n}
+              className=" my-0"
+              onClick={() => onWeightUnitChange(n)}>
+              {n}
+            </DropdownItem>
+          )
+        })}
+      </DropdownMenu>
+    </Dropdown>
   )
 }

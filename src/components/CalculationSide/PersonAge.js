@@ -19,19 +19,16 @@ export default function PersonAge() {
       <h5 className="font-weight-bold">Age</h5>
       <FormRadio
         checked={state.ageValue === 0}
-        onChange={() => onAgeChange(0)}
-      >{`Normal`}</FormRadio>
+        onChange={() => onAgeChange(0)}>{`Normal`}</FormRadio>
       <FormRadio
         checked={state.ageValue === -0.5}
-        onChange={() => onAgeChange(-0.5)}
-      >
-        {`Years > 45`}
+        onChange={() => onAgeChange(-0.5)}>
+        {`> 45`}
       </FormRadio>
       <FormRadio
         checked={state.ageValue === 0.5}
-        onChange={() => onAgeChange(0.5)}
-      >
-        {`Years < 25`}
+        onChange={() => onAgeChange(0.5)}>
+        {`< 25`}
       </FormRadio>
     </>
   )

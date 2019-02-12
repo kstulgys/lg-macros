@@ -28,16 +28,14 @@ function BfDropdown() {
       open={isOpen}
       toggle={() => setOpen(!isOpen)}
       size="sm"
-      className="mr-2"
-    >
+      className="mr-2">
       <DropdownToggle
         outline
         theme="dark"
         disabled={state.bodyFatValue !== 0.5}
         caret
         style={{ fontSize: "1rem", width: 50 }}
-        className="px-0"
-      >
+        className="px-0">
         {bfSelected}
       </DropdownToggle>
       <DropdownMenu>
@@ -48,8 +46,7 @@ function BfDropdown() {
               <DropdownItem
                 key={i}
                 className=" my-0"
-                onClick={() => onBodyFatPercentChange(i + 5)}
-              >
+                onClick={() => onBodyFatPercentChange(i + 5)}>
                 {i + 5}
               </DropdownItem>
             )
@@ -87,33 +84,29 @@ export default function PersonSex() {
             {` < 10%`}
           </>
         ) : (
-          `BF < 18%`
+          ` < 18%`
         )}
       </div>
 
       <FormRadio
         checked={state.bodyFatValue === 0}
-        onChange={() => onBodyFatChange(0)}
-      >
-        {state.sexValue === 28 ? `BF ~ 15 %` : `BF ~ 23 %`}
+        onChange={() => onBodyFatChange(0)}>
+        {state.sexValue === 28 ? `~ 15 %` : `~ 23 %`}
       </FormRadio>
       <FormRadio
         checked={state.bodyFatValue === -0.5}
-        onChange={() => onBodyFatChange(-0.5)}
-      >
-        {state.sexValue === 28 ? `20 % < BF < 24 %` : `28 % < BF < 32 %`}
+        onChange={() => onBodyFatChange(-0.5)}>
+        {state.sexValue === 28 ? `20 % < bf < 24 %` : `28 % < bf < 32 %`}
       </FormRadio>
       <FormRadio
         checked={state.bodyFatValue === -1}
-        onChange={() => onBodyFatChange(-1)}
-      >
-        {state.sexValue === 28 ? `25 % < BF < 29 %` : `33 % < BF < 37 %`}
+        onChange={() => onBodyFatChange(-1)}>
+        {state.sexValue === 28 ? `25 % < bf < 29 %` : `33 % < bf < 37 %`}
       </FormRadio>
       <FormRadio
         checked={state.bodyFatValue === -1.5}
-        onChange={() => onBodyFatChange(-1.5)}
-      >
-        {state.sexValue === 28 ? `BF > 29 %` : `BF > 37 %`}
+        onChange={() => onBodyFatChange(-1.5)}>
+        {state.sexValue === 28 ? `> 29 %` : `> 37 %`}
       </FormRadio>
     </>
   )

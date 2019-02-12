@@ -40,7 +40,7 @@ export default function PersonWeight() {
 
   return (
     <>
-      <h5 className="font-weight-bold">Weight & Height</h5>
+      <h5 className="font-weight-bold">W & H</h5>
       <div style={{ display: "flex", alignItems: "center" }}>
         <FormInput
           type="number"
@@ -63,12 +63,6 @@ export default function PersonWeight() {
         <span className="pl-2">
           <FormRadio checked={state.heightUnit === "m"}>m</FormRadio>
         </span>
-
-        {
-          // <FormCheckbox checked={state.unit === "lbs"} onChange={onUnitChange}>
-          //   lbs
-          // </FormCheckbox>
-        }
       </div>
     </>
   )

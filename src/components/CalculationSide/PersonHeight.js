@@ -51,21 +51,11 @@ export default function PersonHeight() {
     <>
       <h5 className="font-weight-bold">Height</h5>
       <FormRadio checked={state.heightValue === 0}>{`Normal`}</FormRadio>
-      <FormRadio
-        checked={state.heightValue === 1}
-        // onChange={() => onHeightChange(1)}
-      >
-        {state.sexValue === 28
-          ? `Tall > 1.85 m (6'1")`
-          : `Tall > 1.70 m (5'7")`}
+      <FormRadio checked={state.heightValue === 1}>
+        {state.sexValue === 28 ? `> 1.85 m (6'1")` : `> 1.70 m (5'7")`}
       </FormRadio>
-      <FormRadio
-        checked={state.heightValue === -1}
-        // onChange={() => onHeightChange(-1)}
-      >
-        {state.sexValue === 28
-          ? `Short < 1.67 m (5'5")`
-          : `Short < 1.53 m (5')`}
+      <FormRadio checked={state.heightValue === -1}>
+        {state.sexValue === 28 ? `< 1.67 m (5'5")` : `< 1.53 m (5')`}
       </FormRadio>
     </>
   )
