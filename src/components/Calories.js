@@ -21,12 +21,13 @@ export default function Calories() {
   return (
     <div
       ref={scrollToTopRef}
-      className="d-flex align-items-center justify-content-center w-100">
-      <div className="row">
-        <div className="col-12 col-md-7 w-100">
+      className="d-flex align-items-center justify-content-center"
+    >
+      <div className="row w-100 d-flex justify-content-center">
+        <div className="col-12  col-md-7 col-lg-6 col-xl-4 px-0 px-sm-3">
           <CalculationsSide />
         </div>
-        <div className="col-12 col-md-5">
+        <div className="col-12 col-md-5 col-lg-4 col-xl-3 px-0 px-sm-3">
           <ResultsSide />
           <br />
           <div className="px-2 px-sm-0">
@@ -38,7 +39,8 @@ export default function Calories() {
                 window.localStorage.clear()
                 onScrollToTop()
                 window.location.reload()
-              }}>
+              }}
+            >
               Reset To Defaults
             </Button>
           </div>
@@ -48,3 +50,33 @@ export default function Calories() {
     </div>
   )
 }
+
+// <div
+//   ref={scrollToTopRef}
+//   className="d-flex align-items-center justify-content-center w-100"
+// >
+//   <div className="row fluid">
+//     <div className="col-12 col-md-7  w-100">
+//       <CalculationsSide />
+//     </div>
+//     <div className="col-12 col-md-5">
+//       <ResultsSide />
+//       <br />
+//       <div className="px-2 px-sm-0">
+//         <Button
+//           size="lg"
+//           block
+//           theme="dark"
+//           onClick={() => {
+//             window.localStorage.clear()
+//             onScrollToTop()
+//             window.location.reload()
+//           }}
+//         >
+//           Reset To Defaults
+//             </Button>
+//       </div>
+//       <br />
+//     </div>
+//   </div>
+// </div>

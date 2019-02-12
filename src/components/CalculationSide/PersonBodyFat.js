@@ -4,7 +4,8 @@ import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Slider
 } from "shards-react"
 import Store from "../../store"
 
@@ -27,7 +28,8 @@ function BfDropdown() {
         theme="dark"
         disabled={state.bodyFatValue !== 0.5}
         caret
-        className="p-2">
+        className="p-2"
+      >
         {bfSelected}
       </DropdownToggle>
       <DropdownMenu>
@@ -38,7 +40,8 @@ function BfDropdown() {
               <DropdownItem
                 key={i}
                 className=" my-0"
-                onClick={() => onBodyFatPercentChange(i + 5)}>
+                onClick={() => onBodyFatPercentChange(i + 5)}
+              >
                 {i + 5}
               </DropdownItem>
             )
@@ -82,24 +85,53 @@ export default function PersonSex() {
 
       <FormRadio
         checked={state.bodyFatValue === 0}
-        onChange={() => onBodyFatChange(0)}>
+        onChange={() => onBodyFatChange(0)}
+      >
         {state.sexValue === 28 ? `~ 15 %` : `~ 23 %`}
       </FormRadio>
       <FormRadio
         checked={state.bodyFatValue === -0.5}
-        onChange={() => onBodyFatChange(-0.5)}>
+        onChange={() => onBodyFatChange(-0.5)}
+      >
         {state.sexValue === 28 ? `20 % < bf < 24 %` : `28 % < bf < 32 %`}
       </FormRadio>
       <FormRadio
         checked={state.bodyFatValue === -1}
-        onChange={() => onBodyFatChange(-1)}>
+        onChange={() => onBodyFatChange(-1)}
+      >
         {state.sexValue === 28 ? `25 % < bf < 29 %` : `33 % < bf < 37 %`}
       </FormRadio>
       <FormRadio
         checked={state.bodyFatValue === -1.5}
-        onChange={() => onBodyFatChange(-1.5)}>
+        onChange={() => onBodyFatChange(-1.5)}
+      >
         {state.sexValue === 28 ? `> 29 %` : `> 37 %`}
       </FormRadio>
+      {
+        // <SliderCustomRange />
+      }
     </>
+  )
+}
+
+function SliderCustomRange() {
+  const [value, setValue] = useState(50)
+
+  const handleSlide = e => {
+    const newVal = parseFloat(e[0])
+    setValue(newVal)
+  }
+
+  return (
+    <div>
+      <p>Value: {value}</p>
+      <Slider
+        onSlide={handleSlide}
+        connect
+        pips={{ mode: "steps", stepped: true, density: 50 }}
+        start={value}
+        range={{ min: 0, max: 500 }}
+      />
+    </div>
   )
 }

@@ -14,9 +14,9 @@ export default function CalculationsSide() {
 
   return (
     <Card className="">
-      <CardBody className="">
-        <div className="row p-0">
-          <div className="col pr-0 pr-sm-2">
+      <CardBody className="p-3 p-sm-5">
+        <div className="row">
+          <div className="col pr-0">
             <PersonSex />
             <br />
             <PersonWeight />
@@ -25,7 +25,7 @@ export default function CalculationsSide() {
             <br />
             {state.sexValue === 28 && <PersonMuscular />}
           </div>
-          <div className="col px-0 px-sm-2 mt-0 mt-sm-0 mt-md-0">
+          <div className="col pr-0">
             <PersonHeight />
             <br />
             <PersonAge />
@@ -37,25 +37,3 @@ export default function CalculationsSide() {
     </Card>
   )
 }
-
-// function ToggleButton({ text, sex, onSexChange }) {
-//   // const [toggled, setToggle] = useState(true);
-
-//   return (
-//     <>
-//       <FormCheckbox checked={sex === text} onChange={onSexChange}>
-//         {text}
-//       </FormCheckbox>
-//     </>
-//   );
-// }
-// <ToggleButton text="Male" onSexChange={onSexChange} sex={sex} />
-//   <ToggleButton text="Female" onSexChange={onSexChange} sex={sex} />
-// <h1>Tall</h1>
-//   <FormCheckbox
-//     toggle
-//     checked={toggled}
-//     onChange={() => setToggle(!toggled)}
-//   >
-//     Tall > 185 centimeters (6 feet, 1 inch)
-//       </FormCheckbox>
