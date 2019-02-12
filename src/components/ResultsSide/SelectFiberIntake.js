@@ -35,12 +35,7 @@ export default function SelectFiberIntake() {
         toggle={() => setOpen(!isOpen)}
         size="lg"
         className="mx-2">
-        <DropdownToggle
-          outline
-          theme="dark"
-          caret
-          style={{ width: 75 }}
-          className="px-0">
+        <DropdownToggle outline theme="dark" caret className="p-2">
           {state.fiberIntake} g
         </DropdownToggle>
         <DropdownMenu>

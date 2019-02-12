@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div
-      className="bg-light container-fluid px-0 px-sm-4"
+      className="bg-light container-fluid w-100 px-0"
       style={{ overflowX: "hidden", height: "100vh" }}>
       <Navigation />
       <Route exact path="/" component={Calories} />

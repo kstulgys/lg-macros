@@ -14,9 +14,9 @@ export default function CalculationsSide() {
 
   return (
     <Card className="">
-      <CardBody className="p-4 p-sm-4">
-        <div className="row">
-          <div className="col pr-0 pr-sm-3">
+      <CardBody className="">
+        <div className="row p-0">
+          <div className="col pr-0 pr-sm-2">
             <PersonSex />
             <br />
             <PersonWeight />
@@ -25,7 +25,7 @@ export default function CalculationsSide() {
             <br />
             {state.sexValue === 28 && <PersonMuscular />}
           </div>
-          <div className="col pl-0 pl-sm-3 pt-sm-4 pt-md-0 ">
+          <div className="col px-0 px-sm-2 mt-0 mt-sm-0 mt-md-0">
             <PersonHeight />
             <br />
             <PersonAge />

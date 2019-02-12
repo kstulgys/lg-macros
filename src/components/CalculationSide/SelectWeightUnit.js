@@ -41,13 +41,8 @@ export default function SelectWeightUnit() {
       open={isOpen}
       toggle={() => setOpen(!isOpen)}
       size=""
-      className="mx-2">
-      <DropdownToggle
-        outline
-        theme="dark"
-        caret
-        style={{ width: 50 }}
-        className="px-0">
+      className="ml-2">
+      <DropdownToggle outline theme="dark" caret className="px-2">
         {state.weightUnit}
       </DropdownToggle>
       <DropdownMenu>

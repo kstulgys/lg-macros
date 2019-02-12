@@ -79,18 +79,14 @@ export default function SelectMacroSplit({ macroSplitArray, macro, day }) {
 
   return (
     <div className="ml-auto">
-      <Dropdown
-        open={isOpen}
-        toggle={() => setOpen(!isOpen)}
-        size="lg"
-        className="mx-2">
+      <Dropdown open={isOpen} toggle={() => setOpen(!isOpen)} size="lg">
         <DropdownToggle
           outline
           theme="dark"
           disabled={macro === "f"}
           caret
-          style={{ width: 80 }}
-          className="px-0">
+          style={{ width: 100 }}
+          className="p-2">
           {getDropdownToggleText()}
         </DropdownToggle>
         <DropdownMenu right>

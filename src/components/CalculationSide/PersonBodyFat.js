@@ -13,9 +13,6 @@ function BfDropdown() {
   const [isOpen, setOpen] = useState(false)
   const [bfSelected, setBf] = useState(10)
 
-  // const onClick = num => {
-  //   console.log(e);
-  // };
   const onBodyFatPercentChange = val => {
     setBf(val)
     setState(state => {
@@ -24,18 +21,13 @@ function BfDropdown() {
   }
 
   return (
-    <Dropdown
-      open={isOpen}
-      toggle={() => setOpen(!isOpen)}
-      size="sm"
-      className="mr-2">
+    <Dropdown open={isOpen} toggle={() => setOpen(!isOpen)} className="mr-2">
       <DropdownToggle
         outline
         theme="dark"
         disabled={state.bodyFatValue !== 0.5}
         caret
-        style={{ fontSize: "1rem", width: 50 }}
-        className="px-0">
+        className="p-2">
         {bfSelected}
       </DropdownToggle>
       <DropdownMenu>
