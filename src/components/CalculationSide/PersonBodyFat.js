@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react'
 import {
   FormRadio,
   Dropdown,
@@ -6,8 +6,50 @@ import {
   DropdownMenu,
   DropdownItem,
   Slider
-} from "shards-react"
-import Store from "../../store"
+} from 'shards-react'
+import Store from '../../store'
+
+function PersonBodyFat() {
+  const { state, setState } = Store.useStore()
+
+  const onBodyFatChange = val =>
+    state.bodyFatValue === val
+      ? setState(state => {
+          state.bodyFatValue = 0
+        })
+      : setState(state => {
+          state.bodyFatValue = val
+        })
+
+  return (
+    <>
+      <SliderCustomRange />
+    </>
+  )
+}
+
+export default function SliderCustomRange() {
+  const [value, setValue] = useState(15)
+
+  const handleSlide = e => {
+    const newVal = Math.round(parseFloat(e[0]))
+    setValue(newVal)
+  }
+
+  return (
+    <div>
+      <span>{value} %</span>
+      <Slider
+        theme="dark"
+        onSlide={handleSlide}
+        connect={[true, false]}
+        // pips={{ mode: 'steps', stepped: true, density: 5 }}
+        start={value}
+        range={{ min: 5, max: 40 }}
+      />
+    </div>
+  )
+}
 
 function BfDropdown() {
   const { state, setState } = Store.useStore()
@@ -28,8 +70,7 @@ function BfDropdown() {
         theme="dark"
         disabled={state.bodyFatValue !== 0.5}
         caret
-        className="p-2"
-      >
+        className="p-2">
         {bfSelected}
       </DropdownToggle>
       <DropdownMenu>
@@ -40,8 +81,7 @@ function BfDropdown() {
               <DropdownItem
                 key={i}
                 className=" my-0"
-                onClick={() => onBodyFatPercentChange(i + 5)}
-              >
+                onClick={() => onBodyFatPercentChange(i + 5)}>
                 {i + 5}
               </DropdownItem>
             )
@@ -51,87 +91,42 @@ function BfDropdown() {
   )
 }
 
-export default function PersonSex() {
-  const { state, setState } = Store.useStore()
+// <h5 className="font-weight-bold">Body Fat</h5>
+// <div className="d-flex align-items-center mb-1">
+//   <FormRadio
+//     // className="pt-4"
+//     checked={state.bodyFatValue === 0.5}
+//     onChange={() => onBodyFatChange(0.5)}
+//   />
 
-  const onBodyFatChange = val =>
-    state.bodyFatValue === val
-      ? setState(state => {
-          state.bodyFatValue = 0
-        })
-      : setState(state => {
-          state.bodyFatValue = val
-        })
+//   {state.sexValue === 28 ? (
+//     <>
+//       <BfDropdown />
+//       {` < 10%`}
+//     </>
+//   ) : (
+//     ` < 18%`
+//   )}
+// </div>
 
-  return (
-    <>
-      <h5 className="font-weight-bold">Body Fat</h5>
-      <div className="d-flex align-items-center mb-1">
-        <FormRadio
-          // className="pt-4"
-          checked={state.bodyFatValue === 0.5}
-          onChange={() => onBodyFatChange(0.5)}
-        />
-
-        {state.sexValue === 28 ? (
-          <>
-            <BfDropdown />
-            {` < 10%`}
-          </>
-        ) : (
-          ` < 18%`
-        )}
-      </div>
-
-      <FormRadio
-        checked={state.bodyFatValue === 0}
-        onChange={() => onBodyFatChange(0)}
-      >
-        {state.sexValue === 28 ? `~ 15 %` : `~ 23 %`}
-      </FormRadio>
-      <FormRadio
-        checked={state.bodyFatValue === -0.5}
-        onChange={() => onBodyFatChange(-0.5)}
-      >
-        {state.sexValue === 28 ? `20 % < bf < 24 %` : `28 % < bf < 32 %`}
-      </FormRadio>
-      <FormRadio
-        checked={state.bodyFatValue === -1}
-        onChange={() => onBodyFatChange(-1)}
-      >
-        {state.sexValue === 28 ? `25 % < bf < 29 %` : `33 % < bf < 37 %`}
-      </FormRadio>
-      <FormRadio
-        checked={state.bodyFatValue === -1.5}
-        onChange={() => onBodyFatChange(-1.5)}
-      >
-        {state.sexValue === 28 ? `> 29 %` : `> 37 %`}
-      </FormRadio>
-      {
-        // <SliderCustomRange />
-      }
-    </>
-  )
-}
-
-function SliderCustomRange() {
-  const [value, setValue] = useState(50)
-
-  const handleSlide = e => {
-    const newVal = parseFloat(e[0])
-    setValue(newVal)
-  }
-
-  return (
-    <div>
-      <p>Value: {value}</p>
-      <Slider
-        onSlide={handleSlide}
-        connect
-        pips={{ mode: "steps", stepped: true, density: 50 }}
-        start={value}
-        range={{ min: 0, max: 500 }}
-      />
-    </div>
-  )
-}
+// <FormRadio
+//   checked={state.bodyFatValue === 0}
+//   onChange={() => onBodyFatChange(0)}>
+//   {state.sexValue === 28 ? `~ 15 %` : `~ 23 %`}
+// </FormRadio>
+// <FormRadio
+//   checked={state.bodyFatValue === -0.5}
+//   onChange={() => onBodyFatChange(-0.5)}>
+//   {state.sexValue === 28 ? `20 % < bf < 24 %` : `28 % < bf < 32 %`}
+// </FormRadio>
+// <FormRadio
+//   checked={state.bodyFatValue === -1}
+//   onChange={() => onBodyFatChange(-1)}>
+//   {state.sexValue === 28 ? `25 % < bf < 29 %` : `33 % < bf < 37 %`}
+// </FormRadio>
+// <FormRadio
+//   checked={state.bodyFatValue === -1.5}
+//   onChange={() => onBodyFatChange(-1.5)}>
+//   {state.sexValue === 28 ? `> 29 %` : `> 37 %`}
+// </FormRadio>
+// <SliderCustomRange />
