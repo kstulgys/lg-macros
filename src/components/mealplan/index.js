@@ -56,22 +56,22 @@ export default function MealPlan() {
     }
   }, [state.trainingMeals])
 
-  return (
-    <div className="text-center">
-      <h5 className="font-weight-bold">Meal sizing (training)</h5>
-      <div className="d-flex justify-content-center align-items-center">
-        {state.trainingMeals.map((m, i) => (
-          <div key={`${i}-${m}`}>
-            <SelectMealSize size={m} index={i} />
-          </div>
-        ))}
-      </div>
-      <Button className="mt-4" theme="dark">
-        Generate
-      </Button>
-    </div>
-  )
+  return null
 }
 
 // <AddMeal />
 // <RemoveMeal />
+
+// <div className="text-center">
+// <h5 className="font-weight-bold">Meal sizing (training)</h5>
+// <div className="d-flex justify-content-center align-items-center">
+//   {state.trainingMeals.map((m, i) => (
+//     <div key={`${i}-${m}`}>
+//       <SelectMealSize size={m} index={i} />
+//     </div>
+//   ))}
+// </div>
+// <Button className="mt-4" theme="dark">
+//   Generate
+// </Button>
+// </div>
