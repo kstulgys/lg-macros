@@ -15,7 +15,30 @@ import Store from '../../store'
 export default function SelectMealSize({ size, index }) {
   const { state, setState } = Store.useStore()
   const [isOpen, setOpen] = useState(false)
-  //   const [mealSize, setMealSize] = useState(size)
+
+  const mealsLength = state.trainingMeals.length - 1
+
+  const makeNumberNormal = num => {
+    return Number(num.toFixed(2))
+  }
+
+  const sizeBeforeIndex = state.trainingMeals
+    .slice(0, index)
+    .reduce((prev, next) => makeNumberNormal(prev + next), 0)
+
+  const availableSizes = [0.1, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 0.8]
+
+  const getMealSizes = () => {
+    if (index === 0) {
+      return availableSizes
+    } else {
+      return availableSizes.filter(
+        s => s <= makeNumberNormal(1 - sizeBeforeIndex)
+      )
+    }
+  }
+
+  const mealSizes = getMealSizes()
 
   const onMealSizeChange = val => {
     setState(state => {
@@ -29,22 +52,25 @@ export default function SelectMealSize({ size, index }) {
         open={isOpen}
         toggle={() => setOpen(!isOpen)}
         size="lg"
-        className="mx-2">
+        className="mx-2"
+      >
         <DropdownToggle
-          disabled={index === 2}
+          disabled={index === mealsLength}
           outline
           theme="dark"
-          caret={index !== 2}
-          className="p-2">
+          caret={index !== mealsLength}
+          className="p-2"
+        >
           {Math.round(size * 100)} %
         </DropdownToggle>
         <DropdownMenu>
-          {[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8].map(n => {
+          {getMealSizes().map(n => {
             return (
               <DropdownItem
                 key={n}
-                className="my-0"
-                onClick={() => onMealSizeChange(n)}>
+                className="text-center"
+                onClick={() => onMealSizeChange(n)}
+              >
                 {Math.round(n * 100)}
               </DropdownItem>
             )

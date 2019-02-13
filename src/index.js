@@ -1,7 +1,7 @@
-// import "./styles.css"
 import 'normalize.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'shards-ui/dist/css/shards.min.css'
+import './styles.css'
 import React, { useRef } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Link, Switch, Route } from 'react-router-dom'
@@ -20,7 +20,8 @@ function App() {
   return (
     <div
       className="bg-light container-fluid px-0"
-      style={{ overflowX: 'hidden', height: '100vh' }}>
+      style={{ overflowX: 'hidden', height: '100vh' }}
+    >
       <Navigation />
       <Route exact path="/" component={Calories} />
       <Route path="/meals" component={MealPlan} />

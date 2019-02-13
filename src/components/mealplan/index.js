@@ -22,9 +22,9 @@ export default function MealPlan() {
   }
 
   useEffect(() => {
-    const idxChanged =
-      prevMeals && prevMeals.findIndex((e, i) => e !== state.trainingMeals[i])
-    console.log(idxChanged)
+    // const idxChanged =
+    //   prevMeals && prevMeals.findIndex((e, i) => e !== state.trainingMeals[i])
+    // console.log('idxChanged', idxChanged)
     const mealsTotal = state.trainingMeals.reduce((prev, next) => {
       return makeNumberNormal(prev + next)
     }, 0)
@@ -33,36 +33,27 @@ export default function MealPlan() {
     const mealsDeficit = makeNumberNormal(1 - mealsTotal)
     const isSurplus = mealsSurplus > 0 ? true : false
 
-    console.log('mealsSurplus', mealsSurplus)
-    console.log('mealsDeficit', mealsDeficit)
-    console.log('mealsTotal', mealsTotal)
+    // console.log('mealsSurplus', mealsSurplus)
+    // console.log('mealsDeficit', mealsDeficit)
+    // console.log('mealsTotal', mealsTotal)
 
     if (mealsSurplus === 0) {
       return
     }
 
-    if (idxChanged === 0 && isSurplus) {
+    if (isSurplus) {
       setState(state => {
-        state.trainingMeals[2] = state.trainingMeals[2] - mealsSurplus
-      })
-      return
-    }
-    if (idxChanged === 0 && !isSurplus) {
-      setState(state => {
-        state.trainingMeals[2] = state.trainingMeals[2] + mealsDeficit
+        state.trainingMeals.pop()
       })
       return
     }
 
-    // state.trainingMeals.pop()
-    // state.trainingMeals.pop()
-
-    // if (!isSurplus) {
-    //   setState(state => {
-    //     state.trainingMeals[mealsLength] = mealsDeficit
-    //   })
-    //   return
-    // }
+    if (!isSurplus) {
+      setState(state => {
+        state.trainingMeals[mealsLength] = mealsDeficit
+      })
+      return
+    }
   }, [state.trainingMeals])
 
   return (
