@@ -1,29 +1,12 @@
-import React, { useState } from "react"
-import {
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  FormInput,
-  Collapse,
-  Button
-} from "shards-react"
+import React, { useState } from 'react'
+import { Button } from 'shards-react'
 import {
   BrowserRouter,
   Link,
   Switch,
   Route,
   withRouter
-} from "react-router-dom"
+} from 'react-router-dom'
 
 function Navigation({ location }) {
   const [collapseOpen, toggleColapse] = useState(false)
@@ -32,10 +15,8 @@ function Navigation({ location }) {
       <Link to="/">
         <Button
           style={{ width: 125 }}
-          // outline={location.pathname === "/" && "dark"}
-          theme={location.pathname === "/" && "dark"}
-          className="mr-3"
-        >
+          theme={location.pathname !== '/meals' ? 'dark' : 'light'}
+          className="mr-3">
           Calories
         </Button>
       </Link>
@@ -43,8 +24,7 @@ function Navigation({ location }) {
         <Button
           style={{ width: 125 }}
           // outline
-          theme={location.pathname === "/meals" ? "dark" : "light"}
-        >
+          theme={location.pathname === '/meals' ? 'dark' : 'light'}>
           Meals
         </Button>
       </Link>

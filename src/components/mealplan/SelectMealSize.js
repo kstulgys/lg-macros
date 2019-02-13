@@ -12,40 +12,40 @@ import {
 } from 'shards-react'
 import Store from '../../store'
 
-export default function SelectFiberIntake() {
+export default function SelectMealSize({ size, index }) {
   const { state, setState } = Store.useStore()
   const [isOpen, setOpen] = useState(false)
+  //   const [mealSize, setMealSize] = useState(size)
 
-  const onFiberIntakeSelect = val => {
+  const onMealSizeChange = val => {
     setState(state => {
-      state.fiberIntake = val
+      state.trainingMeals[index] = val
     })
   }
 
   return (
-    <h5 className="font-weight-bold text-center d-flex align-items-center justify-content-center">
-      Fiber/day:
+    <div>
       <Dropdown
         open={isOpen}
         toggle={() => setOpen(!isOpen)}
         size="lg"
         className="mx-2">
         <DropdownToggle outline theme="dark" caret className="p-2">
-          {state.fiberIntake} g
+          {Math.round(size * 100)} %
         </DropdownToggle>
         <DropdownMenu>
-          {[35, 40, 45, 50, 55, 60, 65, 70].map(n => {
+          {[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8].map(n => {
             return (
               <DropdownItem
                 key={n}
-                className=" my-0"
-                onClick={() => onFiberIntakeSelect(n)}>
-                {n}
+                className="my-0"
+                onClick={() => onMealSizeChange(n)}>
+                {Math.round(n * 100)}
               </DropdownItem>
             )
           })}
         </DropdownMenu>
       </Dropdown>
-    </h5>
+    </div>
   )
 }
