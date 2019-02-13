@@ -30,7 +30,12 @@ export default function SelectMealSize({ size, index }) {
         toggle={() => setOpen(!isOpen)}
         size="lg"
         className="mx-2">
-        <DropdownToggle outline theme="dark" caret className="p-2">
+        <DropdownToggle
+          disabled={index === 2}
+          outline
+          theme="dark"
+          caret={index !== 2}
+          className="p-2">
           {Math.round(size * 100)} %
         </DropdownToggle>
         <DropdownMenu>

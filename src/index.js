@@ -15,7 +15,7 @@ import { Card, CardBody, Button } from 'shards-react'
 
 function App() {
   const { state } = Store.useStore()
-  console.log(state)
+  // console.log(state)
 
   return (
     <div
