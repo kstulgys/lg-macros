@@ -9,14 +9,13 @@ export default function PersonActivity() {
   const onStepsChange = val => {
     const value = parseFloat(val)
 
-    if (value <= 6000) {
+    if (value < 6000) {
       setState(state => {
         state.stepsValue = 0
         state.steps = value
       })
-      return
     }
-    if (value > 6000 && value <= 7500) {
+    if (value >= 6000 && value <= 7500) {
       setState(state => {
         state.stepsValue = 0.5
         state.steps = value

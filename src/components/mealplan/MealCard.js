@@ -9,7 +9,7 @@ export default function MealCard({ size }) {
   return (
     <Card style={{ width: 370 }} className="m-2">
       <CardHeader className="text-center">
-        <h5 className="m-0">{size * 100} %</h5>
+        <h5 className="m-0">{Math.round(size * 100)} %</h5>
       </CardHeader>
       <CardBody className="">
         <h5 className="d-flex align-items-center">
