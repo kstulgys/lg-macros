@@ -23,6 +23,7 @@ export default function ResultsSide() {
     ].reduce((prev, next) => prev + next, 0)
     const tdee = Math.round(multiplyier * state.weight)
     setState(state => {
+      state.multiplier = multiplyier
       state.tdee = tdee
       state.baseCalories = state.tdee - state.calDeficit
     })
@@ -30,11 +31,6 @@ export default function ResultsSide() {
   useEffect(
     () => {
       setBaseAndTdeeCalories()
-      // console.log(
-      //   state.trainingProteinSplit,
-      //   state.trainingCarbsSplit,
-      //   state.trainingFatsSplit
-      // )
     },
     [state]
   )

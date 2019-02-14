@@ -8,11 +8,12 @@ export default function PersonSex() {
   const onSexChange = () => {
     if (state.sexValue === 28) {
       setState(state => {
+        state.gender = "Female"
         state.sexValue = 26
-        state.muscularValue = 0
       })
     } else {
       setState(state => {
+        state.gender = "Male"
         state.sexValue = 28
       })
     }
@@ -20,13 +21,17 @@ export default function PersonSex() {
 
   return (
     <>
-      <h5 className="font-weight-bold">Sex</h5>
-      <FormRadio checked={state.sexValue === 28} onChange={onSexChange}>
-        Male
-      </FormRadio>
-      <FormRadio checked={state.sexValue === 26} onChange={onSexChange}>
-        Female
-      </FormRadio>
+      <h5 className="font-weight-bold d-flex">
+        <div className="d-flex align-items-center">
+          <span className="mr-3">Gender</span>
+          <FormCheckbox
+            toggle
+            checked={state.sexValue === 28}
+            onChange={onSexChange}
+          />
+        </div>
+        <span className="ml-auto">{state.gender}</span>
+      </h5>
     </>
   )
 }
