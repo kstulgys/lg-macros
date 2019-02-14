@@ -19,6 +19,17 @@ export default function PersonSex() {
     }
   }
 
+  useEffect(
+    () => {
+      if (state.sexValue === 26) {
+        setState(state => {
+          state.muscularValue = 0
+        })
+      }
+    },
+    [state.sexValue]
+  )
+
   return (
     <>
       <h5 className="font-weight-bold d-flex">

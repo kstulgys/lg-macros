@@ -6,48 +6,6 @@ import Store from "../../store"
 export default function PersonHeight() {
   const { state, setState } = Store.useStore()
 
-  // const onHeightChange = val =>
-  //   state.heightValue === val
-  //     ? setState(state => {
-  //         state.heightValue = 0
-  //       })
-  //     : setState(state => {
-  //         state.heightValue = val
-  //       })
-
-  // useEffect(
-  //   () => {
-  // const maleIsTall = state.height > 1.85
-  // const maleIsShort = state.height < 1.67
-
-  // const femaleIsTall = state.height > 1.7
-  // const femaleIsShort = state.height < 1.53
-
-  // const isTall = state.sexValue === 28 ? maleIsTall : femaleIsTall
-  // const isShort = state.sexValue === 28 ? maleIsShort : femaleIsShort
-
-  // if (!isTall && !isShort) {
-  //   setState(state => {
-  //     state.heightValue = 0
-  //   })
-  //   return
-  // }
-  // if (isTall) {
-  //   setState(state => {
-  //     state.heightValue = 1
-  //   })
-  //   return
-  // }
-  // if (isShort) {
-  //   setState(state => {
-  //     state.heightValue = -1
-  //   })
-  //   return
-  // }
-  //   },
-  //   [state.sexValue, state.height]
-  // )
-
   const onHeightChange = val => {
     const value = parseFloat(val).toFixed(2)
 

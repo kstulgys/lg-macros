@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { FaInfoCircle } from 'react-icons/fa'
+import React, { useState, useEffect } from "react"
+import { FaInfoCircle } from "react-icons/fa"
 import {
   Dropdown,
   DropdownToggle,
@@ -9,8 +9,8 @@ import {
   Popover,
   PopoverBody,
   PopoverHeader
-} from 'shards-react'
-import Store from '../../store'
+} from "shards-react"
+import Store from "../../store"
 
 export default function SelectMealSize({ size, index }) {
   const { state, setState } = Store.useStore()
@@ -52,7 +52,7 @@ export default function SelectMealSize({ size, index }) {
         open={isOpen}
         toggle={() => setOpen(!isOpen)}
         size="lg"
-        className="mx-2"
+        className="mx-2 my-2"
       >
         <DropdownToggle
           disabled={index === mealsLength}
@@ -60,6 +60,7 @@ export default function SelectMealSize({ size, index }) {
           theme="dark"
           caret={index !== mealsLength}
           className="p-2"
+          style={{ width: 80 }}
         >
           {Math.round(size * 100)} %
         </DropdownToggle>
