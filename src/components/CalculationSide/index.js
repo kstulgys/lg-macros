@@ -13,27 +13,58 @@ export default function CalculationsSide() {
   const { state, setState } = Store.useStore()
 
   return (
-    <Card className="">
-      <CardBody className="p-3 p-sm-5">
-        <div className="row">
-          <div className="col pr-0">
-            <PersonSex />
-            <br />
-            <PersonWeight />
-            <br />
-            <PersonBodyFat />
-            <br />
-            {state.sexValue === 28 && <PersonMuscular />}
-          </div>
-          <div className="col pr-0">
-            <PersonHeight />
-            <br />
-            <PersonAge />
-            <br />
-            <PersonActivity />
-          </div>
+    <Card>
+      <CardBody>
+        <div className="mb-5 mt-3">
+          <PersonSex />
+        </div>
+        <div className="my-5">
+          <PersonAge />
+        </div>
+
+        <div className="my-5">
+          <PersonHeight />
+        </div>
+
+        <div className="my-5">
+          <PersonWeight />
+        </div>
+
+        <div className="my-5">
+          <PersonBodyFat />
+        </div>
+
+        <div className="my-5">
+          <PersonActivity />
+        </div>
+
+        <div className="mt-5 mb-3">
+          {state.gender === "Male" && <PersonMuscular />}
         </div>
       </CardBody>
     </Card>
   )
 }
+
+// <Card className="">
+//   <CardBody className="p-3 p-sm-5">
+//     <div className="row">
+//       <div className="col pr-0">
+//         <PersonSex />
+//         <br />
+//         <PersonWeight />
+//         <br />
+//         <PersonBodyFat />
+//         <br />
+//         {state.sexValue === 28 && <PersonMuscular />}
+//       </div>
+//       <div className="col pr-0">
+//         <PersonHeight />
+//         <br />
+//         <PersonAge />
+//         <br />
+//         <PersonActivity />
+//       </div>
+//     </div>
+//   </CardBody>
+// </Card>

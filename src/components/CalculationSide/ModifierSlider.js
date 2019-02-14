@@ -1,89 +1,32 @@
 import React, { useState, useEffect } from "react"
-import {
-  FormRadio,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Slider
-} from "shards-react"
 import Store from "../../store"
-import ModifierSlider from "./ModifierSlider"
 
-export default function PersonBodyFat() {
-  const { state, setState } = Store.useStore()
-  // const [value, setValue] = useState(15)
-
-  const onBodyFatChange = val => {
-    const value = parseFloat(val)
-
-    const maleIsLean = value <= 10
-    const maleIsFat = value > 20 && value <= 25
-    const maleIsVeryFat = value > 25 && value <= 30
-    const maleIsVeryVeryFat = value > 30
-
-    const femaleIsLean = value <= 18
-    const femaleIsFat = value > 28 && value <= 32
-    const femaleIsVeryFat = value > 32 && value <= 37
-    const femaleIsVeryVeryFat = value > 37
-
-    const isLean = state.gender === "Male" ? maleIsLean : femaleIsLean
-    const isFat = state.gender === "Male" ? maleIsFat : femaleIsFat
-    const isVeryFat = state.gender === "Male" ? maleIsVeryFat : femaleIsVeryFat
-    const isVeryVeryFat =
-      state.gender === "Male" ? maleIsVeryVeryFat : femaleIsVeryVeryFat
-
-    if (!isLean && !isFat && !isVeryFat && !isVeryVeryFat) {
-      setState(state => {
-        state.bodyFatValue = 0
-        state.bodyFat = value
-      })
-      return
-    }
-    if (isLean) {
-      setState(state => {
-        state.bodyFatValue = 0.5
-        state.bodyFat = value
-      })
-      return
-    }
-    if (isFat) {
-      setState(state => {
-        state.bodyFatValue = -0.5
-        state.bodyFat = value
-      })
-      return
-    }
-    if (isVeryFat) {
-      setState(state => {
-        state.bodyFatValue = -1
-        state.bodyFat = value
-      })
-      return
-    }
-    if (isVeryVeryFat) {
-      setState(state => {
-        state.bodyFatValue = -1.5
-        state.bodyFat = value
-      })
-      return
-    }
+export default function ModifierSlider({
+  onChange,
+  header,
+  max,
+  min,
+  step,
+  defaultVal
+}) {
+  const onSlideChange = e => {
+    onChange(e.target.value)
+    // console.log("val from slider", e.target.value)
   }
 
   return (
-    <>
-      <h5 className="font-weight-bold d-flex">
-        <span>Body fat</span>
-        <span className="ml-auto">{state.bodyFat} %</span>
-      </h5>
-      <ModifierSlider
-        onChange={onBodyFatChange}
-        max={40}
-        min={5}
-        step={1}
-        defaultVal={state.bodyFat}
+    <div className="mt-4">
+      <input
+        id="typeinp"
+        className="w-100"
+        type="range"
+        min={min}
+        max={max}
+        value={defaultVal}
+        step={step}
+        onChange={onSlideChange}
       />
-    </>
+    </div>
   )
 }
 
