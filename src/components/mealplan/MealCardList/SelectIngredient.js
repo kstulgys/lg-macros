@@ -10,7 +10,7 @@ import {
   PopoverBody,
   PopoverHeader
 } from "shards-react"
-import Store from "../../store"
+import Store from "../../../store"
 
 export default function SelectIngredient() {
   const { state, setState } = Store.useStore()
@@ -34,14 +34,12 @@ export default function SelectIngredient() {
         open={isOpen}
         toggle={() => setOpen(!isOpen)}
         size="lg"
-        className="mx-2"
-      >
+        className="mx-2">
         <DropdownToggle
           outline
           theme="dark"
           style={{ width: 150 }}
-          className="p-1"
-        >
+          className="p-1">
           {ingredient}
         </DropdownToggle>
         <DropdownMenu>
@@ -50,8 +48,7 @@ export default function SelectIngredient() {
               <DropdownItem
                 key={text}
                 className="text-center"
-                onClick={() => onIngredientSelect(text)}
-              >
+                onClick={() => onIngredientSelect(text)}>
                 {text}
               </DropdownItem>
             )

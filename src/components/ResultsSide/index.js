@@ -25,6 +25,29 @@ export default function ResultsSide() {
       state.baseCalories = state.tdee - state.calDeficit
       state.trainingCalories = Math.round(state.baseCalories * 1.075)
       state.restCalories = Math.round(state.baseCalories * 0.925)
+      state.trainingProteinGrams = Math.round(
+        (state.trainingCalories * state.trainingTotalMacroSplit[0]) / 4
+      )
+      state.trainingCarbsGrams = Math.round(
+        ((state.trainingCalories - state.fiberIntake * 2) *
+          state.trainingTotalMacroSplit[1]) /
+          4
+      )
+      state.trainingFatsGrams = Math.round(
+        (state.trainingCalories * state.trainingTotalMacroSplit[2]) / 9
+      )
+
+      state.restProteinGrams = Math.round(
+        (state.restCalories * state.restTotalMacroSplit[0]) / 4
+      )
+      state.restCarbsGrams = Math.round(
+        ((state.restCalories - state.fiberIntake * 2) *
+          state.restTotalMacroSplit[1]) /
+          4
+      )
+      state.restFatsGrams = Math.round(
+        (state.restCalories * state.restTotalMacroSplit[2]) / 9
+      )
     })
   }
 
@@ -34,12 +57,6 @@ export default function ResultsSide() {
     },
     [state]
   )
-
-  const getProteinGrams = (cals, proteinSplit) =>
-    Math.round((cals * proteinSplit) / 4)
-  const getCarbsGrams = (cals, carbsSplit) =>
-    Math.round(((cals - state.fiberIntake * 2) * carbsSplit) / 4)
-  const getFatsGrams = (cals, fatsSplit) => Math.round((cals * fatsSplit) / 9)
 
   const proteinMacroSplit = [
     { text: "60", value: 0.6 },
@@ -81,25 +98,15 @@ export default function ResultsSide() {
           Training: {state.trainingCalories} Cal
         </h5>
         <h5 className="d-flex align-items-center ">
-          P:{" "}
-          {getProteinGrams(state.trainingCalories, state.trainingProteinSplit)}{" "}
-          g
-          <SelectMacroSplit
-            macroSplitArray={proteinMacroSplit}
-            macro="p"
-            day="training"
-          />
+          P: {state.trainingProteinGrams} g
+          <SelectMacroSplit macro="p" day="training" />
         </h5>
         <h5 className="d-flex align-items-center w-100">
-          C: {getCarbsGrams(state.trainingCalories, state.trainingCarbsSplit)} g
-          <SelectMacroSplit
-            macroSplitArray={getCarbsSplitArray(state.trainingProteinSplit)}
-            macro="c"
-            day="training"
-          />
+          C: {state.trainingCarbsGrams} g
+          <SelectMacroSplit macro="c" day="training" />
         </h5>
         <h5 className="d-flex align-items-center">
-          F: {getFatsGrams(state.trainingCalories, state.trainingFatsSplit)} g
+          F: {state.trainingFatsGrams} g
           <SelectMacroSplit macroSplitArray={[]} macro="f" day="training" />
         </h5>
 
@@ -107,24 +114,16 @@ export default function ResultsSide() {
           Rest: {state.restCalories} Cal
         </h5>
         <h5 className="d-flex align-items-center ">
-          P: {getProteinGrams(state.restCalories, state.restProteinSplit)} g
-          <SelectMacroSplit
-            macroSplitArray={proteinMacroSplit}
-            macro="p"
-            day="rest"
-          />
+          P: {state.restProteinGrams} g
+          <SelectMacroSplit macro="p" day="rest" />
         </h5>
         <h5 className="d-flex align-items-center w-100">
-          C: {getCarbsGrams(state.restCalories, state.restCarbsSplit)} g
-          <SelectMacroSplit
-            macroSplitArray={getCarbsSplitArray(state.restProteinSplit)}
-            macro="c"
-            day="rest"
-          />
+          C: {state.restCarbsGrams} g
+          <SelectMacroSplit macro="c" day="rest" />
         </h5>
         <h5 className="d-flex align-items-center">
-          F: {getFatsGrams(state.restCalories, state.restFatsSplit)} g
-          <SelectMacroSplit macroSplitArray={[]} macro="f" day="rest" />
+          F: {state.restFatsGrams} g
+          <SelectMacroSplit macro="f" day="rest" />
         </h5>
       </CardBody>
     </Card>

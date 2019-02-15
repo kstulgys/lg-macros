@@ -1,7 +1,7 @@
 import React from "react"
 import { CardBody, Card, Button, CardHeader } from "shards-react"
 import SelectIngredient from "./SelectIngredient"
-import Store from "../../store"
+import Store from "../../../store"
 
 export default function MealCard({ size }) {
   const { state, setState } = Store.useStore()

@@ -34,7 +34,7 @@ export default function SelectCalDeficit() {
         toggle={() => setOpen(!isOpen)}
         size="lg"
         className="mx-2">
-        <DropdownToggle outline theme="dark" caret className="p-2">
+        <DropdownToggle outline theme="dark" className="p-2">
           {state.calDeficit} Cal
         </DropdownToggle>
         <DropdownMenu>

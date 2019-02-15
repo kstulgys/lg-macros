@@ -1,35 +1,42 @@
 import React, { useEffect, useState, useRef } from "react"
 import { Button } from "shards-react"
-import SelectMealSize from "./SelectMealSize"
+import MealsSizeList from "./MealsSizeList"
 import Store from "../../store"
-import AddMeal from "./AddMeal"
-import RemoveMeal from "./RemoveMeal"
-import MealCard from "./MealCard"
-
-function usePrevious(value) {
-  const ref = useRef()
-  useEffect(() => {
-    ref.current = value
-  })
-  return ref.current
-}
+// import MealCardList from "./MealCardList"
+import TotalCaloriesInfoCard from "./TotalCaloriesInfoCard"
 
 export default function MealPlan() {
   const { state, setState } = Store.useStore()
-  const prevMeals = usePrevious(state.trainingMeals)
+  // const prevMeals = usePrevious(state.trainingMeals)
 
-  const makeNumberNormal = num => {
+  const fixedNum = num => {
     return Number(num.toFixed(2))
   }
 
+  // useEffect(() => {
+  //   if (state.trainingMeals.length > 10) {
+  //     setState(state => {
+  //       state.trainingMeals = [
+  //         { size: 0.2, macroSplit: [0.5, 0.25, 0.25] },
+  //         { size: 0.2, macroSplit: [0.5, 0.25, 0.25] },
+  //         { size: 0.6, macroSplit: [0.5, 0.25, 0.25] }
+  //       ]
+  //     })
+  //   }
+  // }, [])
+
   useEffect(
     () => {
-      const mealsTotal = state.trainingMeals.reduce((prev, next) => {
-        return makeNumberNormal(prev + next)
+      const mealsTotal = state.trainingMeals.reduce((prev, obj) => {
+        return prev + obj.size
       }, 0)
+
+      // console.log(mealsTotal)
       const mealsLength = state.trainingMeals.length
-      const mealsSurplus = makeNumberNormal(mealsTotal - 1)
-      const mealsDeficit = makeNumberNormal(1 - mealsTotal)
+      // console.log("mealsLength", mealsLength)
+
+      const mealsSurplus = fixedNum(mealsTotal - 1)
+      const mealsDeficit = fixedNum(1 - mealsTotal)
       const isSurplus = mealsSurplus > 0 ? true : false
 
       if (mealsSurplus === 0) {
@@ -44,8 +51,12 @@ export default function MealPlan() {
       }
 
       if (!isSurplus) {
+        const newMeal = {
+          size: mealsDeficit,
+          macroSplit: [0.5, 0.25, 0.25]
+        }
         setState(state => {
-          state.trainingMeals[mealsLength] = mealsDeficit
+          state.trainingMeals[mealsLength] = newMeal
         })
         return
       }
@@ -54,37 +65,23 @@ export default function MealPlan() {
   )
 
   return (
-    <>
-      <div className="container-fluid">
-        <h5 className="font-weight-bold text-center mt-4">
-          Meal sizing (training)
-        </h5>
-        <div className="d-flex flex-wrap justify-content-center align-items-center">
-          {state.trainingMeals.map((m, i) => (
-            <div key={`${i}-${m}`}>
-              <SelectMealSize size={m} index={i} />
-            </div>
-          ))}
-        </div>
-        <div className="mt-5 d-flex flex-wrap justify-content-center">
-          {state.trainingMeals.map((m, i) => {
-            return (
-              <div key={`${i}-${m}`}>
-                <MealCard size={m} />
-              </div>
-            )
-          })}
-        </div>
-        <div>
-          <div className="my-5 text-center">
-            <h5>{state.trainingCalories} Cal</h5>
-            <h5>{state.restCalories} Cal</h5>
-          </div>
-        </div>
-      </div>
-    </>
+    <div>
+      <h5 className="font-weight-bold text-center mt-4">
+        Meal sizing (training)
+      </h5>
+      <MealsSizeList />
+    </div>
   )
 }
+// <TotalCaloriesInfoCard />
+
+// function usePrevious(value) {
+//   const ref = useRef()
+//   useEffect(() => {
+//     ref.current = value
+//   })
+//   return ref.current
+// }
 
 // <Button className="mt-4" theme="dark">
 //   Generate

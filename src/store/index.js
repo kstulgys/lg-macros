@@ -18,14 +18,20 @@ const initialState = {
   stepsValue: 0.5,
   fiberIntake: 40,
   calDeficit: 500,
-  trainingProteinSplit: 0.5,
-  trainingCarbsSplit: 0.25,
-  trainingFatsSplit: 0.25,
-  restProteinSplit: 0.5,
-  restCarbsSplit: 0.25,
-  restFatsSplit: 0.25,
-  trainingMeals: [0.2, 0.2, 0.6],
-  restMeals: [0.2, 0.2, 0.6]
+  trainingTotalCalSplit: [0.2, 0.2, 0.6],
+  restTotalCalSplit: [0.2, 0.2, 0.6],
+  trainingTotalMacroSplit: [0.5, 0.25, 0.25],
+  restTotalMacroSplit: [0.5, 0.25, 0.25],
+  trainingMeals: [
+    { size: 0.2, macroSplit: [0.5, 0.25, 0.25] },
+    { size: 0.2, macroSplit: [0.5, 0.25, 0.25] },
+    { size: 0.6, macroSplit: [0.5, 0.25, 0.25] }
+  ],
+  testProp: [
+    { size: 0.2, macroSplit: [0.5, 0.25, 0.25] },
+    { size: 0.2, macroSplit: [0.5, 0.25, 0.25] },
+    { size: 0.6, macroSplit: [0.5, 0.25, 0.25] }
+  ]
 }
 
 const getLocalStorageState = () =>

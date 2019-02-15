@@ -15,12 +15,10 @@ import { Card, CardBody, Button } from "shards-react"
 
 function App() {
   const { state } = Store.useStore()
-  // console.log(state.multiplier)
+  console.log(state)
 
   return (
-    <div
-      className="bg-light container-fluid px-0"
-      style={{ overflowX: "hidden", height: "100vh" }}>
+    <div className="bg-light" style={{ overflowX: "hidden", height: "100vh" }}>
       <Navigation />
       <Route exact path="/" component={Calories} />
       <Route path="/meals" component={MealPlan} />
