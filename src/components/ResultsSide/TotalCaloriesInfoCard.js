@@ -143,7 +143,6 @@ export default function TotalCaloriesInfoCard({ day }) {
       <div className="py-2">
         <Progress multi className="pb-5 pb-sm-4">
           <Progress
-            tag="h5"
             bar
             theme="success"
             value={
@@ -184,8 +183,8 @@ export default function TotalCaloriesInfoCard({ day }) {
       <br />
       <br />
 
-      <div className="d-flex justify-content-between ">
-        <h5 className="">P</h5>
+      <div className="d-flex justify-content-between align-items-center">
+        <h5 className="m-0">P</h5>
         <input
           className="ml-auto"
           style={{ width: '80%' }}
@@ -210,12 +209,12 @@ export default function TotalCaloriesInfoCard({ day }) {
           <option value="0.55" />
           <option value="0.6" />
         </datalist>
-        <h5 className="ml-2">%</h5>
+        <h5 className="m-0 ml-2">%</h5>
       </div>
       <br />
       <br />
-      <div className="d-flex justify-content-between">
-        <h5 className="">C / F</h5>
+      <div className="d-flex justify-content-between align-items-center">
+        <h5 className="m-0">C / F</h5>
         <input
           className="ml-auto"
           style={{ width: '80%' }}
@@ -248,7 +247,7 @@ export default function TotalCaloriesInfoCard({ day }) {
           <option value="0.7" />
           <option value="0.75" />
         </datalist>
-        <h5 className="ml-2">%</h5>
+        <h5 className="m-0 ml-2 text-center">%</h5>
       </div>
       <br />
     </div>
