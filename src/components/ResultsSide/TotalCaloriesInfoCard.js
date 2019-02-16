@@ -16,13 +16,13 @@ export default function TotalCaloriesInfoCard({ day }) {
   const getProteinInfoText = () => {
     if (day === 'training') {
       const percentText = Number(
-        (state.trainingTotalMacroSplit[0] * 100).toFixed(1)
+        (state.trainingTotalMacroSplit[0] * 100).toFixed(2)
       )
       return `${state.trainingProteinGrams} g / ${percentText} %`
     }
     if (day === 'rest') {
       const percentText = Number(
-        (state.restTotalMacroSplit[0] * 100).toFixed(1)
+        (state.restTotalMacroSplit[0] * 100).toFixed(2)
       )
       return `${state.restProteinGrams} g / ${percentText} %`
     }
@@ -31,13 +31,13 @@ export default function TotalCaloriesInfoCard({ day }) {
   const getCarbsInfoText = () => {
     if (day === 'training') {
       const percentText = Number(
-        (state.trainingTotalMacroSplit[1] * 100).toFixed(1)
+        (state.trainingTotalMacroSplit[1] * 100).toFixed(2)
       )
       return `${state.trainingCarbsGrams} g / ${percentText} %`
     }
     if (day === 'rest') {
       const percentText = Number(
-        (state.restTotalMacroSplit[1] * 100).toFixed(1)
+        (state.restTotalMacroSplit[1] * 100).toFixed(2)
       )
       return `${state.restCarbsGrams} g / ${percentText} %`
     }
@@ -46,13 +46,13 @@ export default function TotalCaloriesInfoCard({ day }) {
   const getFatsInfoText = () => {
     if (day === 'training') {
       const percentText = Number(
-        (state.trainingTotalMacroSplit[2] * 100).toFixed(1)
+        (state.trainingTotalMacroSplit[2] * 100).toFixed(2)
       )
       return `${state.trainingFatsGrams} g / ${percentText} %`
     }
     if (day === 'rest') {
       const percentText = Number(
-        (state.restTotalMacroSplit[2] * 100).toFixed(1)
+        (state.restTotalMacroSplit[2] * 100).toFixed(2)
       )
       return `${state.restFatsGrams} g / ${percentText} %`
     }
@@ -60,7 +60,7 @@ export default function TotalCaloriesInfoCard({ day }) {
 
   const onProteinChange = e => {
     const { value } = e.target
-    const carbsAndFatsSplit = Number(((1 - Number(value)) / 2).toFixed(2))
+    const carbsAndFatsSplit = Number(((1 - Number(value)) / 2).toFixed(3))
     // console.log(carbsAndFatsSplit)
     if (day === 'training') {
       setState(state => {

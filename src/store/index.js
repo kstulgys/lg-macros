@@ -1,15 +1,15 @@
-import React, { useMemo, useContext, createContext, useState } from "react"
-import { useImmer } from "use-immer"
+import React, { useMemo, useContext, createContext, useState } from 'react'
+import { useImmer } from 'use-immer'
 // import { withRouter, BrowserRouter } from 'react-router-dom';
 const initialState = {
   weight: 80.5,
   height: 1.82,
   bodyFat: 15,
   age: 30,
-  gender: "Male",
+  gender: 'Male',
   steps: 6250,
-  weightUnit: "kg",
-  heightUnit: "m",
+  weightUnit: 'kg',
+  heightUnit: 'm',
   sexValue: 28,
   heightValue: 0,
   bodyFatValue: 0,
@@ -26,19 +26,14 @@ const initialState = {
     { size: 0.2, macroSplit: [0.5, 0.25, 0.25] },
     { size: 0.2, macroSplit: [0.5, 0.25, 0.25] },
     { size: 0.6, macroSplit: [0.5, 0.25, 0.25] }
-  ],
-  testProp: [
-    { size: 0.2, macroSplit: [0.5, 0.25, 0.25] },
-    { size: 0.2, macroSplit: [0.5, 0.25, 0.25] },
-    { size: 0.6, macroSplit: [0.5, 0.25, 0.25] }
   ]
 }
 
 const getLocalStorageState = () =>
-  JSON.parse(localStorage.getItem("state")) || initialState
+  JSON.parse(localStorage.getItem('state')) || initialState
 
 const setStateToLocalStorage = state =>
-  localStorage.setItem("state", JSON.stringify(state))
+  localStorage.setItem('state', JSON.stringify(state))
 
 const clearLocalStorage = () => {
   const localStorageState = getLocalStorageState()
