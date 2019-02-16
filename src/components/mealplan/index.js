@@ -13,18 +13,6 @@ export default function MealPlan() {
     return Number(num.toFixed(2))
   }
 
-  // useEffect(() => {
-  //   if (state.trainingMeals.length > 10) {
-  //     setState(state => {
-  //       state.trainingMeals = [
-  //         { size: 0.2, macroSplit: [0.5, 0.25, 0.25] },
-  //         { size: 0.2, macroSplit: [0.5, 0.25, 0.25] },
-  //         { size: 0.6, macroSplit: [0.5, 0.25, 0.25] }
-  //       ]
-  //     })
-  //   }
-  // }, [])
-
   useEffect(() => {
     const mealsTotal = state.trainingMeals.reduce((prev, obj) => {
       return prev + obj.size
@@ -63,13 +51,16 @@ export default function MealPlan() {
 
   return (
     <div>
-      <h5 className="font-weight-bold text-center mt-4">
-        Meal sizing (training)
-      </h5>
-      <MealsSizeList />
+      <h5 className="text-center mt-4">Work in progress...</h5>
     </div>
   )
 }
+
+//  <h5 className="font-weight-bold text-center mt-4">
+// Meal sizing (training)
+// </h5>
+// <MealsSizeList />
+
 // <TotalCaloriesInfoCard />
 
 // function usePrevious(value) {
