@@ -6,10 +6,10 @@ export default function TotalCaloriesInfoCard({ day }) {
   const { state, setState } = Store.useStore()
   const [maxCarbsRange, setMaxCarbsRange] = useState(() => {
     if (day === 'training') {
-      return 0.95 - state.trainingTotalMacroSplit[0]
+      return (0.95 - state.trainingTotalMacroSplit[0]).toFixed(3)
     }
     if (day === 'rest') {
-      return 0.95 - state.restTotalMacroSplit[0]
+      return (0.95 - state.restTotalMacroSplit[0]).toFixed(3)
     }
   })
 
@@ -86,22 +86,22 @@ export default function TotalCaloriesInfoCard({ day }) {
     const { value } = e.target
     const carbsAndFatsSplit = ((1 - value) / 2).toFixed(3)
     if (day === 'training') {
-      setMaxCarbsRange(0.95 - value)
       setState(state => {
         state.trainingTotalMacroSplit[0] = value
         state.trainingTotalMacroSplit[1] = carbsAndFatsSplit
         state.trainingTotalMacroSplit[2] = carbsAndFatsSplit
       })
+      setMaxCarbsRange((0.95 - value).toFixed(3))
       return
     }
 
     if (day === 'rest') {
-      setMaxCarbsRange(0.95 - value)
       setState(state => {
         state.restTotalMacroSplit[0] = value
         state.restTotalMacroSplit[1] = carbsAndFatsSplit
         state.restTotalMacroSplit[2] = carbsAndFatsSplit
       })
+      setMaxCarbsRange((0.95 - value).toFixed(3))
       return
     }
   }
