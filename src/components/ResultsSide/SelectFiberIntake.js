@@ -14,19 +14,35 @@ import Store from '../../store'
 
 export default function SelectFiberIntake() {
   const { state, setState } = Store.useStore()
-  const [isOpen, setOpen] = useState(false)
+  // const [isOpen, setOpen] = useState(false)
 
-  const onFiberIntakeSelect = val => {
+  const onFiberIntakeChange = e => {
+    const { value } = e.target
     setState(state => {
-      state.fiberIntake = val
+      state.fiberIntake = Number(value)
     })
   }
 
   return (
-    <h5 className="font-weight-bold d-flex align-items-center">
-      <span>Fiber/day</span>
-
-      <Dropdown
+    <div className="mt-3">
+      <h5 className="font-weight-bold d-flex align-items-center">
+        <span>Fiber/day</span>
+        <span className="ml-auto">{state.fiberIntake} g</span>
+      </h5>
+      <input
+        className="m-0 p-0"
+        step="5"
+        min="30"
+        max="60"
+        type="range"
+        value={state.fiberIntake}
+        onChange={onFiberIntakeChange}
+      />
+    </div>
+  )
+}
+{
+  /* <Dropdown
         open={isOpen}
         toggle={() => setOpen(!isOpen)}
         size="lg"
@@ -49,6 +65,5 @@ export default function SelectFiberIntake() {
           })}
         </DropdownMenu>
       </Dropdown>
-    </h5>
-  )
+    </h5> */
 }

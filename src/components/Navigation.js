@@ -14,17 +14,20 @@ function Navigation({ location }) {
     <div className="d-flex justify-content-center w-100 py-4">
       <Link to="/">
         <Button
+          size="lg"
           style={{ width: 125 }}
           theme={location.pathname !== '/meals' ? 'dark' : 'light'}
-          className="mr-3">
+          className="mr-3"
+        >
           Calories
         </Button>
       </Link>
       <Link to="/meals">
         <Button
           style={{ width: 125 }}
-          // outline
-          theme={location.pathname === '/meals' ? 'dark' : 'light'}>
+          size="lg"
+          theme={location.pathname === '/meals' ? 'dark' : 'light'}
+        >
           Meals
         </Button>
       </Link>

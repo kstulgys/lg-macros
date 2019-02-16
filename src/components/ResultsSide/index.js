@@ -66,7 +66,7 @@ export default function ResultsSide() {
         <SelectCalDeficit />
         <SelectFiberIntake />
 
-        <h5 className="font-weight-bold d-flex">
+        <h5 className="font-weight-bold d-flex mt-3">
           <span>Base</span>
           <span className="ml-auto">{state.baseCalories} Cal</span>
         </h5>

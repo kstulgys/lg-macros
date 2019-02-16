@@ -15,76 +15,53 @@ export default function TotalCaloriesInfoCard({ day }) {
 
   const getProteinInfoText = () => {
     if (day === 'training') {
-      const gramstext = (
-        (state.trainingCalories * state.trainingTotalMacroSplit[0]) /
-        4
-      ).toFixed(0)
       const percentText = Number(
-        (state.trainingTotalMacroSplit[0] * 100).toFixed(3)
+        (state.trainingTotalMacroSplit[0] * 100).toFixed(1)
       )
-      return `${gramstext} g / ${percentText} %`
+      return `${state.trainingProteinGrams} g / ${percentText} %`
     }
     if (day === 'rest') {
-      const gramstext = (
-        (state.restCalories * state.restTotalMacroSplit[0]) /
-        4
-      ).toFixed(0)
       const percentText = Number(
-        (state.restTotalMacroSplit[0] * 100).toFixed(3)
+        (state.restTotalMacroSplit[0] * 100).toFixed(1)
       )
-      return `${gramstext} g / ${percentText} %`
+      return `${state.restProteinGrams} g / ${percentText} %`
     }
   }
 
   const getCarbsInfoText = () => {
     if (day === 'training') {
-      const gramstext = (
-        (state.trainingCalories * state.trainingTotalMacroSplit[1]) /
-        4
-      ).toFixed(0)
       const percentText = Number(
-        (state.trainingTotalMacroSplit[1] * 100).toFixed(3)
+        (state.trainingTotalMacroSplit[1] * 100).toFixed(1)
       )
-      return `${gramstext} g / ${percentText} %`
+      return `${state.trainingCarbsGrams} g / ${percentText} %`
     }
     if (day === 'rest') {
-      const gramstext = (
-        (state.restCalories * state.restTotalMacroSplit[1]) /
-        4
-      ).toFixed(0)
       const percentText = Number(
-        (state.restTotalMacroSplit[1] * 100).toFixed(3)
+        (state.restTotalMacroSplit[1] * 100).toFixed(1)
       )
-      return `${gramstext} g / ${percentText} %`
+      return `${state.restCarbsGrams} g / ${percentText} %`
     }
   }
 
   const getFatsInfoText = () => {
     if (day === 'training') {
-      const gramstext = (
-        (state.trainingCalories * state.trainingTotalMacroSplit[2]) /
-        9
-      ).toFixed(0)
       const percentText = Number(
-        (state.trainingTotalMacroSplit[2] * 100).toFixed(3)
+        (state.trainingTotalMacroSplit[2] * 100).toFixed(1)
       )
-      return `${gramstext} g / ${percentText} %`
+      return `${state.trainingFatsGrams} g / ${percentText} %`
     }
     if (day === 'rest') {
-      const gramstext = (
-        (state.restCalories * state.restTotalMacroSplit[2]) /
-        9
-      ).toFixed(0)
       const percentText = Number(
-        (state.restTotalMacroSplit[2] * 100).toFixed(3)
+        (state.restTotalMacroSplit[2] * 100).toFixed(1)
       )
-      return `${gramstext} g / ${percentText} %`
+      return `${state.restFatsGrams} g / ${percentText} %`
     }
   }
 
   const onProteinChange = e => {
     const { value } = e.target
-    const carbsAndFatsSplit = ((1 - value) / 2).toFixed(3)
+    const carbsAndFatsSplit = Number(((1 - Number(value)) / 2).toFixed(2))
+    // console.log(carbsAndFatsSplit)
     if (day === 'training') {
       setState(state => {
         state.trainingTotalMacroSplit[0] = value
@@ -199,18 +176,10 @@ export default function TotalCaloriesInfoCard({ day }) {
           }
           onChange={onProteinChange}
         />
-        <datalist id="tickmarks">
-          <option value="0.3" />
-          <option value="0.35" />
-          <option value="0.4" />
-          <option value="0.45" />
-          <option value="0.5" />
-          <option value="0.55" />
-          <option value="0.6" />
-        </datalist>
+
         <h5 className="m-0 ml-2">%</h5>
       </div>
-      <div className="d-flex justify-content-between align-items-center">
+      <div className="d-flex justify-content-between align-items-center mt-4">
         <h5 className="m-0">C / F</h5>
         <input
           className="ml-auto"
@@ -227,23 +196,7 @@ export default function TotalCaloriesInfoCard({ day }) {
           }
           onChange={onCarbsChange}
         />
-        <datalist id="tickmarks-1">
-          <option value="0.05" />
-          <option value="0.1" />
-          <option value="0.15" />
-          <option value="0.2" />
-          <option value="0.25" />
-          <option value="0.3" />
-          <option value="0.35" />
-          <option value="0.4" />
-          <option value="0.45" />
-          <option value="0.5" />
-          <option value="0.55" />
-          <option value="0.6" />
-          <option value="0.65" />
-          <option value="0.7" />
-          <option value="0.75" />
-        </datalist>
+
         <h5 className="m-0 ml-2 text-center">%</h5>
       </div>
     </div>
