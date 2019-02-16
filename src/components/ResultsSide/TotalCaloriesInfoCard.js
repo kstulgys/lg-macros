@@ -4,18 +4,14 @@ import Store from '../../store'
 
 export default function TotalCaloriesInfoCard({ day }) {
   const { state, setState } = Store.useStore()
-  // const [proteinVal, setProteinVal] = useState(50)
-  // const [carbsVal, setCarbsVal] = useState(25)
-  // const [fatsVal, setFatsVal] = useState(25)
-
-  // const availableMacroSplitOptions = () =>
-  // macroSplitOptions.filter((opt, i) => {
-  //   if (macro === 'p') {
-  //     return opt < 1 - state.trainingTotalMacroSplit[1]
-  //   } else {
-  //     return opt < 1 - state.trainingTotalMacroSplit[0]
-  //   }
-  // })
+  const [maxCarbsRange, setMaxCarbsRange] = useState(() => {
+    if (day === 'training') {
+      return 0.95 - state.trainingTotalMacroSplit[0]
+    }
+    if (day === 'rest') {
+      return 0.95 - state.restTotalMacroSplit[0]
+    }
+  })
 
   const getProteinInfoText = () => {
     if (day === 'training') {
@@ -90,6 +86,7 @@ export default function TotalCaloriesInfoCard({ day }) {
     const { value } = e.target
     const carbsAndFatsSplit = ((1 - value) / 2).toFixed(3)
     if (day === 'training') {
+      setMaxCarbsRange(0.95 - value)
       setState(state => {
         state.trainingTotalMacroSplit[0] = value
         state.trainingTotalMacroSplit[1] = carbsAndFatsSplit
@@ -99,6 +96,7 @@ export default function TotalCaloriesInfoCard({ day }) {
     }
 
     if (day === 'rest') {
+      setMaxCarbsRange(0.95 - value)
       setState(state => {
         state.restTotalMacroSplit[0] = value
         state.restTotalMacroSplit[1] = carbsAndFatsSplit
@@ -135,7 +133,7 @@ export default function TotalCaloriesInfoCard({ day }) {
   }
 
   return (
-    <div className="mt-4">
+    <div className="mt-5">
       <h5 className="font-weight-bold d-flex">
         <span>{day === 'training' ? 'Training' : 'Rest'} day</span>
         <span className="ml-auto">
@@ -143,7 +141,7 @@ export default function TotalCaloriesInfoCard({ day }) {
         </span>
       </h5>
       <div className="py-2">
-        <Progress multi className="pb-4">
+        <Progress multi className="pb-5 pb-sm-4">
           <Progress
             tag="h5"
             bar
@@ -153,9 +151,9 @@ export default function TotalCaloriesInfoCard({ day }) {
                 ? (state.trainingTotalMacroSplit[0] * 100).toFixed(0)
                 : (state.restTotalMacroSplit[0] * 100).toFixed(0)
             }
-            className="py-3"
+            className="py-4 py-sm-3"
           >
-            <h6 className="text-light pt-1">{getProteinInfoText()}</h6>
+            <h6 className="text-light pt-2 pt-sm-1">{getProteinInfoText()}</h6>
           </Progress>
           <Progress
             bar
@@ -165,9 +163,9 @@ export default function TotalCaloriesInfoCard({ day }) {
                 ? (state.trainingTotalMacroSplit[1] * 100).toFixed(0)
                 : (state.restTotalMacroSplit[1] * 100).toFixed(0)
             }
-            className="py-3"
+            className="py-4 py-sm-3"
           >
-            <h6 className="text-light pt-1">{getCarbsInfoText()}</h6>
+            <h6 className="text-light pt-2 pt-sm-1">{getCarbsInfoText()}</h6>
           </Progress>
           <Progress
             bar
@@ -177,13 +175,15 @@ export default function TotalCaloriesInfoCard({ day }) {
                 ? (state.trainingTotalMacroSplit[2] * 100).toFixed(0)
                 : (state.restTotalMacroSplit[2] * 100).toFixed(0)
             }
-            className="py-3"
+            className="py-4 py-sm-3"
           >
-            <h6 className="text-light pt-1">{getFatsInfoText()}</h6>
+            <h6 className="text-light pt-2 pt-sm-1 ">{getFatsInfoText()}</h6>
           </Progress>
         </Progress>
       </div>
       <br />
+      <br />
+
       <div className="d-flex justify-content-between ">
         <h5 className="">P</h5>
         <input
@@ -213,6 +213,7 @@ export default function TotalCaloriesInfoCard({ day }) {
         <h5 className="ml-2">%</h5>
       </div>
       <br />
+      <br />
       <div className="d-flex justify-content-between">
         <h5 className="">C / F</h5>
         <input
@@ -220,15 +221,8 @@ export default function TotalCaloriesInfoCard({ day }) {
           style={{ width: '80%' }}
           list="tickmarks-1"
           step="0.025"
-          min="0.1"
-          max={
-            0.9 -
-            `${
-              day === 'training'
-                ? state.trainingTotalMacroSplit[0]
-                : state.restTotalMacroSplit[0]
-            }`
-          }
+          min="0.05"
+          max={maxCarbsRange}
           type="range"
           value={
             day === 'training'
@@ -238,6 +232,7 @@ export default function TotalCaloriesInfoCard({ day }) {
           onChange={onCarbsChange}
         />
         <datalist id="tickmarks-1">
+          <option value="0.05" />
           <option value="0.1" />
           <option value="0.15" />
           <option value="0.2" />
@@ -249,6 +244,9 @@ export default function TotalCaloriesInfoCard({ day }) {
           <option value="0.5" />
           <option value="0.55" />
           <option value="0.6" />
+          <option value="0.65" />
+          <option value="0.7" />
+          <option value="0.75" />
         </datalist>
         <h5 className="ml-2">%</h5>
       </div>
