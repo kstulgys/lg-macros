@@ -36,7 +36,8 @@ export default function ResultsSide() {
       )
       state.trainingCarbsGrams = Number(
         (
-          (state.trainingCalories * state.trainingTotalMacroSplit[1]) /
+          (state.trainingCalories * state.trainingTotalMacroSplit[1] -
+            state.fiberIntake * 2) /
           4
         ).toFixed(1)
       )
@@ -52,8 +53,8 @@ export default function ResultsSide() {
       )
       state.restCarbsGrams = Number(
         (
-          ((state.restCalories - state.fiberIntake * 2) *
-            state.restTotalMacroSplit[1]) /
+          (state.restCalories * state.restTotalMacroSplit[1] -
+            state.fiberIntake * 2) /
           4
         ).toFixed(1)
       )
