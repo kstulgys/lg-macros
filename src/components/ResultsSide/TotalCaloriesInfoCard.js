@@ -133,14 +133,14 @@ export default function TotalCaloriesInfoCard({ day }) {
   }
 
   return (
-    <div className="mt-5">
+    <div className="">
       <h5 className="font-weight-bold d-flex">
         <span>{day === 'training' ? 'Training' : 'Rest'} day</span>
         <span className="ml-auto">
           {day === 'training' ? state.trainingCalories : state.restCalories} Cal
         </span>
       </h5>
-      <div className="py-2">
+      <div className="mt-4">
         <Progress multi className="pb-5 pb-sm-4">
           <Progress
             bar
@@ -181,7 +181,6 @@ export default function TotalCaloriesInfoCard({ day }) {
         </Progress>
       </div>
       <br />
-      <br />
 
       <div className="d-flex justify-content-between align-items-center">
         <h5 className="m-0">P</h5>
@@ -211,8 +210,6 @@ export default function TotalCaloriesInfoCard({ day }) {
         </datalist>
         <h5 className="m-0 ml-2">%</h5>
       </div>
-      <br />
-      <br />
       <div className="d-flex justify-content-between align-items-center">
         <h5 className="m-0">C / F</h5>
         <input
@@ -249,15 +246,6 @@ export default function TotalCaloriesInfoCard({ day }) {
         </datalist>
         <h5 className="m-0 ml-2 text-center">%</h5>
       </div>
-      <br />
     </div>
   )
-}
-
-{
-  /* <Card style={{ width: 370 }}>
-<CardBody>
-  <h5>Training Day: {state.trainingCalories} Cal</h5>
-</CardBody>
-</Card> */
 }
