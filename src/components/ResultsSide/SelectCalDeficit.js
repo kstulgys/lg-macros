@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { FaInfoCircle } from "react-icons/fa"
+import React, { useState, useEffect } from 'react'
+import { FaInfoCircle } from 'react-icons/fa'
 import {
   Dropdown,
   DropdownToggle,
@@ -9,8 +9,8 @@ import {
   Popover,
   PopoverBody,
   PopoverHeader
-} from "shards-react"
-import Store from "../../store"
+} from 'shards-react'
+import Store from '../../store'
 
 export default function SelectCalDeficit() {
   const { state, setState } = Store.useStore()
@@ -27,13 +27,14 @@ export default function SelectCalDeficit() {
   // }
 
   return (
-    <h5 className="font-weight-bold text-center d-flex align-items-center justify-content-center">
-      Deficit:
+    <h5 className="font-weight-bold d-flex align-items-center">
+      <span>Deficit</span>
       <Dropdown
         open={isOpen}
         toggle={() => setOpen(!isOpen)}
         size="lg"
-        className="mx-2">
+        className="ml-auto"
+      >
         <DropdownToggle outline theme="dark" className="p-2">
           {state.calDeficit} Cal
         </DropdownToggle>
@@ -43,7 +44,8 @@ export default function SelectCalDeficit() {
               <DropdownItem
                 key={n}
                 className=" my-0"
-                onClick={() => onCalDeficitChange(n)}>
+                onClick={() => onCalDeficitChange(n)}
+              >
                 {n}
               </DropdownItem>
             )

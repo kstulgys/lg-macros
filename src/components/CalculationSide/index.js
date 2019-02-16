@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react"
-import { CardBody, Card } from "shards-react"
-import Store from "../../store"
-import PersonSex from "./PersonSex"
-import PersonWeight from "./PersonWeight"
-import PersonBodyFat from "./PersonBodyFat"
-import PersonMuscular from "./PersonMuscular"
-import PersonHeight from "./PersonHeight"
-import PersonAge from "./PersonAge"
-import PersonActivity from "./PersonActivity"
+import React, { useState, useEffect } from 'react'
+import { CardBody, Card } from 'shards-react'
+import Store from '../../store'
+import PersonSex from './PersonSex'
+import PersonWeight from './PersonWeight'
+import PersonBodyFat from './PersonBodyFat'
+import PersonMuscular from './PersonMuscular'
+import PersonHeight from './PersonHeight'
+import PersonAge from './PersonAge'
+import PersonActivity from './PersonActivity'
 
 export default function CalculationsSide() {
   const { state, setState } = Store.useStore()
 
   return (
     <Card>
-      <CardBody>
-        <div className="mb-5 mt-3">
+      <CardBody className="mr-5 m-sm-4">
+        <div className="mb-5">
           <PersonSex />
         </div>
         <div className="my-5">
@@ -39,7 +39,7 @@ export default function CalculationsSide() {
         </div>
 
         <div className="mt-5 mb-3">
-          {state.gender === "Male" && <PersonMuscular />}
+          {state.gender === 'Male' && <PersonMuscular />}
         </div>
       </CardBody>
     </Card>

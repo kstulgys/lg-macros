@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { FaInfoCircle } from "react-icons/fa"
+import React, { useState, useEffect } from 'react'
+import { FaInfoCircle } from 'react-icons/fa'
 import {
   Dropdown,
   DropdownToggle,
@@ -9,8 +9,8 @@ import {
   Popover,
   PopoverBody,
   PopoverHeader
-} from "shards-react"
-import Store from "../../store"
+} from 'shards-react'
+import Store from '../../store'
 
 export default function SelectFiberIntake() {
   const { state, setState } = Store.useStore()
@@ -23,13 +23,15 @@ export default function SelectFiberIntake() {
   }
 
   return (
-    <h5 className="font-weight-bold text-center d-flex align-items-center justify-content-center">
-      Fiber/day:
+    <h5 className="font-weight-bold d-flex align-items-center">
+      <span>Fiber/day</span>
+
       <Dropdown
         open={isOpen}
         toggle={() => setOpen(!isOpen)}
         size="lg"
-        className="mx-2">
+        className="ml-auto"
+      >
         <DropdownToggle outline theme="dark" className="p-2">
           {state.fiberIntake} g
         </DropdownToggle>
@@ -39,7 +41,8 @@ export default function SelectFiberIntake() {
               <DropdownItem
                 key={n}
                 className=" my-0"
-                onClick={() => onFiberIntakeSelect(n)}>
+                onClick={() => onFiberIntakeSelect(n)}
+              >
                 {n}
               </DropdownItem>
             )

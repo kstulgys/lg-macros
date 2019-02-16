@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { FaInfoCircle } from "react-icons/fa"
+import React, { useState, useEffect } from 'react'
+import { FaInfoCircle } from 'react-icons/fa'
 import {
   Dropdown,
   DropdownToggle,
@@ -9,10 +9,10 @@ import {
   Popover,
   PopoverBody,
   PopoverHeader
-} from "shards-react"
-import Store from "../../store"
+} from 'shards-react'
+import Store from '../../store'
 
-export default function SelectMacroSplit({ macroSplitArray, macro, day }) {
+export default function SelectMacroSplit({ macro, day }) {
   const { state, setState } = Store.useStore()
   const [isOpen, setOpen] = useState(false)
 
@@ -48,7 +48,7 @@ export default function SelectMacroSplit({ macroSplitArray, macro, day }) {
 
   const availableMacroSplitOptions = () =>
     macroSplitOptions.filter((opt, i) => {
-      if (macro === "p") {
+      if (macro === 'p') {
         return opt < 1 - state.trainingTotalMacroSplit[1]
       } else {
         return opt < 1 - state.trainingTotalMacroSplit[0]
@@ -56,22 +56,22 @@ export default function SelectMacroSplit({ macroSplitArray, macro, day }) {
     })
 
   const getDropdownToggleText = () => {
-    if (macro === "p" && day === "training") {
+    if (macro === 'p' && day === 'training') {
       return `${Number((state.trainingTotalMacroSplit[0] * 100).toFixed(1))} %`
     }
-    if (macro === "p" && day === "rest") {
+    if (macro === 'p' && day === 'rest') {
       return `${Number((state.restTotalMacroSplit[0] * 100).toFixed(1))} %`
     }
-    if (macro === "c" && day === "training") {
+    if (macro === 'c' && day === 'training') {
       return `${Number((state.trainingTotalMacroSplit[1] * 100).toFixed(1))} %`
     }
-    if (macro === "c" && day === "rest") {
+    if (macro === 'c' && day === 'rest') {
       return `${Number((state.restTotalMacroSplit[1] * 100).toFixed(1))} %`
     }
-    if (macro === "f" && day === "training") {
+    if (macro === 'f' && day === 'training') {
       return `${Number((state.trainingTotalMacroSplit[2] * 100).toFixed(1))} %`
     }
-    if (macro === "f" && day === "rest") {
+    if (macro === 'f' && day === 'rest') {
       return `${Number((state.restTotalMacroSplit[2] * 100).toFixed(1))} %`
     }
     return
@@ -80,7 +80,7 @@ export default function SelectMacroSplit({ macroSplitArray, macro, day }) {
   const onMacroSplitSelect = val => {
     const getCarbsAndFatsSplit = () => Number(((1 - val) / 2).toFixed(3))
 
-    if (macro === "p" && day === "training") {
+    if (macro === 'p' && day === 'training') {
       const carbsAndFatsSplit = getCarbsAndFatsSplit()
       setState(state => {
         state.trainingTotalMacroSplit[0] = val
@@ -88,7 +88,7 @@ export default function SelectMacroSplit({ macroSplitArray, macro, day }) {
         state.trainingTotalMacroSplit[2] = carbsAndFatsSplit
       })
     }
-    if (macro === "p" && day === "rest") {
+    if (macro === 'p' && day === 'rest') {
       const carbsAndFatsSplit = getCarbsAndFatsSplit()
       setState(state => {
         state.restTotalMacroSplit[0] = val
@@ -96,7 +96,7 @@ export default function SelectMacroSplit({ macroSplitArray, macro, day }) {
         state.restTotalMacroSplit[2] = carbsAndFatsSplit
       })
     }
-    if (macro === "c" && day === "training") {
+    if (macro === 'c' && day === 'training') {
       const getFatsSplit = Number(
         (1 - val - state.trainingTotalMacroSplit[0]).toFixed(3)
       )
@@ -105,7 +105,7 @@ export default function SelectMacroSplit({ macroSplitArray, macro, day }) {
         state.trainingTotalMacroSplit[2] = getFatsSplit
       })
     }
-    if (macro === "c" && day === "rest") {
+    if (macro === 'c' && day === 'rest') {
       const getFatsSplit = Number(
         (1 - val - state.restTotalMacroSplit[0]).toFixed(3)
       )
@@ -123,12 +123,14 @@ export default function SelectMacroSplit({ macroSplitArray, macro, day }) {
         open={isOpen}
         toggle={() => setOpen(!isOpen)}
         size="lg"
-        disabled={macro === "f"}>
+        disabled={macro === 'f'}
+      >
         <DropdownToggle
           outline
           theme="dark"
           style={{ width: 100 }}
-          className="p-2">
+          className="p-2"
+        >
           {getDropdownToggleText()}
         </DropdownToggle>
         <DropdownMenu>
@@ -137,7 +139,8 @@ export default function SelectMacroSplit({ macroSplitArray, macro, day }) {
               <DropdownItem
                 key={value}
                 className="text-center"
-                onClick={() => onMacroSplitSelect(value)}>
+                onClick={() => onMacroSplitSelect(value)}
+              >
                 {Math.round(value * 100)}
               </DropdownItem>
             )

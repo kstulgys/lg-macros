@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from "react"
-import { Button } from "shards-react"
-import MealsSizeList from "./MealsSizeList"
-import Store from "../../store"
+import React, { useEffect, useState, useRef } from 'react'
+import { Button } from 'shards-react'
+import MealsSizeList from './MealsSizeList'
+import Store from '../../store'
 // import MealCardList from "./MealCardList"
-import TotalCaloriesInfoCard from "./TotalCaloriesInfoCard"
+// import TotalCaloriesInfoCard from "./TotalCaloriesInfoCard"
 
 export default function MealPlan() {
   const { state, setState } = Store.useStore()
@@ -25,44 +25,41 @@ export default function MealPlan() {
   //   }
   // }, [])
 
-  useEffect(
-    () => {
-      const mealsTotal = state.trainingMeals.reduce((prev, obj) => {
-        return prev + obj.size
-      }, 0)
+  useEffect(() => {
+    const mealsTotal = state.trainingMeals.reduce((prev, obj) => {
+      return prev + obj.size
+    }, 0)
 
-      // console.log(mealsTotal)
-      const mealsLength = state.trainingMeals.length
-      // console.log("mealsLength", mealsLength)
+    // console.log(mealsTotal)
+    const mealsLength = state.trainingMeals.length
+    // console.log("mealsLength", mealsLength)
 
-      const mealsSurplus = fixedNum(mealsTotal - 1)
-      const mealsDeficit = fixedNum(1 - mealsTotal)
-      const isSurplus = mealsSurplus > 0 ? true : false
+    const mealsSurplus = fixedNum(mealsTotal - 1)
+    const mealsDeficit = fixedNum(1 - mealsTotal)
+    const isSurplus = mealsSurplus > 0 ? true : false
 
-      if (mealsSurplus === 0) {
-        return
+    if (mealsSurplus === 0) {
+      return
+    }
+
+    if (isSurplus) {
+      setState(state => {
+        state.trainingMeals.pop()
+      })
+      return
+    }
+
+    if (!isSurplus) {
+      const newMeal = {
+        size: mealsDeficit,
+        macroSplit: [0.5, 0.25, 0.25]
       }
-
-      if (isSurplus) {
-        setState(state => {
-          state.trainingMeals.pop()
-        })
-        return
-      }
-
-      if (!isSurplus) {
-        const newMeal = {
-          size: mealsDeficit,
-          macroSplit: [0.5, 0.25, 0.25]
-        }
-        setState(state => {
-          state.trainingMeals[mealsLength] = newMeal
-        })
-        return
-      }
-    },
-    [state.trainingMeals]
-  )
+      setState(state => {
+        state.trainingMeals[mealsLength] = newMeal
+      })
+      return
+    }
+  }, [state.trainingMeals])
 
   return (
     <div>
