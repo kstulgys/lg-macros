@@ -28,38 +28,28 @@ export default function ResultsSide() {
       state.baseCalories = state.tdee - state.calDeficit
       state.trainingCalories = Math.round(state.baseCalories * 1.075)
       state.restCalories = Math.round(state.baseCalories * 0.925)
-      state.trainingProteinGrams = Number(
-        (
-          (state.trainingCalories * state.trainingTotalMacroSplit[0]) /
-          4
-        ).toFixed(1)
+      state.trainingProteinGrams = Math.round(
+        (state.trainingCalories * state.trainingTotalMacroSplit[0]) / 4
       )
-      state.trainingCarbsGrams = Number(
-        (
-          (state.trainingCalories * state.trainingTotalMacroSplit[1] -
-            state.fiberIntake * 2) /
+      state.trainingCarbsGrams = Math.round(
+        (state.trainingCalories * state.trainingTotalMacroSplit[1] -
+          state.fiberIntake * 2) /
           4
-        ).toFixed(1)
       )
-      state.trainingFatsGrams = Number(
-        (
-          (state.trainingCalories * state.trainingTotalMacroSplit[2]) /
-          9
-        ).toFixed(1)
+      state.trainingFatsGrams = Math.round(
+        (state.trainingCalories * state.trainingTotalMacroSplit[2]) / 9
       )
 
-      state.restProteinGrams = Number(
-        ((state.restCalories * state.restTotalMacroSplit[0]) / 4).toFixed(1)
+      state.restProteinGrams = Math.round(
+        (state.restCalories * state.restTotalMacroSplit[0]) / 4
       )
-      state.restCarbsGrams = Number(
-        (
-          (state.restCalories * state.restTotalMacroSplit[1] -
-            state.fiberIntake * 2) /
+      state.restCarbsGrams = Math.round(
+        (state.restCalories * state.restTotalMacroSplit[1] -
+          state.fiberIntake * 2) /
           4
-        ).toFixed(1)
       )
-      state.restFatsGrams = Number(
-        ((state.restCalories * state.restTotalMacroSplit[2]) / 9).toFixed(1)
+      state.restFatsGrams = Math.round(
+        (state.restCalories * state.restTotalMacroSplit[2]) / 9
       )
     })
   }

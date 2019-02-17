@@ -18,13 +18,13 @@ export default function TotalCaloriesInfoCard({ day }) {
       const percentText = Number(
         (state.trainingTotalMacroSplit[0] * 100).toFixed(2)
       )
-      return `${state.trainingProteinGrams} g / ${percentText} %`
+      return `${state.trainingProteinGrams} g`
     }
     if (day === 'rest') {
       const percentText = Number(
         (state.restTotalMacroSplit[0] * 100).toFixed(2)
       )
-      return `${state.restProteinGrams} g / ${percentText} %`
+      return `${state.restProteinGrams} g `
     }
   }
 
@@ -33,13 +33,13 @@ export default function TotalCaloriesInfoCard({ day }) {
       const percentText = Number(
         (state.trainingTotalMacroSplit[1] * 100).toFixed(2)
       )
-      return `${state.trainingCarbsGrams} g / ${percentText} %`
+      return `${state.trainingCarbsGrams} g `
     }
     if (day === 'rest') {
       const percentText = Number(
         (state.restTotalMacroSplit[1] * 100).toFixed(2)
       )
-      return `${state.restCarbsGrams} g / ${percentText} %`
+      return `${state.restCarbsGrams} g `
     }
   }
 
@@ -48,20 +48,19 @@ export default function TotalCaloriesInfoCard({ day }) {
       const percentText = Number(
         (state.trainingTotalMacroSplit[2] * 100).toFixed(2)
       )
-      return `${state.trainingFatsGrams} g / ${percentText} %`
+      return `${state.trainingFatsGrams} g`
     }
     if (day === 'rest') {
       const percentText = Number(
         (state.restTotalMacroSplit[2] * 100).toFixed(2)
       )
-      return `${state.restFatsGrams} g / ${percentText} %`
+      return `${state.restFatsGrams} g `
     }
   }
 
   const onProteinChange = e => {
     const { value } = e.target
     const carbsAndFatsSplit = Number(((1 - Number(value)) / 2).toFixed(3))
-    // console.log(carbsAndFatsSplit)
     if (day === 'training') {
       setState(state => {
         state.trainingTotalMacroSplit[0] = value
@@ -85,12 +84,15 @@ export default function TotalCaloriesInfoCard({ day }) {
 
   const onCarbsChange = e => {
     const { value } = e.target
-    const trainingFatsSplit = (
-      1 -
-      state.trainingTotalMacroSplit[0] -
-      value
-    ).toFixed(2)
-    const restFatsSplit = (1 - state.restTotalMacroSplit[0] - value).toFixed(2)
+
+    // const carbsAndFatsSplit = Number(((1 - Number(value)) / 2).toFixed(3))
+
+    const trainingFatsSplit = Number(
+      (1 - state.trainingTotalMacroSplit[0] - Number(value)).toFixed(3)
+    )
+    const restFatsSplit = Number(
+      (1 - state.restTotalMacroSplit[0] - Number(value)).toFixed(3)
+    )
 
     if (day === 'training') {
       setState(state => {
@@ -127,8 +129,7 @@ export default function TotalCaloriesInfoCard({ day }) {
                 ? (state.trainingTotalMacroSplit[0] * 100).toFixed(0)
                 : (state.restTotalMacroSplit[0] * 100).toFixed(0)
             }
-            className="py-4 py-sm-3"
-          >
+            className="py-4 py-sm-3">
             <h6 className="text-light pt-2 pt-sm-1">{getProteinInfoText()}</h6>
           </Progress>
           <Progress
@@ -139,8 +140,7 @@ export default function TotalCaloriesInfoCard({ day }) {
                 ? (state.trainingTotalMacroSplit[1] * 100).toFixed(0)
                 : (state.restTotalMacroSplit[1] * 100).toFixed(0)
             }
-            className="py-4 py-sm-3"
-          >
+            className="py-4 py-sm-3">
             <h6 className="text-light pt-2 pt-sm-1">{getCarbsInfoText()}</h6>
           </Progress>
           <Progress
@@ -151,8 +151,7 @@ export default function TotalCaloriesInfoCard({ day }) {
                 ? (state.trainingTotalMacroSplit[2] * 100).toFixed(0)
                 : (state.restTotalMacroSplit[2] * 100).toFixed(0)
             }
-            className="py-4 py-sm-3"
-          >
+            className="py-4 py-sm-3">
             <h6 className="text-light pt-2 pt-sm-1 ">{getFatsInfoText()}</h6>
           </Progress>
         </Progress>
@@ -160,45 +159,53 @@ export default function TotalCaloriesInfoCard({ day }) {
       <br />
 
       <div className="d-flex justify-content-between align-items-center">
-        <h5 className="m-0">P</h5>
-        <input
-          className="ml-auto"
-          style={{ width: '80%' }}
-          list="tickmarks"
-          step="0.05"
-          min="0.3"
-          max="0.6"
-          type="range"
-          value={
-            day === 'training'
-              ? state.trainingTotalMacroSplit[0]
-              : state.restTotalMacroSplit[0]
-          }
-          onChange={onProteinChange}
-        />
-
-        <h5 className="m-0 ml-2">%</h5>
+        <h5 className="">Protein</h5>
+        <h5 className="">
+          {day === 'training'
+            ? (state.trainingTotalMacroSplit[0] * 100).toFixed(0)
+            : (state.restTotalMacroSplit[0] * 100).toFixed(0)}{' '}
+          %
+        </h5>
       </div>
+      <input
+        className="w-100"
+        list="tickmarks"
+        step="0.05"
+        min="0.3"
+        max="0.6"
+        type="range"
+        value={
+          day === 'training'
+            ? state.trainingTotalMacroSplit[0]
+            : state.restTotalMacroSplit[0]
+        }
+        onChange={onProteinChange}
+      />
       <div className="d-flex justify-content-between align-items-center mt-4">
-        <h5 className="m-0">C / F</h5>
-        <input
-          className="ml-auto"
-          style={{ width: '80%' }}
-          list="tickmarks-1"
-          step="0.025"
-          min="0.05"
-          max={maxCarbsRange}
-          type="range"
-          value={
-            day === 'training'
-              ? state.trainingTotalMacroSplit[1]
-              : state.restTotalMacroSplit[1]
-          }
-          onChange={onCarbsChange}
-        />
-
-        <h5 className="m-0 ml-2 text-center">%</h5>
+        <h5 className="">Carbs / Fats</h5>
+        <h5 className="">
+          {day === 'training'
+            ? `${Number((state.trainingTotalMacroSplit[1] * 100).toFixed(1))} / 
+              ${Number((state.trainingTotalMacroSplit[2] * 100).toFixed(1))}`
+            : `${Number((state.restTotalMacroSplit[1] * 100).toFixed(1))} / 
+              ${Number((state.restTotalMacroSplit[2] * 100).toFixed(1))}`}{' '}
+          %
+        </h5>
       </div>
+      <input
+        className="w-100"
+        list="tickmarks-1"
+        step="0.025"
+        min="0.05"
+        max={maxCarbsRange}
+        type="range"
+        value={
+          day === 'training'
+            ? state.trainingTotalMacroSplit[1]
+            : state.restTotalMacroSplit[1]
+        }
+        onChange={onCarbsChange}
+      />
     </div>
   )
 }
