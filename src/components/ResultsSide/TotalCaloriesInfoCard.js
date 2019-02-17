@@ -13,51 +13,6 @@ export default function TotalCaloriesInfoCard({ day }) {
     }
   })
 
-  const getProteinInfoText = () => {
-    if (day === 'training') {
-      const percentText = Number(
-        (state.trainingTotalMacroSplit[0] * 100).toFixed(2)
-      )
-      return `${state.trainingProteinGrams} g`
-    }
-    if (day === 'rest') {
-      const percentText = Number(
-        (state.restTotalMacroSplit[0] * 100).toFixed(2)
-      )
-      return `${state.restProteinGrams} g `
-    }
-  }
-
-  const getCarbsInfoText = () => {
-    if (day === 'training') {
-      const percentText = Number(
-        (state.trainingTotalMacroSplit[1] * 100).toFixed(2)
-      )
-      return `${state.trainingCarbsGrams} g `
-    }
-    if (day === 'rest') {
-      const percentText = Number(
-        (state.restTotalMacroSplit[1] * 100).toFixed(2)
-      )
-      return `${state.restCarbsGrams} g `
-    }
-  }
-
-  const getFatsInfoText = () => {
-    if (day === 'training') {
-      const percentText = Number(
-        (state.trainingTotalMacroSplit[2] * 100).toFixed(2)
-      )
-      return `${state.trainingFatsGrams} g`
-    }
-    if (day === 'rest') {
-      const percentText = Number(
-        (state.restTotalMacroSplit[2] * 100).toFixed(2)
-      )
-      return `${state.restFatsGrams} g `
-    }
-  }
-
   const onProteinChange = e => {
     const { value } = e.target
     const carbsAndFatsSplit = Number(((1 - Number(value)) / 2).toFixed(3))
@@ -112,7 +67,7 @@ export default function TotalCaloriesInfoCard({ day }) {
   }
 
   return (
-    <div className="">
+    <div className="py-4">
       <h5 className="font-weight-bold d-flex">
         <span>{day === 'training' ? 'Training' : 'Rest'} day</span>
         <span className="ml-auto">
@@ -130,7 +85,12 @@ export default function TotalCaloriesInfoCard({ day }) {
                 : (state.restTotalMacroSplit[0] * 100).toFixed(0)
             }
             className="py-4 py-sm-3">
-            <h6 className="text-light pt-2 pt-sm-1">{getProteinInfoText()}</h6>
+            <h6 className="text-light pt-2 pt-sm-1">
+              {day === 'training'
+                ? state.trainingProteinGrams
+                : state.restProteinGrams}{' '}
+              g
+            </h6>
           </Progress>
           <Progress
             bar
@@ -141,7 +101,12 @@ export default function TotalCaloriesInfoCard({ day }) {
                 : (state.restTotalMacroSplit[1] * 100).toFixed(0)
             }
             className="py-4 py-sm-3">
-            <h6 className="text-light pt-2 pt-sm-1">{getCarbsInfoText()}</h6>
+            <h6 className="text-light pt-2 pt-sm-1">
+              {day === 'training'
+                ? state.trainingCarbsGrams
+                : state.restCarbsGrams}{' '}
+              g
+            </h6>
           </Progress>
           <Progress
             bar
@@ -152,7 +117,12 @@ export default function TotalCaloriesInfoCard({ day }) {
                 : (state.restTotalMacroSplit[2] * 100).toFixed(0)
             }
             className="py-4 py-sm-3">
-            <h6 className="text-light pt-2 pt-sm-1 ">{getFatsInfoText()}</h6>
+            <h6 className="text-light pt-2 pt-sm-1 ">
+              {day === 'training'
+                ? state.trainingFatsGrams
+                : state.restFatsGrams}{' '}
+              g
+            </h6>
           </Progress>
         </Progress>
       </div>

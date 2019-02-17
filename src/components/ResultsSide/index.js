@@ -75,12 +75,8 @@ export default function ResultsSide() {
       </CardHeader>
 
       <CardBody className="p-3 m-sm-3">
-        <div>
-          <TotalCaloriesInfoCard day="training" />
-        </div>
-        <div className="my-3 pt-5">
-          <TotalCaloriesInfoCard day="rest" />
-        </div>
+        <TotalCaloriesInfoCard day="training" />
+        <TotalCaloriesInfoCard day="rest" />
       </CardBody>
     </Card>
   )
