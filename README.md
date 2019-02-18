@@ -14,7 +14,7 @@ Clone the git repo
 git clone https://github.com/kstulgys/lg-macros
 ```
 
-Use yarn or npm to install dependencies
+Run yarn or npm to install the dependencies
 
 ```
 yarn
