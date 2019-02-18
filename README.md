@@ -1,6 +1,6 @@
 # Lg-macros
 
-Lg-macros is an app that helps intuitively and accurately (thanks for the UI) estimate calories intake for training and no training days. The calculations are based on the "Lean Gains" approach.
+Lg-macros is an app that helps intuitively and accurately (thanks for the UI) estimate calories intake for training and non training days. The calculations are based on the "Lean Gains" approach.
 
 [Live demo](https://lg-macros.netlify.com/)
 
