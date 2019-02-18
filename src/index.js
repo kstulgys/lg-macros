@@ -18,7 +18,9 @@ function App() {
   // console.log(state)
 
   return (
-    <div className="bg-light" style={{ overflowX: 'hidden', height: '100vh' }}>
+    <div
+      className="bg-light"
+      style={{ overflowX: 'hidden', overflowY: 'scroll', height: '100vh' }}>
       <Navigation />
       <Route exact path="/" component={Calories} />
       <Route path="/meals" component={MealPlan} />

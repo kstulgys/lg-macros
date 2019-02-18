@@ -1,9 +1,88 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Button } from 'shards-react'
+import { Button, Card, CardBody } from 'shards-react'
 import MealsSizeList from './MealsSizeList'
+import MealCardList from './MealCardList'
+
 import Store from '../../store'
 // import MealCardList from "./MealCardList"
 // import TotalCaloriesInfoCard from "./TotalCaloriesInfoCard"
+
+function MealCount() {
+  const { state, setState } = Store.useStore()
+  // console.log(state.trainingMeals)
+
+  const mealsLength = state.trainingMeals.length
+
+  const onValueChange = e => {
+    const { value } = e.target
+    const mealSize = Number((1 / Number(value)).toFixed(3))
+    const newMealsArray = Array(mealsLength).fill({
+      size: mealSize,
+      macroSplit: [0.5, 0.25, 0.25]
+    })
+    // console.log(value, mealSize, newMealsArray)
+
+    setState(state => {
+      state.trainingMeals = [...newMealsArray]
+    })
+  }
+
+  return (
+    <div className="d-flex justify-content-center">
+      <div className="w-100 m-4">
+        <div className="d-flex justify-content-between align-items-center">
+          <h5 className="">Meals</h5>
+          <h5 className="">{mealsLength}</h5>
+        </div>
+        <input
+          className="w-100"
+          step="1"
+          min="2"
+          max="6"
+          type="range"
+          defaultValue={mealsLength}
+          onChange={onValueChange}
+        />
+      </div>
+    </div>
+  )
+}
+
+function MealSizeList() {
+  const { state, setState } = Store.useStore()
+
+  const onValueChange = e => {
+    const { value } = e.target
+    console.log(value)
+    // setState(state => {
+    //   state.trainingMealCount = Number(value)
+    // })
+  }
+
+  return (
+    <div className="d-flex flex-wrap justify-content-center pt-4">
+      {state.trainingMeals.map((m, i) => {
+        return (
+          <div className="w-100 m-4 my-4" key={`${m}-${i}`}>
+            <div className="d-flex justify-content-between align-items-center">
+              <h5 className="">Meal-{i + 1}</h5>
+              <h5 className="">{Number((m.size * 100).toFixed(1))} %</h5>
+            </div>
+            <input
+              // className="w-100"
+              step="0.1"
+              min="0.1"
+              max="0.8"
+              type="range"
+              defaultValue={m.size}
+              onChange={onValueChange}
+            />
+          </div>
+        )
+      })}
+    </div>
+  )
+}
 
 export default function MealPlan() {
   const { state, setState } = Store.useStore()
@@ -50,8 +129,19 @@ export default function MealPlan() {
   }, [state.trainingMeals])
 
   return (
-    <div>
-      <h5 className="text-center mt-4">Work in progress...</h5>
+    <div className="d-flex row justify-content-center mt-sm-5">
+      <h5 className="text-center w-100">Work in progress...</h5>
+      <div className="col-12 col-sm-4  my-4">
+        <Card>
+          <CardBody>
+            <MealCount />
+            <MealSizeList />
+          </CardBody>
+        </Card>
+      </div>
+      <div className="col-12 col-sm-6 ">
+        <MealCardList />
+      </div>
     </div>
   )
 }

@@ -67,7 +67,7 @@ export default function TotalCaloriesInfoCard({ day }) {
   }
 
   return (
-    <div className="py-4">
+    <div className="">
       <h5 className="font-weight-bold d-flex">
         <span>{day === 'training' ? 'Training' : 'Rest'} day</span>
         <span className="ml-auto">

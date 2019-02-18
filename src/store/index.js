@@ -17,7 +17,7 @@ const initialState = {
   muscularValue: 0,
   stepsValue: 0.5,
   fiberIntake: 40,
-  calDeficit: 500,
+  calDeficit: -500,
   trainingTotalCalSplit: [0.2, 0.2, 0.6],
   restTotalCalSplit: [0.2, 0.2, 0.6],
   trainingTotalMacroSplit: [0.5, 0.25, 0.25],

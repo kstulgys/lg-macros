@@ -25,7 +25,7 @@ export default function ResultsSide() {
     setState(state => {
       state.multiplier = multiplier
       state.tdee = tdee
-      state.baseCalories = state.tdee - state.calDeficit
+      state.baseCalories = state.tdee + state.calDeficit
       state.trainingCalories = Math.round(state.baseCalories * 1.075)
       state.restCalories = Math.round(state.baseCalories * 0.925)
       state.trainingProteinGrams = Math.round(
@@ -75,8 +75,12 @@ export default function ResultsSide() {
       </CardHeader>
 
       <CardBody className="p-3 m-sm-3">
-        <TotalCaloriesInfoCard day="training" />
-        <TotalCaloriesInfoCard day="rest" />
+        <div className="mt-5 mt-sm-3">
+          <TotalCaloriesInfoCard day="training" />
+        </div>
+        <div className="py-3 py-sm-0 mt-5 mb-3">
+          <TotalCaloriesInfoCard day="rest" />
+        </div>
       </CardBody>
     </Card>
   )
