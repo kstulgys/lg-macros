@@ -28,22 +28,16 @@ export default function SelectCalDeficit() {
   // }
 
   return (
-    <div className="mt-3">
+    <div className="my-4">
       <h5 className="font-weight-bold d-flex align-items-center">
-        <span>
-          {Math.sign(state.calDeficit) === 1
-            ? 'Surplus'
-            : Math.sign(state.calDeficit) === -1
-            ? 'Deficit'
-            : 'Maintenance'}
-        </span>
+        <span>TDEE ({Math.sign(state.calDeficit) === 1 ? '+' : '-'})</span>
         <span className="ml-auto">{state.calDeficit} Cal</span>
       </h5>
       <input
         className="m-0 p-0"
         step="25"
         min="-500"
-        max="500"
+        max="700"
         type="range"
         value={state.calDeficit}
         onChange={onCalDeficitChange}

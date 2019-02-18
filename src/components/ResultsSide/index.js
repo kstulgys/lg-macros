@@ -4,6 +4,8 @@ import SelectCalDeficit from './SelectCalDeficit'
 import SelectFiberIntake from './SelectFiberIntake'
 import SelectMacroSplit from './SelectMacroSplit'
 import TotalCaloriesInfoCard from './TotalCaloriesInfoCard'
+import SelectWorkoutsPerWeek from './SelectWorkoutsPerWeek'
+import WeeklyDeficit from './WeeklyDeficit'
 
 import Store from '../../store'
 
@@ -61,17 +63,26 @@ export default function ResultsSide() {
   return (
     <Card>
       <CardHeader className="pb-1">
-        <h5 className="font-weight-bold d-flex">
+        <h5 className="font-weight-bold d-flex my-4">
           <span>TDEE</span>
           <span className="ml-auto">{state.tdee} Cal</span>
         </h5>
         <SelectCalDeficit />
-        <SelectFiberIntake />
-
-        <h5 className="font-weight-bold d-flex mt-3">
+        <h5 className="font-weight-bold d-flex my-4">
           <span>Base</span>
           <span className="ml-auto">{state.baseCalories} Cal</span>
         </h5>
+        <h5 className="font-weight-bold d-flex my-4">
+          <span>Training</span>
+          <span className="ml-auto">{state.trainingCalories} Cal</span>
+        </h5>
+        <h5 className="font-weight-bold d-flex my-4">
+          <span>Rest</span>
+          <span className="ml-auto">{state.restCalories} Cal</span>
+        </h5>
+        <SelectWorkoutsPerWeek />
+        <WeeklyDeficit />
+        <SelectFiberIntake />
       </CardHeader>
 
       <CardBody className="p-3 m-sm-3">

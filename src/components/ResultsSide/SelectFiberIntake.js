@@ -24,7 +24,7 @@ export default function SelectFiberIntake() {
   }
 
   return (
-    <div className="mt-3">
+    <div className="my-4">
       <h5 className="font-weight-bold d-flex align-items-center">
         <span>Fiber/day</span>
         <span className="ml-auto">{state.fiberIntake} g</span>
