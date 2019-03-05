@@ -18,7 +18,7 @@ const initialState = {
   stepsValue: 0.5,
   fiberIntake: 40,
   calDeficit: -500,
-  calDeficitPercent: 0.2,
+  calDeficitPercent: 0.185,
   calSplit: 0.2,
   workoutsPerWeek: 3,
   useWorkoutsPerWeek: false,
