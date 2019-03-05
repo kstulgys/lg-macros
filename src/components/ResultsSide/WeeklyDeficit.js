@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { FaInfoCircle } from 'react-icons/fa'
+import React, { useState, useEffect } from "react"
+import { FaInfoCircle } from "react-icons/fa"
 import {
   Dropdown,
   DropdownToggle,
@@ -9,11 +9,18 @@ import {
   Popover,
   PopoverBody,
   PopoverHeader
-} from 'shards-react'
-import Store from '../../store'
+} from "shards-react"
+import Store from "../../store"
 
 export default function WeeklyDeficit() {
   const { state, setState } = Store.useStore()
+
+  const caloriesPerWeek = () => {
+    return (
+      state.trainingCalories * state.workoutsPerWeek +
+      state.restCalories * (7 - state.workoutsPerWeek)
+    )
+  }
 
   const totalCaloriesPerWeekMaintain = () => {
     const trainingDaysWeeklyCalories =
@@ -47,16 +54,8 @@ export default function WeeklyDeficit() {
     <>
       <div className="my-4">
         <h5 className="font-weight-bold d-flex align-items-center">
-          <span>TDEE / wk</span>
-          <span className="ml-auto">{totalCaloriesPerWeekMaintain()} Cal</span>
-        </h5>
-      </div>
-      <div className="my-4">
-        <h5 className="font-weight-bold d-flex align-items-center">
-          <span>
-            {Math.sign(weeklyDeficit()) === 1 ? 'Surplus / wk' : 'Deficit / wk'}
-          </span>
-          <span className="ml-auto">{weeklyDeficit()} Cal</span>
+          <span>Eaten</span>
+          <span className="ml-auto">{caloriesPerWeek()} Cal/wk</span>
         </h5>
       </div>
     </>

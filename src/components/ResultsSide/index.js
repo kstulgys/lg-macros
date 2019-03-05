@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { CardHeader, CardTitle, Card, CardBody } from 'shards-react'
-import SelectCalDeficit from './SelectCalDeficit'
-import SelectFiberIntake from './SelectFiberIntake'
-import SelectMacroSplit from './SelectMacroSplit'
-import TotalCaloriesInfoCard from './TotalCaloriesInfoCard'
-import SelectWorkoutsPerWeek from './SelectWorkoutsPerWeek'
-import WeeklyDeficit from './WeeklyDeficit'
+import React, { useState, useEffect } from "react"
+import { CardHeader, CardTitle, Card, CardBody } from "shards-react"
+import SelectCalDeficit from "./SelectCalDeficit"
+import SelectCalSplit from "./SelectCalSplit"
+import SelectFiberIntake from "./SelectFiberIntake"
+import SelectMacroSplit from "./SelectMacroSplit"
+import TotalCaloriesInfoCard from "./TotalCaloriesInfoCard"
+import SelectWorkoutsPerWeek from "./SelectWorkoutsPerWeek"
+import WeeklyDeficit from "./WeeklyDeficit"
 
-import Store from '../../store'
+import Store from "../../store"
 
 export default function ResultsSide() {
   const { state, setState } = Store.useStore()
@@ -28,8 +29,26 @@ export default function ResultsSide() {
       state.multiplier = multiplier
       state.tdee = tdee
       state.baseCalories = state.tdee + state.calDeficit
-      state.trainingCalories = Math.round(state.baseCalories * 1.075)
-      state.restCalories = Math.round(state.baseCalories * 0.925)
+      //         (Target average daily calorie intake * 7) /
+      //         (Number of training days per week + (Number of rest days per week) * (1 - (chosen
+      // percentage calorie difference between training and rest days) /100))
+      state.trainingCalories = state.useWorkoutsPerWeek
+        ? Math.round(
+            (state.baseCalories * 7) /
+              (state.workoutsPerWeek +
+                (7 - state.workoutsPerWeek) * (1 - state.calSplit))
+          )
+        : Math.round(state.baseCalories * (1 + state.calSplit))
+
+      state.restCalories = state.useWorkoutsPerWeek
+        ? Math.round(
+            ((state.baseCalories * 7) /
+              (state.workoutsPerWeek +
+                (7 - state.workoutsPerWeek) * (1 - state.calSplit))) *
+              (1 - state.calSplit)
+          )
+        : Math.round(state.baseCalories * (1 - state.calSplit))
+
       state.trainingProteinGrams = Math.round(
         (state.trainingCalories * state.trainingTotalMacroSplit[0]) / 4
       )
@@ -56,9 +75,12 @@ export default function ResultsSide() {
     })
   }
 
-  useEffect(() => {
-    setCaloriesAndMacros()
-  }, [state])
+  useEffect(
+    () => {
+      setCaloriesAndMacros()
+    },
+    [state]
+  )
 
   return (
     <Card>
@@ -68,10 +90,13 @@ export default function ResultsSide() {
           <span className="ml-auto">{state.tdee} Cal</span>
         </h5>
         <SelectCalDeficit />
+        <SelectWorkoutsPerWeek />
+
         <h5 className="font-weight-bold d-flex my-4">
           <span>Base</span>
           <span className="ml-auto">{state.baseCalories} Cal</span>
         </h5>
+        <SelectCalSplit />
         <h5 className="font-weight-bold d-flex my-4">
           <span>Training</span>
           <span className="ml-auto">{state.trainingCalories} Cal</span>
@@ -80,7 +105,6 @@ export default function ResultsSide() {
           <span>Rest</span>
           <span className="ml-auto">{state.restCalories} Cal</span>
         </h5>
-        <SelectWorkoutsPerWeek />
         <WeeklyDeficit />
         <SelectFiberIntake />
       </CardHeader>
