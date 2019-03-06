@@ -22,40 +22,40 @@ export default function WeeklyDeficit() {
     )
   }
 
-  const totalCaloriesPerWeekMaintain = () => {
-    const trainingDaysWeeklyCalories =
-      (state.tdee + 450) * state.workoutsPerWeek
+  // const totalCaloriesPerWeekMaintain = () => {
+  //   const trainingDaysWeeklyCalories =
+  //     (state.tdee + 450) * state.workoutsPerWeek
 
-    const restDaysWeeklyCalories = state.tdee * (7 - state.workoutsPerWeek)
-    // console.log(restDaysWeeklyCalories)
-    const totalCaloriesPerWeek =
-      trainingDaysWeeklyCalories + restDaysWeeklyCalories
-    // console.log(totalCaloriesPerWeek)
-    // const totalCalPerWeek = Math.round(totalCaloriesPerWeek - state.tdee)
-    return totalCaloriesPerWeek
-  }
+  //   const restDaysWeeklyCalories = state.tdee * (7 - state.workoutsPerWeek)
+  //   // console.log(restDaysWeeklyCalories)
+  //   const totalCaloriesPerWeek =
+  //     trainingDaysWeeklyCalories + restDaysWeeklyCalories
+  //   // console.log(totalCaloriesPerWeek)
+  //   // const totalCalPerWeek = Math.round(totalCaloriesPerWeek - state.tdee)
+  //   return totalCaloriesPerWeek
+  // }
 
-  const weeklyDeficit = () => {
-    const trainingDaysWeeklyCalories =
-      state.trainingCalories * state.workoutsPerWeek
+  // const weeklyDeficit = () => {
+  //   const trainingDaysWeeklyCalories =
+  //     state.trainingCalories * state.workoutsPerWeek
 
-    const restDaysWeeklyCalories =
-      state.restCalories * (7 - state.workoutsPerWeek)
-    // console.log(restDaysWeeklyCalories)
-    const totalCaloriesPerWeek =
-      trainingDaysWeeklyCalories + restDaysWeeklyCalories
-    // console.log(totalCaloriesPerWeek)
-    // const totalCalPerWeek = Math.round(totalCaloriesPerWeek - state.tdee)
-    const weeklyDeficit = totalCaloriesPerWeek - totalCaloriesPerWeekMaintain()
-    return weeklyDeficit
-  }
+  //   const restDaysWeeklyCalories =
+  //     state.restCalories * (7 - state.workoutsPerWeek)
+  //   // console.log(restDaysWeeklyCalories)
+  //   const totalCaloriesPerWeek =
+  //     trainingDaysWeeklyCalories + restDaysWeeklyCalories
+  //   // console.log(totalCaloriesPerWeek)
+  //   // const totalCalPerWeek = Math.round(totalCaloriesPerWeek - state.tdee)
+  //   const weeklyDeficit = totalCaloriesPerWeek - totalCaloriesPerWeekMaintain()
+  //   return weeklyDeficit
+  // }
 
   return (
     <>
       <div className="my-4">
         <h5 className="font-weight-bold d-flex align-items-center">
-          <span>Eaten</span>
-          <span className="ml-auto">{caloriesPerWeek()} Cal/wk</span>
+          <span>Intake/wk</span>
+          <span className="ml-auto">{caloriesPerWeek()} Cal</span>
         </h5>
       </div>
     </>

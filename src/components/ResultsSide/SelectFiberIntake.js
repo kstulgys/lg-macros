@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { FaInfoCircle } from 'react-icons/fa'
+import React, { useState, useEffect } from "react"
+import { FaInfoCircle } from "react-icons/fa"
 import {
   Dropdown,
   DropdownToggle,
@@ -9,8 +9,8 @@ import {
   Popover,
   PopoverBody,
   PopoverHeader
-} from 'shards-react'
-import Store from '../../store'
+} from "shards-react"
+import Store from "../../store"
 
 export default function SelectFiberIntake() {
   const { state, setState } = Store.useStore()
@@ -33,7 +33,7 @@ export default function SelectFiberIntake() {
         className="m-0 p-0"
         step="5"
         min="30"
-        max="60"
+        max="80"
         type="range"
         value={state.fiberIntake}
         onChange={onFiberIntakeChange}

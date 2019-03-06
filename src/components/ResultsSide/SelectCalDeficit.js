@@ -21,21 +21,8 @@ export default function SelectCalDeficit() {
     const { value } = e.target
     setState(state => {
       state.calDeficit = Number(value)
-      state.calDeficitPercent = Number(
-        (state.calDeficit / state.tdee).toFixed(3)
-      )
     })
   }
-
-  // const onCalDeficitPercentChange = e => {
-  //   const { value } = e.target
-  //   setState(state => {
-  //     state.calDeficitPercent = Number(Number(value).toFixed(3))
-  //     state.calDeficit = Number(
-  //       Math.round(state.tdee * state.calDeficitPercent)
-  //     )
-  //   })
-  // }
 
   return (
     <>

@@ -29,9 +29,6 @@ export default function ResultsSide() {
       state.multiplier = multiplier
       state.tdee = tdee
       state.baseCalories = state.tdee + state.calDeficit
-      //         (Target average daily calorie intake * 7) /
-      //         (Number of training days per week + (Number of rest days per week) * (1 - (chosen
-      // percentage calorie difference between training and rest days) /100))
       state.trainingCalories = state.useWorkoutsPerWeek
         ? Math.round(
             (state.baseCalories * 7) /
@@ -71,6 +68,9 @@ export default function ResultsSide() {
       )
       state.restFatsGrams = Math.round(
         (state.restCalories * state.restTotalMacroSplit[2]) / 9
+      )
+      state.calDeficitPercent = Number(
+        (state.calDeficit / state.tdee).toFixed(3)
       )
     })
   }
