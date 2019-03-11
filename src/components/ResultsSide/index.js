@@ -105,10 +105,7 @@ export default function ResultsSide() {
           <span className="ml-auto">{state.tdee} Cal</span>
         </h5>
         <SelectCalDeficit />
-        <h5 className="font-weight-bold d-flex my-4">
-          <span>Fat loss/wk</span>
-          <span className="ml-auto">{state.baseCalories} kg</span>
-        </h5>
+
         <SelectWorkoutsPerWeek />
 
         <h5 className="font-weight-bold d-flex my-4">
