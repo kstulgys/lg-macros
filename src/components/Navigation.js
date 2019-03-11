@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { Button } from 'shards-react'
+import React, { useState } from "react"
+import { Button } from "shards-react"
 import {
   BrowserRouter,
   Link,
   Switch,
   Route,
   withRouter
-} from 'react-router-dom'
+} from "react-router-dom"
 
 function Navigation({ location }) {
   const [collapseOpen, toggleColapse] = useState(false)
@@ -16,19 +16,9 @@ function Navigation({ location }) {
         <Button
           size="lg"
           style={{ width: 125 }}
-          theme={location.pathname !== '/meals' ? 'dark' : 'light'}
-          className="mr-3"
-        >
+          theme={location.pathname !== "/meals" ? "dark" : "light"}
+          className="mr-3">
           Calories
-        </Button>
-      </Link>
-      <Link to="/meals">
-        <Button
-          style={{ width: 125 }}
-          size="lg"
-          theme={location.pathname === '/meals' ? 'dark' : 'light'}
-        >
-          Meals
         </Button>
       </Link>
     </div>
@@ -36,3 +26,13 @@ function Navigation({ location }) {
 }
 
 export default withRouter(Navigation)
+
+// < Link to = "/meals" >
+//   <Button
+//     style={{ width: 125 }}
+//     size="lg"
+//     theme={location.pathname === '/meals' ? 'dark' : 'light'}
+//   >
+//     Meals
+//       </Button>
+//     </Link >
