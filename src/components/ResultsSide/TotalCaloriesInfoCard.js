@@ -1,14 +1,14 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { Button, Card, CardBody, Progress } from 'shards-react'
-import Store from '../../store'
+import React, { useEffect, useState, useRef } from "react"
+import { Button, Card, CardBody, Progress } from "shards-react"
+import Store from "../../store"
 
 export default function TotalCaloriesInfoCard({ day }) {
   const { state, setState } = Store.useStore()
   const [maxCarbsRange, setMaxCarbsRange] = useState(() => {
-    if (day === 'training') {
+    if (day === "training") {
       return (0.95 - state.trainingTotalMacroSplit[0]).toFixed(3)
     }
-    if (day === 'rest') {
+    if (day === "rest") {
       return (0.95 - state.restTotalMacroSplit[0]).toFixed(3)
     }
   })
@@ -16,7 +16,7 @@ export default function TotalCaloriesInfoCard({ day }) {
   const onProteinChange = e => {
     const { value } = e.target
     const carbsAndFatsSplit = Number(((1 - Number(value)) / 2).toFixed(3))
-    if (day === 'training') {
+    if (day === "training") {
       setState(state => {
         state.trainingTotalMacroSplit[0] = value
         state.trainingTotalMacroSplit[1] = carbsAndFatsSplit
@@ -26,7 +26,7 @@ export default function TotalCaloriesInfoCard({ day }) {
       return
     }
 
-    if (day === 'rest') {
+    if (day === "rest") {
       setState(state => {
         state.restTotalMacroSplit[0] = value
         state.restTotalMacroSplit[1] = carbsAndFatsSplit
@@ -49,7 +49,7 @@ export default function TotalCaloriesInfoCard({ day }) {
       (1 - state.restTotalMacroSplit[0] - Number(value)).toFixed(3)
     )
 
-    if (day === 'training') {
+    if (day === "training") {
       setState(state => {
         state.trainingTotalMacroSplit[1] = value
         state.trainingTotalMacroSplit[2] = trainingFatsSplit
@@ -57,7 +57,7 @@ export default function TotalCaloriesInfoCard({ day }) {
       return
     }
 
-    if (day === 'rest') {
+    if (day === "rest") {
       setState(state => {
         state.restTotalMacroSplit[1] = value
         state.restTotalMacroSplit[2] = restFatsSplit
@@ -69,9 +69,9 @@ export default function TotalCaloriesInfoCard({ day }) {
   return (
     <div className="">
       <h5 className="font-weight-bold d-flex">
-        <span>{day === 'training' ? 'Training' : 'Rest'} day</span>
+        <span>{day === "training" ? "Training" : "Rest"} day</span>
         <span className="ml-auto">
-          {day === 'training' ? state.trainingCalories : state.restCalories} Cal
+          {day === "training" ? state.trainingCalories : state.restCalories} Cal
         </span>
       </h5>
       <div className="mt-4">
@@ -80,15 +80,15 @@ export default function TotalCaloriesInfoCard({ day }) {
             bar
             theme="success"
             value={
-              day === 'training'
+              day === "training"
                 ? (state.trainingTotalMacroSplit[0] * 100).toFixed(0)
                 : (state.restTotalMacroSplit[0] * 100).toFixed(0)
             }
             className="py-4 py-sm-3">
             <h6 className="text-light pt-2 pt-sm-1">
-              {day === 'training'
+              {day === "training"
                 ? state.trainingProteinGrams
-                : state.restProteinGrams}{' '}
+                : state.restProteinGrams}{" "}
               g
             </h6>
           </Progress>
@@ -96,15 +96,15 @@ export default function TotalCaloriesInfoCard({ day }) {
             bar
             theme="danger"
             value={
-              day === 'training'
+              day === "training"
                 ? (state.trainingTotalMacroSplit[1] * 100).toFixed(0)
                 : (state.restTotalMacroSplit[1] * 100).toFixed(0)
             }
             className="py-4 py-sm-3">
             <h6 className="text-light pt-2 pt-sm-1">
-              {day === 'training'
+              {day === "training"
                 ? state.trainingCarbsGrams
-                : state.restCarbsGrams}{' '}
+                : state.restCarbsGrams}{" "}
               g
             </h6>
           </Progress>
@@ -112,15 +112,15 @@ export default function TotalCaloriesInfoCard({ day }) {
             bar
             theme="warning"
             value={
-              day === 'training'
+              day === "training"
                 ? (state.trainingTotalMacroSplit[2] * 100).toFixed(0)
                 : (state.restTotalMacroSplit[2] * 100).toFixed(0)
             }
             className="py-4 py-sm-3">
             <h6 className="text-light pt-2 pt-sm-1 ">
-              {day === 'training'
+              {day === "training"
                 ? state.trainingFatsGrams
-                : state.restFatsGrams}{' '}
+                : state.restFatsGrams}{" "}
               g
             </h6>
           </Progress>
@@ -131,9 +131,9 @@ export default function TotalCaloriesInfoCard({ day }) {
       <div className="d-flex justify-content-between align-items-center">
         <h5 className="">Protein</h5>
         <h5 className="">
-          {day === 'training'
+          {day === "training"
             ? (state.trainingTotalMacroSplit[0] * 100).toFixed(0)
-            : (state.restTotalMacroSplit[0] * 100).toFixed(0)}{' '}
+            : (state.restTotalMacroSplit[0] * 100).toFixed(0)}{" "}
           %
         </h5>
       </div>
@@ -141,11 +141,11 @@ export default function TotalCaloriesInfoCard({ day }) {
         className="w-100"
         list="tickmarks"
         step="0.05"
-        min="0.3"
+        min="0.2"
         max="0.6"
         type="range"
         value={
-          day === 'training'
+          day === "training"
             ? state.trainingTotalMacroSplit[0]
             : state.restTotalMacroSplit[0]
         }
@@ -154,11 +154,11 @@ export default function TotalCaloriesInfoCard({ day }) {
       <div className="d-flex justify-content-between align-items-center mt-4">
         <h5 className="">Carbs / Fats</h5>
         <h5 className="">
-          {day === 'training'
+          {day === "training"
             ? `${Number((state.trainingTotalMacroSplit[1] * 100).toFixed(1))} / 
               ${Number((state.trainingTotalMacroSplit[2] * 100).toFixed(1))}`
             : `${Number((state.restTotalMacroSplit[1] * 100).toFixed(1))} / 
-              ${Number((state.restTotalMacroSplit[2] * 100).toFixed(1))}`}{' '}
+              ${Number((state.restTotalMacroSplit[2] * 100).toFixed(1))}`}{" "}
           %
         </h5>
       </div>
@@ -170,7 +170,7 @@ export default function TotalCaloriesInfoCard({ day }) {
         max={maxCarbsRange}
         type="range"
         value={
-          day === 'training'
+          day === "training"
             ? state.trainingTotalMacroSplit[1]
             : state.restTotalMacroSplit[1]
         }

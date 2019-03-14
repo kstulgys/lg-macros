@@ -66,24 +66,6 @@ export default function ResultsSide() {
           (1 - state.calSplit)
       )
 
-      // state.baseCalories = state.tdee + state.calDeficit
-      // state.trainingCalories = state.calcMethod
-      //   ? Math.round(
-      //       (state.baseCalories * 7) /
-      //         (state.workoutsPerWeek +
-      //           (7 - state.workoutsPerWeek) * (1 - state.calSplit))
-      //     )
-      //   : Math.round(state.baseCalories * (1 + state.calSplit))
-
-      // state.restCalories = state.calcMethod
-      //   ? Math.round(
-      //       ((state.baseCalories * 7) /
-      //         (state.workoutsPerWeek +
-      //           (7 - state.workoutsPerWeek) * (1 - state.calSplit))) *
-      //         (1 - state.calSplit)
-      //     )
-      //   : Math.round(state.baseCalories * (1 - state.calSplit))
-
       state.caloriesPerWeek =
         state.trainingCalories * state.workoutsPerWeek +
         state.restCalories * (7 - state.workoutsPerWeek)
@@ -123,11 +105,7 @@ export default function ResultsSide() {
     },
     [state]
   )
-  // Sedentary(little or no exercise): BMR x 1.2
-  // Lightly active(training / sports 2 - 3 days / week): BMR x 1.375
-  // Moderately active(training / sports 4 - 5 days / week): BMR x 1.55
-  // Very active(training / sports 6 - 7 days a week): BMR x 1.725
-  // Extremely active(twice per day, extra heavy workouts): BMR x 1.9
+
   return (
     <Card>
       <CardHeader className="pb-1">
