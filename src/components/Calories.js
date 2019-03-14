@@ -23,10 +23,10 @@ export default function Calories() {
       ref={scrollToTopRef}
       className="d-flex align-items-center justify-content-center">
       <div className="row w-100 d-flex justify-content-center">
-        <div className="col-12 col-md-7 col-lg-6 col-xl-4 px-0 px-sm-3">
+        <div className="col-12 col-md-6 col-xl-4 px-0 px-sm-3">
           <CalculationsSide />
         </div>
-        <div className="col-12 col-md-5 col-lg-5 col-xl-4 px-0 px-sm-3">
+        <div className="col-12 col-md-6 col-xl-4 px-0 px-sm-3">
           <ResultsSide />
           <br />
           <div className="px-2 px-sm-0">

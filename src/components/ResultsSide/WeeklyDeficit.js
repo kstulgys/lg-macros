@@ -15,23 +15,19 @@ import Store from "../../store"
 export default function WeeklyDeficit() {
   const { state, setState } = Store.useStore()
 
-  const caloriesPerWeekCurrent = () => {
-    return (
-      state.trainingCalories * state.workoutsPerWeek +
-      state.restCalories * (7 - state.workoutsPerWeek)
-    )
-  }
-
   const caloriesPerWeekMaintain = () => {
     return Math.round(state.tdee * 7)
   }
+  const caloriesPerWeekCurrent = () => {
+    return Math.round((state.baseCalories + state.calDeficit) * 7)
+  }
 
-  const deficit = () => {
-    return caloriesPerWeekCurrent() - caloriesPerWeekMaintain()
+  const deficitPerDay = () => {
+    return Math.round(caloriesPerWeekCurrent() - caloriesPerWeekMaintain())
   }
 
   const looseOrGain = () => {
-    return ((deficit() * 0.45) / 3500).toFixed(2)
+    return ((deficitPerDay() * 0.45) / 3500).toFixed(2)
   }
 
   // const totalCaloriesPerWeekMaintain = () => {
@@ -66,24 +62,27 @@ export default function WeeklyDeficit() {
     <>
       <div className="my-4">
         <h5 className="font-weight-bold d-flex align-items-center">
-          <span>Maintain/wk</span>
-          <span className="ml-auto">{caloriesPerWeekMaintain()} Cal</span>
-        </h5>
-        <h5 className="font-weight-bold d-flex align-items-center">
-          <span>Intake/wk</span>
-          <span className="ml-auto">{caloriesPerWeekCurrent()} Cal</span>
+          <span>
+            {Math.sign(deficitPerDay()) === 1 ? "Surplus / wk" : "Deficit / wk"}
+          </span>
+          <span className="ml-auto">{deficitPerDay()} Cal</span>
         </h5>
         <h5 className="font-weight-bold d-flex align-items-center">
           <span>
-            {Math.sign(deficit()) === 1 ? "Surplus/wk" : "Deficit/wk"}
+            {Math.sign(deficitPerDay()) === 1 ? "Gain / wk" : "Loose / wk"}
           </span>
-          <span className="ml-auto">{deficit()} Cal</span>
-        </h5>
-        <h5 className="font-weight-bold d-flex align-items-center">
-          <span>{Math.sign(deficit()) === 1 ? "Gain/wk" : "Loose/wk"}</span>
           <span className="ml-auto">{looseOrGain()} kg</span>
         </h5>
       </div>
     </>
   )
 }
+
+// <h5 className="font-weight-bold d-flex align-items-center">
+//   <span>Maintain/wk</span>
+//   <span className="ml-auto">{caloriesPerWeekMaintain()} Cal</span>
+// </h5>
+//   <h5 className="font-weight-bold d-flex align-items-center">
+//     <span>Intake/wk</span>
+//     <span className="ml-auto">{caloriesPerWeekCurrent()} Cal</span>
+//   </h5>

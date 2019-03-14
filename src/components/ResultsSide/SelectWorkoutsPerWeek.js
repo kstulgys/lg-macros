@@ -15,21 +15,11 @@ export default function SelectWorkoutsPerWeek() {
     })
   }
 
-  const onUseWorkout = () => {
-    setState(state => {
-      state.useWorkoutsPerWeek = !state.useWorkoutsPerWeek
-    })
-  }
-
   return (
     <div className="my-4">
       <h5 className="font-weight-bold d-flex align-items-center">
-        <span className="mr-2">Training/wk</span>
-        <FormCheckbox
-          toggle
-          checked={state.useWorkoutsPerWeek}
-          onChange={onUseWorkout}
-        />
+        <span className="mr-2">Training / wk</span>
+
         <FaInfoCircle onClick={() => onToggle(!open)} />
         <Modal open={open} toggle={() => onToggle(!open)}>
           <ModalBody>
@@ -49,22 +39,18 @@ export default function SelectWorkoutsPerWeek() {
             </p>
           </ModalBody>
         </Modal>
-        <span className="ml-auto">
-          {state.useWorkoutsPerWeek && state.workoutsPerWeek}
-        </span>
+        <span className="ml-auto">{state.workoutsPerWeek}</span>
       </h5>
 
-      {state.useWorkoutsPerWeek && (
-        <input
-          className="m-0 p-0"
-          type="range"
-          min="2"
-          max="7"
-          step="1"
-          value={state.workoutsPerWeek}
-          onChange={onWorkoutsChange}
-        />
-      )}
+      <input
+        className="m-0 p-0"
+        type="range"
+        min="0"
+        max="7"
+        step="1"
+        value={state.workoutsPerWeek}
+        onChange={onWorkoutsChange}
+      />
     </div>
   )
 }

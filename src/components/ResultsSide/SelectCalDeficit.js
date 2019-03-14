@@ -25,32 +25,34 @@ export default function SelectCalDeficit() {
   }
 
   return (
-    <>
-      <div className="my-4">
-        <h5 className="font-weight-bold d-flex mb-0">
-          <span className="mr-2">
-            {Math.sign(state.calDeficit) === 1 ? "Surplus" : "Deficit"}
-          </span>
-        </h5>
-        <div className="d-flex">
-          <span className="ml-auto">{state.calDeficit} Cal</span>
-        </div>
-        <input
-          className="m-0 p-0"
-          step="5"
-          min="-700"
-          max="700"
-          type="range"
-          value={state.calDeficit}
-          onChange={onCalDeficitChange}
-        />
-        <div className="d-flex">
-          <span className="ml-auto">
-            {(state.calDeficitPercent * 100).toFixed(1)} %
-          </span>
-        </div>
+    <div className="my-4">
+      <h5 className="font-weight-bold d-flex mb-0">
+        <span className="mr-2">
+          {Math.sign(state.calDeficit) === 1
+            ? "Surplus"
+            : Math.sign(state.calDeficit) === 0
+            ? "Maintenance"
+            : "Deficit"}
+        </span>
+      </h5>
+      <div className="d-flex">
+        <span className="ml-auto">{state.calDeficit} Cal</span>
       </div>
-    </>
+      <input
+        className="m-0 p-0"
+        step="5"
+        min="-700"
+        max="700"
+        type="range"
+        value={state.calDeficit}
+        onChange={onCalDeficitChange}
+      />
+      <div className="d-flex">
+        <span className="ml-auto">
+          {(state.calDeficitPercent * 100).toFixed(1)} %
+        </span>
+      </div>
+    </div>
   )
 }
 

@@ -2,6 +2,15 @@ import React, { useMemo, useContext, createContext, useState } from "react"
 import { useImmer } from "use-immer"
 // import { withRouter, BrowserRouter } from 'react-router-dom';
 const initialState = {
+  activityMultiplier: 1.2,
+  baseTrainingCal: 0,
+  baseRestCal: 0,
+  tdee: 0,
+  cardioMinutes: 30,
+  weightsMinutes: 0,
+  cardioCal: 0,
+  weightsCal: 0,
+  calcMethod: 1,
   weight: 80.5,
   height: 1.82,
   bodyFat: 15,

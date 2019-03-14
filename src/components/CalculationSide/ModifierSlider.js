@@ -10,7 +10,7 @@ export default function ModifierSlider({
   defaultVal
 }) {
   const onSlideChange = e => {
-    onChange(e.target.value)
+    onChange(Number(e.target.value))
     // console.log("val from slider", e.target.value)
   }
 

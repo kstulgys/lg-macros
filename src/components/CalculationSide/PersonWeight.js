@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { FormRadio, FormInput, FormCheckbox } from "shards-react"
 import Store from "../../store"
-import SelectWeightUnit from "./SelectWeightUnit"
 import ModifierSlider from "./ModifierSlider"
 
 export default function PersonWeight() {

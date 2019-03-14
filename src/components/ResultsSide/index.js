@@ -17,6 +17,7 @@ import SelectMacroSplit from "./SelectMacroSplit"
 import TotalCaloriesInfoCard from "./TotalCaloriesInfoCard"
 import SelectWorkoutsPerWeek from "./SelectWorkoutsPerWeek"
 import WeeklyDeficit from "./WeeklyDeficit"
+import TrainingAndRestCal from "./TrainingAndRestCal.js"
 
 import Store from "../../store"
 
@@ -25,37 +26,67 @@ export default function ResultsSide() {
   const [open, onToggle] = useState(false)
 
   const setCaloriesAndMacros = () => {
-    // console.log(state.fiberIntake)
-
-    const multiplier = [
-      state.sexValue,
-      state.heightValue,
-      state.bodyFatValue,
-      state.ageValue,
-      state.stepsValue,
-      state.muscularValue
-    ].reduce((prev, next) => prev + next, 0)
-    const tdee = Math.round(multiplier * state.weight)
     setState(state => {
-      state.multiplier = multiplier
-      state.tdee = tdee
-      state.baseCalories = state.tdee + state.calDeficit
-      state.trainingCalories = state.useWorkoutsPerWeek
+      state.multiplier = [
+        state.sexValue,
+        state.heightValue,
+        state.bodyFatValue,
+        state.ageValue,
+        state.stepsValue,
+        state.muscularValue
+      ].reduce((prev, next) => prev + next, 0)
+      state.baseBmr = Math.round(
+        370 + 21.6 * state.weight * (1 - state.bodyFat / 100)
+      )
+      state.bmr = Math.round(
+        (state.baseBmr + state.baseBmr * 0.1) * state.activityMultiplier
+      )
+      state.baseTrainingCal = state.weightsCal + state.cardioCal + state.bmr
+      state.baseRestCal = state.bmr
+      state.tdee = state.calcMethod
         ? Math.round(
-            (state.baseCalories * 7) /
-              (state.workoutsPerWeek +
-                (7 - state.workoutsPerWeek) * (1 - state.calSplit))
+            (state.baseTrainingCal * state.workoutsPerWeek +
+              state.baseRestCal * (7 - state.workoutsPerWeek)) /
+              7
           )
-        : Math.round(state.baseCalories * (1 + state.calSplit))
+        : Math.round(state.multiplier * state.weight)
 
-      state.restCalories = state.useWorkoutsPerWeek
-        ? Math.round(
-            ((state.baseCalories * 7) /
-              (state.workoutsPerWeek +
-                (7 - state.workoutsPerWeek) * (1 - state.calSplit))) *
-              (1 - state.calSplit)
-          )
-        : Math.round(state.baseCalories * (1 - state.calSplit))
+      state.baseCalories = state.tdee + state.calDeficit
+
+      state.trainingCalories = Math.round(
+        (state.baseCalories * 7) /
+          (state.workoutsPerWeek +
+            (7 - state.workoutsPerWeek) * (1 - state.calSplit))
+      )
+
+      state.restCalories = Math.round(
+        ((state.baseCalories * 7) /
+          (state.workoutsPerWeek +
+            (7 - state.workoutsPerWeek) * (1 - state.calSplit))) *
+          (1 - state.calSplit)
+      )
+
+      // state.baseCalories = state.tdee + state.calDeficit
+      // state.trainingCalories = state.calcMethod
+      //   ? Math.round(
+      //       (state.baseCalories * 7) /
+      //         (state.workoutsPerWeek +
+      //           (7 - state.workoutsPerWeek) * (1 - state.calSplit))
+      //     )
+      //   : Math.round(state.baseCalories * (1 + state.calSplit))
+
+      // state.restCalories = state.calcMethod
+      //   ? Math.round(
+      //       ((state.baseCalories * 7) /
+      //         (state.workoutsPerWeek +
+      //           (7 - state.workoutsPerWeek) * (1 - state.calSplit))) *
+      //         (1 - state.calSplit)
+      //     )
+      //   : Math.round(state.baseCalories * (1 - state.calSplit))
+
+      state.caloriesPerWeek =
+        state.trainingCalories * state.workoutsPerWeek +
+        state.restCalories * (7 - state.workoutsPerWeek)
 
       state.trainingProteinGrams = Math.round(
         (state.trainingCalories * state.trainingTotalMacroSplit[0]) / 4
@@ -101,17 +132,18 @@ export default function ResultsSide() {
     <Card>
       <CardHeader className="pb-1">
         <h5 className="font-weight-bold d-flex my-4">
-          <span>TDEE (LG)</span>
+          <span>TDEE av / day</span>
           <span className="ml-auto">{state.tdee} Cal</span>
         </h5>
-        <SelectCalDeficit />
-
         <SelectWorkoutsPerWeek />
-
+        {state.calcMethod === 1 && <TrainingAndRestCal />}
+        <SelectCalDeficit />
         <h5 className="font-weight-bold d-flex my-4">
-          <span>Base</span>
+          <span>New av / day</span>
           <span className="ml-auto">{state.baseCalories} Cal</span>
         </h5>
+        <WeeklyDeficit />
+
         <SelectCalSplit />
         <h5 className="font-weight-bold d-flex my-4">
           <span>Training</span>
@@ -121,8 +153,6 @@ export default function ResultsSide() {
           <span>Rest</span>
           <span className="ml-auto">{state.restCalories} Cal</span>
         </h5>
-        <WeeklyDeficit />
-        <SelectFiberIntake />
       </CardHeader>
 
       <CardBody className="p-3 m-sm-3">
@@ -136,6 +166,8 @@ export default function ResultsSide() {
     </Card>
   )
 }
+
+// <SelectFiberIntake />
 
 // <h5 className="font-weight-bold d-flex align-items-center my-4">
 //   <span className="mr-2">BMR</span>
