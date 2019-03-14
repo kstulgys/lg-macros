@@ -2,7 +2,7 @@ import React, { useMemo, useContext, createContext, useState } from "react"
 import { useImmer } from "use-immer"
 // import { withRouter, BrowserRouter } from 'react-router-dom';
 const initialState = {
-  activityMultiplier: 1.2,
+  activityMultiplier: 1.12,
   baseTrainingCal: 0,
   baseRestCal: 0,
   tdee: 0,
